@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+import { Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+//Сделать Lazy-loading всего этого- и возможно экспортировать в общий index.js, или нет
+import LoginPage from './pages/loginPage/loginPage';
+import RegisterPage from './pages/registerPage/registerPage';
+import TrainingPage from './pages/trainingPage/trainingPage';
+import StatisticsPage from './pages/statisticsPage/statisticsPage';
+import LibraryPage from './pages/libraryPage/libraryPage';
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Project Books
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    //Придумать позже функционал вместо Loading- спиннер и тп
+    //При неверном вводе раута сделать перенаправление на LibraryPage c автоисправлением адреса
+    //Приватные и Публичные роуты сделать
+    <Suspense fallback={<p>Loading...</p>}>
+      <Routes>
+        <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
+        <Route path="library" element={<LibraryPage />} />
+        <Route path="training" element={<TrainingPage />} />
+        <Route path="statistics" element={<StatisticsPage />} />
+        <Route path="*" element={<LibraryPage />} />
+      </Routes>
+    </Suspense>
   );
 }
 
