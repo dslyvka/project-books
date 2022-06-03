@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import GoogleAuth from './components/GoogleAuth/GoogleAuth';
 
 function App() {
   return (
