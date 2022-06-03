@@ -3,12 +3,21 @@ import { TextStyled, UserContainer, NameStuled } from './UserIcon.styled';
 
 function UserIcon() {
   const user = {
-    name: 'Taras bulba',
+    name: 'Taras Bulba',
     avatar: null,
   };
   const [userInit, setUserInit] = useState('');
   useEffect(() => {
-    setUserInit(user.name.trim().charAt(0).toUpperCase());
+    const arr = user.name.trim().split(' ');
+
+    let initTitle = '';
+    arr.forEach(el => {
+      initTitle += el.charAt(0).toUpperCase();
+    });
+    // console.log(initTitle);
+    setUserInit(initTitle);
+
+    // setUserInit(user.name.trim().charAt(0).toUpperCase());
   }, [user]);
 
   return (
