@@ -8,6 +8,7 @@ import StatisticsPage from './pages/statisticsPage/statisticsPage';
 import LibraryPage from './pages/libraryPage/libraryPage';
 
 import './App.css';
+import GoogleAuth from './components/GoogleAuth/GoogleAuth';
 
 function App() {
   return (
