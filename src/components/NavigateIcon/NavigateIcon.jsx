@@ -1,11 +1,11 @@
-import { LinkStyled, LinkConteiner } from './NavigateIcon.styled';
+import { LinkStyled, Conteiner } from './NavigateIcon.styled';
 import { NavLink } from 'react-router-dom';
 
 import sprite from '../../images/sprite/sprites.svg';
 
 function NavigateIcon() {
   return (
-    <LinkConteiner>
+    <Conteiner>
       <NavLink to="training">
         <LinkStyled>
           <svg width="22" height="17">
@@ -20,7 +20,7 @@ function NavigateIcon() {
           </svg>
         </LinkStyled>
       </NavLink>
-    </LinkConteiner>
+    </Conteiner>
   );
 }
 
