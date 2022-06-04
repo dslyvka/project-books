@@ -62,6 +62,7 @@ function LibraryForm() {
                 type="text"
                 pattern="^[a-zA-Zа-яА-Я0-9]+((['
             -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                title=""
                 placeholder="..."
                 required
               />
@@ -104,6 +105,7 @@ function LibraryForm() {
                   name="pages"
                   type="number"
                   pattern="[0-9]{,4}"
+                  title="Only number"
                   placeholder="..."
                   required
                 />
