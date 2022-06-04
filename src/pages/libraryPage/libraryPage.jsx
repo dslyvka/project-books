@@ -1,7 +1,7 @@
-import Modal from '../../components/Modal/Modal';
+// import Modal from '../../components/Modal/Modal';
 
 const LibraryPage = () => {
-  return <Modal />;
+  return null;
 };
 
 export default LibraryPage;
