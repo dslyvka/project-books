@@ -1,5 +1,7 @@
+import Modal from '../../components/Modal/modal';
+
 const LibraryPage = () => {
-  return <h1>library</h1>;
+  return <Modal />;
 };
 
 export default LibraryPage;
