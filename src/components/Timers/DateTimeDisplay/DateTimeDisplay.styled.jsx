@@ -25,25 +25,16 @@ padding: 0;
 color: #091E3F;
 `;
 
-export const RedDateNumbers = styled.p`
-font-family: 'Open Sans';
-font-style: normal;
-font-weight: 700;
-font-size: 25px;
-line-height: 38px;
-margin: 0;
-padding: 0;
+export const RedDateNumbers = styled(DateNumbers)`
 color: #FF0000;
 `;
 
-export const DateDescription = styled.p`
+export const DateDescription = styled(DateNumbers)`
 font-family: 'Montserrat', sans-serif;
 font-style: normal;
 font-weight: 500;
 font-size: 10px;
 line-height: 12px;
 text-align: center;
-margin: 0;
-padding: 0;
 color: #898F9F;
 `;

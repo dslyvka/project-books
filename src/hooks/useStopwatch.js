@@ -11,10 +11,9 @@ const useStopwatch = action => {
           setCountUp(prevCountUp => prevCountUp === 0);
           break;
         case 1:
-          setCountUp(prevCountUp => (prevCountUp = prevCountUp));
+          setCountUp(prevCountUp => prevCountUp + 1000);
           break;
         default:
-          setCountUp(prevCountUp => prevCountUp + 1000);
           break;
       }
     }, 1000);

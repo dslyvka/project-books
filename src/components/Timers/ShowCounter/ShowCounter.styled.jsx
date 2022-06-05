@@ -29,13 +29,6 @@ padding: 0;
 color: #091E3F;
 `;
 
-export const RedSeparator = styled.p`
-font-family: 'Open Sans';
-font-style: normal;
-font-weight: 700;
-font-size: 25px;
-line-height: 38px;
-margin: 0;
-padding: 0;
+export const RedSeparator = styled(Separator)`
 color: #FF0000;
 `;
