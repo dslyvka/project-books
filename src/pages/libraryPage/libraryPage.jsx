@@ -1,4 +1,4 @@
-// import Modal from '../../components/Modal/Modal';
+// import LibraryModal from '../../components/LibraryModal/LibraryModal';
 
 const LibraryPage = () => {
   return null;
