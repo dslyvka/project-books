@@ -15,7 +15,7 @@ function UserIcon() {
       initTitle += el.charAt(0).toUpperCase();
     });
     // console.log(initTitle);
-    setUserInit(initTitle);
+    setUserInit(initTitle.slice(0, 2));
 
     // setUserInit(user.name.trim().charAt(0).toUpperCase());
   }, [user]);

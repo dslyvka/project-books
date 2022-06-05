@@ -1,20 +1,41 @@
-import { Container } from './Logout.styled';
+import { Container, UserTitle, Title } from './Logout.styled';
 import ButtonAdd from '../ButtonAdd/ButtonAdd';
 
-function Logout() {
+function Logout({ onClose }) {
   const user = {
     name: 'Taras Bulba',
     avatar: null,
   };
+  //   const navigate = useNavigate();
+  //     const [logout] = useLogoutMutation(token);
 
+  // const logoutUser = token => {
+  //   console.log(token);
+  //   togleModal();
+  //       logout(token);
+  //       dispatch(logAct(false));
+  //       dispatch(tokenAct(''));
+  //       toast.success('You are logged out.');
+  //       navigate('/login');
+  // };
+  // const close = e => {
+  //   console.log('close');
+  //   if (e.target === e.currentTarget) {
+  //     onClose();
+  //   }
+  // };
   return (
     <Container>
-      <p>
-        <h3>Шановний {user.name}!</h3>
-        Ви дійсно хочете здійснити вихід з особистого кабінету?
-      </p>
-      <ButtonAdd />
-      <ButtonAdd />
+      <UserTitle>{user.name}!</UserTitle>
+
+      <Title>
+        Якщо вивийдетез програми, не збереженні дані будуть втрачені
+      </Title>
+
+      <button type="button" onClick={onClose}>
+        out
+      </button>
+      <ButtonAdd action={onClose} />
     </Container>
   );
 }
