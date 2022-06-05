@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import backgroundImage from '../../images/mobile/registerBackground.jpg';
 
+const breakpoints = [480, 768, 1280];
+
 export const StyledForm = styled.form`
   background: rgba(9, 30, 63, 0.8);
   background-image: linear-gradient(
@@ -11,32 +13,54 @@ export const StyledForm = styled.form`
     url(${backgroundImage});
   background-size: cover;
 
-  padding: 32px 20px 44px;
-  p {
-    margin-top: 0;
-    margin-bottom: 0;
+  padding: 32px 0 44px;
 
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 1.23;
-    /* identical to box height */
+  @media screen and (min-width: ${breakpoints[1]}px) and (max-width: ${breakpoints[2]}px) {
+    padding: 64px 0;
+  }
 
-    color: #898f9f;
-    text-align: center;
+  ul {
+    max-width: 400px;
+    margin: 0px auto;
+    padding: 0 20px;
 
-    a {
-      color: #ff6b08;
+    @media screen and (min-width: 480px) and (max-width: ${breakpoints[2]}px) {
+      padding: 40px;
+    }
+
+    @media screen and (min-width: ${breakpoints[1]}px) and (max-width: ${breakpoints[2]}px) {
+      background-color: #ffffff;
+      // height: 609px;
     }
 
     label {
       display: inline-block;
       margin-bottom: 8px;
-      float: left;
+      // float: left;
+    }
+
+    .form__label {
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1.21;
+
+      text-align: left;
+
+      color: #ffffff;
+
+      @media screen and (min-width: ${breakpoints[1]}px) and (max-width: ${breakpoints[2]}px) {
+        color: #898f9f;
+      }
+
+      span {
+        color: #f25137;
+      }
     }
 
     input {
+      // display: block;
       border: none;
       background-image: none;
       background-color: transparent;
@@ -50,23 +74,33 @@ export const StyledForm = styled.form`
       box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
 
       width: 100%;
+      // min-width: 280px;
+      // max-width: 320px;
+      // width: 280px;
       height: 42px;
+
+      @media screen and (min-width: ${breakpoints[0]}px) and (max-width: ${breakpoints[2]}px) {
+        width: 320px;
+      }
     }
   }
 
-  .form__label {
+  p {
+    // display: inline-block;
+    margin: 20px auto 0;
+
     font-family: 'Montserrat';
     font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 1.21;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1.23;
+    /* identical to box height */
 
-    text-align: left;
+    color: #898f9f;
+    text-align: center;
 
-    color: #ffffff;
-
-    span {
-      color: #f25137;
+    a {
+      color: #ff6b08;
     }
   }
 `;
