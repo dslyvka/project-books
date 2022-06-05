@@ -6,33 +6,48 @@ import validationSchema from '../../validation/register';
 import GoogleAuthBtn from '../GoogleAuth/GoogleAuth';
 import { ButtonStyled } from '../RegularButton/Button.styled';
 import { StyledForm } from './RegisterForm.styled';
+import QuoteSection from '../QuoteSection/QuoteSection';
 
 const RegisterForm = () => {
   const width = useWindowWidth();
+  // console.log(width);
 
   return (
-    <Formik
-      initialValues={{
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-      }}
-      validateOnBlur
-      validationSchema={validationSchema}
-      onSubmit={values => console.log(values)}
-    >
-      {({
-        values,
-        errors,
-        touched,
-        isValid,
-        dirty,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-      }) => (
-        
+    <>
+      <Formik
+        initialValues={{
+          name: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        }}
+        validateOnBlur
+        validationSchema={validationSchema}
+        onSubmit={values => {
+          // fetch('http://localhost:3001/api/users/signup', {
+          //   method: 'POST',
+          //   body: JSON.stringify({
+          //     name: values.name,
+          //     email: values.email,
+          //     password: values.password,
+          //   }),
+          //   headers: {
+          //     'Content-Type': 'application/json',
+          //   },
+          // });
+          console.log(values);
+        }}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          isValid,
+          dirty,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+        }) => (
           <StyledForm>
             <ul>
               <GoogleAuthBtn />
@@ -161,8 +176,10 @@ const RegisterForm = () => {
               </p>
             </ul>
           </StyledForm>
-      )}
-    </Formik>
+        )}
+      </Formik>
+      {width >= 768 ? <QuoteSection /> : <></>}
+    </>
   );
 };
 

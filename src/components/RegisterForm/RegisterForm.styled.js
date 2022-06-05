@@ -60,27 +60,42 @@ export const StyledForm = styled.form`
     }
 
     input {
-      // display: block;
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      // color: #a6abb9;
+
       border: none;
       background-image: none;
-      background-color: transparent;
+      background-color: #f5f7fa;
       -webkit-box-shadow: none;
       -moz-box-shadow: none;
       box-shadow: none;
 
       margin: 0 auto 20px;
+      padding: 12px 0px 13px 12px;
 
       background-color: #f5f7fa;
       box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
 
       width: 100%;
-      // min-width: 280px;
-      // max-width: 320px;
-      // width: 280px;
       height: 42px;
 
       @media screen and (min-width: ${breakpoints[0]}px) and (max-width: ${breakpoints[2]}px) {
         width: 320px;
+      }
+      input::placeholder {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.21;
+        color: #a6abb9;
+      }
+      input:focus {
+        outline: none;
       }
     }
   }

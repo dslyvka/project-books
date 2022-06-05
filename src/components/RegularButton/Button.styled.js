@@ -18,8 +18,8 @@ export const ButtonStyled = styled.button`
 
   text-align: center;
 
-  background-color: ${props => props.backgroundColor};
-  color: ${props => props.color};
+  background-color: #ff6b08;
+  color: #ffffff;
 
   width: 280px;
   height: 60px;

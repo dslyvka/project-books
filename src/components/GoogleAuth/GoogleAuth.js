@@ -1,6 +1,6 @@
 import React from 'react';
 import  sprite  from '../../images/sprite/sprites.svg'             
-import ButtonGoogle from './GoogleAuth.styles';
+import ButtonGoogle from './GoogleAuth.styled';
 
 
 const BASE_URL = 'http://localhost:3000/api';
