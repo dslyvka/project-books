@@ -3,11 +3,13 @@ import {
   Form,
   Input,
   Container,
-  Label,
+  LabelOne,
+  LabelTwo,
   DivInput,
   OtherInput,
   NumberDiv,
   ButtonDiv,
+  BasicDiv,
 } from './LibraryForm.styled.jsx';
 import ButtonAdd from '../ButtonAdd/ButtonAdd';
 
@@ -52,8 +54,8 @@ function LibraryForm() {
     <Container>
       <Form onSubmit={handleSubmit}>
         <DivInput>
-          <div>
-            <Label>
+          <BasicDiv>
+            <LabelOne>
               Book title
               <Input
                 onChange={onChangeLibrary}
@@ -65,11 +67,11 @@ function LibraryForm() {
                 placeholder="..."
                 required
               />
-            </Label>
-          </div>
+            </LabelOne>
+          </BasicDiv>
           <OtherInput>
-            <div>
-              <Label className="labelLibrary">
+            <BasicDiv>
+              <LabelOne>
                 Author
                 <Input
                   onChange={onChangeLibrary}
@@ -80,10 +82,10 @@ function LibraryForm() {
                   placeholder="..."
                   required
                 />
-              </Label>
-            </div>
+              </LabelOne>
+            </BasicDiv>
             <NumberDiv>
-              <Label className="labelLibrary">
+              <LabelTwo>
                 Publication date
                 <Input
                   onChange={onChangeLibrary}
@@ -95,8 +97,8 @@ function LibraryForm() {
                   placeholder="..."
                   required
                 />
-              </Label>
-              <Label className="labelLibrary">
+              </LabelTwo>
+              <LabelTwo className="labelLibrary">
                 Amount of pages
                 <Input
                   onChange={onChangeLibrary}
@@ -107,7 +109,7 @@ function LibraryForm() {
                   placeholder="..."
                   required
                 />
-              </Label>
+              </LabelTwo>
             </NumberDiv>
           </OtherInput>
           <ButtonDiv>
