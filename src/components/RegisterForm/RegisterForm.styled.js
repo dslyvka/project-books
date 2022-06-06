@@ -3,6 +3,12 @@ import backgroundImage from '../../images/mobile/registerBackground.jpg';
 
 const breakpoints = [480, 768, 1280];
 
+export const StyledDiv = styled.div`
+  @media (min-width: ${breakpoints[2]}px) {
+    display: flex;
+  } ;
+`;
+
 export const StyledForm = styled.form`
   background: rgba(9, 30, 63, 0.8);
   background-image: linear-gradient(
@@ -15,20 +21,25 @@ export const StyledForm = styled.form`
 
   padding: 32px 0 44px;
 
-  @media screen and (min-width: ${breakpoints[1]}px) and (max-width: ${breakpoints[2]}px) {
+  @media screen and (min-width: ${breakpoints[1]}px) {
     padding: 64px 0;
+  }
+
+  @media screen and (min-width: ${breakpoints[2]}px) {
+    padding: 90px 0;
+    width: 43%;
   }
 
   ul {
     max-width: 400px;
     margin: 0px auto;
-    padding: 0 20px;
+    // padding: 0 20px;
 
-    @media screen and (min-width: 480px) and (max-width: ${breakpoints[2]}px) {
+    @media screen and (min-width: ${breakpoints[1]}px) {
       padding: 40px;
     }
 
-    @media screen and (min-width: ${breakpoints[1]}px) and (max-width: ${breakpoints[2]}px) {
+    @media screen and (min-width: ${breakpoints[1]}px) {
       background-color: #ffffff;
       // height: 609px;
     }
@@ -37,6 +48,15 @@ export const StyledForm = styled.form`
       display: inline-block;
       margin-bottom: 8px;
       // float: left;
+    }
+
+    li {
+      margin: 0 auto;
+      width: 280px;
+
+      @media screen and (min-width: ${breakpoints[1]}px) {
+        width: 320px;
+      }
     }
 
     .form__label {
@@ -50,7 +70,7 @@ export const StyledForm = styled.form`
 
       color: #ffffff;
 
-      @media screen and (min-width: ${breakpoints[1]}px) and (max-width: ${breakpoints[2]}px) {
+      @media screen and (min-width: ${breakpoints[1]}px) {
         color: #898f9f;
       }
 
@@ -83,9 +103,6 @@ export const StyledForm = styled.form`
       width: 100%;
       height: 42px;
 
-      @media screen and (min-width: ${breakpoints[0]}px) and (max-width: ${breakpoints[2]}px) {
-        width: 320px;
-      }
       input::placeholder {
         font-family: 'Montserrat';
         font-style: normal;

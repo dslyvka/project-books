@@ -9,31 +9,31 @@ export const Section = styled.section`
   margin-right: auto;
 
   padding: 32px 25px 40px;
+
   height: 100vh;
 
   @media (min-width: ${bp[0]}px) {
     min-width: 320px;
   }
   @media (min-width: ${bp[1]}px) {
-    min-width: 768px;
-    padding: 64px 145px 88px 145px;
+    // min-width: 768px;
+    padding: 179px 0 239px;
   }
-  @media (min-width: ${bp[2]}px) {
-    min-width: 1280px;
-  } ;
+  // @media (min-width: ${bp[2]}px) {
+  //   min-width: 1280px;
+  // } ;
 `;
 
 export const Container = styled.div`
-  // min-width: 320px;
-  // margin-left: auto;
-  // margin-right: auto;
-  // height: fit-content;
-  // @media (min-width: ${bp[0]}px) {
-  //   width: 320px;
-  // }
-  // @media (min-width: ${bp[1]}px) {
-  //   width: 768px;
-  // }
+  margin: 0 auto;
+  max-width: 270px;
+
+  @media (min-width: ${bp[1]}px) {
+    // width: 768px;
+    // margin: 0 auto;
+    max-width: 477px;
+    margin: 0 auto;
+  }
   // @media (min-width: ${bp[2]}px) {
   //   width: 1280px;
   // } ;

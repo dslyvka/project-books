@@ -5,7 +5,7 @@ import validationSchema from '../../validation/register';
 
 import GoogleAuthBtn from '../GoogleAuth/GoogleAuth';
 import { ButtonStyled } from '../RegularButton/Button.styled';
-import { StyledForm } from './RegisterForm.styled';
+import { StyledForm, StyledDiv } from './RegisterForm.styled';
 import QuoteSection from '../QuoteSection/QuoteSection';
 
 const RegisterForm = () => {
@@ -13,7 +13,7 @@ const RegisterForm = () => {
   // console.log(width);
 
   return (
-    <>
+    <StyledDiv>
       <Formik
         initialValues={{
           name: '',
@@ -52,23 +52,14 @@ const RegisterForm = () => {
             <ul>
               <GoogleAuthBtn />
               <li>
-                {!values.name.length || errors.name ? (
-                  <label
-                    htmlFor="name"
-                    className="form__label"
-                    style={{ marginTop: '28px' }}
-                  >
-                    Ім'я <span>*</span>
-                  </label>
-                ) : (
-                  <label
-                    htmlFor="name"
-                    className="form__label"
-                    style={{ marginTop: '28px' }}
-                  >
-                    Ім'я
-                  </label>
-                )}
+                <label
+                  htmlFor="name"
+                  className="form__label"
+                  style={{ marginTop: '28px' }}
+                >
+                  Ім'я
+                  {!values.name.length || errors.name ? <span> *</span> : <></>}
+                </label>
 
                 <br />
                 <input
@@ -84,15 +75,14 @@ const RegisterForm = () => {
               </li>
 
               <li>
-                {!values.email.length || errors.email ? (
-                  <label htmlFor="email" className="form__label">
-                    Електронна адреса <span>*</span>
-                  </label>
-                ) : (
-                  <label htmlFor="email" className="form__label">
-                    Електронна адреса
-                  </label>
-                )}
+                <label htmlFor="email" className="form__label">
+                  Електронна адреса
+                  {!values.email.length || errors.email ? (
+                    <span> *</span>
+                  ) : (
+                    <></>
+                  )}
+                </label>
                 <br />
                 <input
                   type="email"
@@ -107,15 +97,15 @@ const RegisterForm = () => {
               </li>
 
               <li>
-                {!values.password.length || errors.password ? (
-                  <label htmlFor="password" className="form__label">
-                    Пароль <span>*</span>
-                  </label>
-                ) : (
-                  <label htmlFor="password" className="form__label">
-                    Пароль
-                  </label>
-                )}
+                <label htmlFor="password" className="form__label">
+                  Пароль
+                  {!values.password.length || errors.password ? (
+                    <span> *</span>
+                  ) : (
+                    <></>
+                  )}
+                </label>
+
                 <br />
                 <input
                   type="password"
@@ -132,15 +122,14 @@ const RegisterForm = () => {
               </li>
 
               <li>
-                {!values.confirmPassword.length || errors.confirmPassword ? (
-                  <label htmlFor="confirmPassword" className="form__label">
-                    Підтвердити пароль <span>*</span>
-                  </label>
-                ) : (
-                  <label htmlFor="confirmPassword" className="form__label">
-                    Підтвердити пароль
-                  </label>
-                )}
+                <label htmlFor="confirmPassword" className="form__label">
+                  Підтвердити пароль
+                  {!values.confirmPassword.length || errors.confirmPassword ? (
+                    <span> *</span>
+                  ) : (
+                    <></>
+                  )}
+                </label>
                 <br />
                 <input
                   type="password"
@@ -149,7 +138,6 @@ const RegisterForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.confirmPassword}
-                  // style={{ marginBottom: 0 + 'px' }}
                 />
                 <br />
                 {touched.confirmPassword && errors.confirmPassword && (
@@ -179,7 +167,7 @@ const RegisterForm = () => {
         )}
       </Formik>
       {width >= 768 ? <QuoteSection /> : <></>}
-    </>
+    </StyledDiv>
   );
 };
 

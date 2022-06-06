@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
-export const DivStyled = styled.div``;
+export const DivStyled = styled.div`
+  max-width: 477px;
+`;
 
 export const Title = styled.h1`
   /* font-family: 'Abril Fatface'; */
@@ -21,6 +23,7 @@ export const SubTitle = styled.h2`
   font-size: 20px;
   line-height: 1.9;
 
+  
   margin-bottom: 14px;
 `;
 
@@ -36,9 +39,7 @@ export const LiStyled = styled.li`
   margin-bottom: 12px;
 
   @media (min-width: 768px) {
-    margin-left: 0;
-    margin-right: 0;
-    max-width: none;
+    max-width: 477px;
   }
 
   padding-left: 16px;
@@ -46,7 +47,6 @@ export const LiStyled = styled.li`
   ::nth-of-type(6) {
     margin-bottom: 0px;
   }
-
 
   position: relative;
 
@@ -57,5 +57,4 @@ export const LiStyled = styled.li`
     top: 5px;
     left: 0;
   }
-
 `;

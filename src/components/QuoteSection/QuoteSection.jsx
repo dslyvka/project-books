@@ -48,7 +48,7 @@ const QuoteSection = () => {
     },
   ];
   return (
-    <Section>
+    <Section width={onlyWidth}>
       <Container>
         <Title>Books Reading</Title>
         <Quote
@@ -70,18 +70,7 @@ const QuoteSection = () => {
           >
             Увійти
           </LoginButton>
-          {/* <button
-            type="button"
-            onClick={() => navigate((location.pathname = '/login'))}
-          >
-            Увійти
-          </button> */}
-          {/* <button
-            type="button"
-            onClick={() => navigate((location.pathname = '/register'))}
-          >
-            Реєстрація
-          </button> */}
+
           <RegisterButton
             type="button"
             onClick={() => navigate((location.pathname = '/register'))}
