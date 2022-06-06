@@ -52,6 +52,10 @@ export const ButtonStyled = styled.button`
   line-height: 17px;
   text-decoration-line: underline;
   color: #242a37;
+  transition-duration: 500ms;
+  :hover {
+    transform: scale(1.15);
+  }
   @media (min-width: 1280px) {
     line-height: 33px;
   }

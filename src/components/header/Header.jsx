@@ -20,18 +20,7 @@ function Header() {
   const togleModal = () => {
     setShowModal(showModal => !showModal);
   };
-  //   const navigate = useNavigate();
-  //     const [logout] = useLogoutMutation(token);
 
-  // const logoutUser = token => {
-  //   console.log(token);
-  //   togleModal();
-  //       logout(token);
-  //       dispatch(logAct(false));
-  //       dispatch(tokenAct(''));
-  //       toast.success('You are logged out.');
-  //       navigate('/login');
-  // };
   return (
     <>
       <Container>
@@ -56,7 +45,7 @@ function Header() {
             </div>
             {showModal && (
               <Modal onClose={togleModal}>
-                <Logout />
+                <Logout onClose={togleModal} />
               </Modal>
             )}
           </ContainerNotCenter>

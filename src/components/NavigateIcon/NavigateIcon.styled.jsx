@@ -11,4 +11,8 @@ export const LinkStyled = styled.div`
   justify-content: center;
   width: 33px;
   height: 33px;
+  transition-duration: 500ms;
+  :hover {
+    transform: scale(1.2);
+  }
 `;
