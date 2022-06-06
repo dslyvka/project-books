@@ -15,10 +15,17 @@ export const Form = styled.form`
     flex-direction: row;
   justify-content: center;
     @media screen and (min-width: 768px) {
+
 }`;
+
+export const BasicDiv = styled.div`
+display:flex;
+justify-content:center;
+`
 
 
 export const Input = styled.input`
+
     display: flex;
     flex-direction: column;
     box-sizing:border-box;
@@ -29,11 +36,18 @@ export const Input = styled.input`
     margin-bottom: 20px;
     background-color: #F6F7FB;
     min-width: 280px;
+                                :list-child{
+                         margin-left:32px;
+};
+
+
 
         @media screen and (min-width: 768px) {
-        margin-right:32px ;
+            min-width: 152px;
+
+
         margin-bottom: 24px;
-            width: ${props => {
+         width: ${props => {
     switch (props.name) {
         case "title":
             return "704px";
@@ -48,7 +62,9 @@ export const Input = styled.input`
     }
 }};      }
  @media screen and (min-width: 1280px) {
-             margin-right:16px ;
+             min-width: 134px;
+
+
       width: ${props => {
     switch (props.name) {
         case "title":
@@ -73,17 +89,44 @@ export const Input = styled.input`
 export const DivInput = styled.div`
     display: flex;
     flex-direction: column;
+
      @media screen and (min-width: 1280px) {
   display: flex;
     flex-direction: row;
+    
 }`
 
-export const Label = styled.label`
-      color: #898F9F;`
+export const LabelOne = styled.label`
+ @media screen and (min-width: 1280px) {
+             margin-right:16px ;
+ }
+      color: #898F9F;
+      `
+      
+export const LabelTwo = styled.label`
+            color: #898F9F;
+        @media screen and (min-width: 768px) {
+    :nth-child(1) {
+    margin-left:32px;
+}
+    :nth-child(2) {
+    margin-left:32px;
+}
+}
+ @media screen and (min-width: 1280px) {
+         :nth-child(1) {
+    margin-left:0px;
+}
+    :nth-child(2) {
+    margin-left:16px;
+}
+
+      `
 
 
 export const OtherInput = styled.div`
     @media screen and (min-width: 768px) {
+        
         display: flex;
 flex-direction: row;
 }`
@@ -92,12 +135,14 @@ flex-direction: row;
 export const NumberDiv = styled.div`
     @media screen and (min-width: 768px) {
         display: flex;
+        
 }`
 export const ButtonDiv = styled.div`
   
         display: flex;
         justify-content:center;
           @media screen and (min-width: 1280px) {
-              margin-left:24px;
+              margin-top:2px;
+              margin-left:34px;
               align-items: center;
           }`
