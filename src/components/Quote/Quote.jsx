@@ -1,18 +1,19 @@
 import sprite from '../../images/sprite/sprites.svg';
+import { SubTitle, LiStyled, DivStyled } from './Quote.styled';
 
 const Quote = ({ title, quotes, icon }) => {
   return (
-    <>
-      <h2>{title}</h2>
+    <DivStyled>
+      <SubTitle>{title}</SubTitle>
       {quotes.map(({ id, text }) => (
-        <li key={id}>
-          <svg width="4" height="8">
+        <LiStyled key={id}>
+          <svg>
             <use href={`${sprite}#${icon}`}></use>
           </svg>
           {text}
-        </li>
+        </LiStyled>
       ))}
-    </>
+    </DivStyled>
   );
 };
 

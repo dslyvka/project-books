@@ -5,7 +5,10 @@ import {
   Container,
   Title,
   ButtonWrapper,
+  LoginButton,
+  RegisterButton,
 } from './QuoteSection.styled';
+
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useWindowWidth } from '@react-hook/window-size';
 
@@ -45,7 +48,7 @@ const QuoteSection = () => {
     },
   ];
   return (
-    <Section>
+    <Section width={onlyWidth}>
       <Container>
         <Title>Books Reading</Title>
         <Quote
@@ -58,23 +61,24 @@ const QuoteSection = () => {
           quotes={quotes2}
           icon={'icon-Vector-side'}
         />
-        {onlyWidth < 768 && (
-          <ButtonWrapper>
-            <button
-              type="button"
-              onClick={() => navigate((location.pathname = '/login'))}
-            >
-              Увійти
-            </button>
-            <button
-              type="button"
-              onClick={() => navigate((location.pathname = '/register'))}
-            >
-              Реєстрація
-            </button>
-          </ButtonWrapper>
-        )}
       </Container>
+      {onlyWidth < 768 && (
+        <ButtonWrapper>
+          <LoginButton
+            type="button"
+            onClick={() => navigate((location.pathname = '/login'))}
+          >
+            Увійти
+          </LoginButton>
+
+          <RegisterButton
+            type="button"
+            onClick={() => navigate((location.pathname = '/register'))}
+          >
+            Реєстрація
+          </RegisterButton>
+        </ButtonWrapper>
+      )}
     </Section>
   );
 };

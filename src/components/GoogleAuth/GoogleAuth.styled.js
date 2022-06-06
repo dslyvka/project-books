@@ -1,10 +1,18 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-const ButtonGoogle = styled.div`
+const ButtonGoogle = styled.button`
+display: block;
+  border: none;
+  background-color: #F5F7FA;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  box-shadow: 0px 2px 2px rgba(9, 30, 63, 0.15);
+
     margin-left: auto;
     margin-right: auto;
-    margin-top: 40px;
-    margin-bottom: 14px;
+    // margin-top: 40px;
+    // margin-bottom: 14px;
     .google-btn {
         display: inline-block;
         position: relative;
@@ -33,4 +41,3 @@ const ButtonGoogle = styled.div`
 `;
 
 export default ButtonGoogle;
-
