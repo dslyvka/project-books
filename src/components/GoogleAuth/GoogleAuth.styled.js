@@ -1,13 +1,19 @@
 import styled from '@emotion/styled';
 
 const ButtonGoogle = styled.button`
+display: block;
+  border: none;
+  background-color: #F5F7FA;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  box-shadow: 0px 2px 2px rgba(9, 30, 63, 0.15);
+
     margin-left: auto;
     margin-right: auto;
-    margin-top: 40px;
-    margin-bottom: 14px;
-    background-color: #F5F7FA
-    box-shadow: 0px 2px 2px rgba(9, 30, 63, 0.15);
-    a {
+    // margin-top: 40px;
+    // margin-bottom: 14px;
+    .google-btn {
         display: inline-block;
         position: relative;
         text-decoration: none;
@@ -19,6 +25,8 @@ const ButtonGoogle = styled.button`
         line-height: 40px;
         font-family: Roboto;
         color: #707375;
+        background-color: #F5F7FA
+        box-shadow: 0px 2px 2px rgba(9, 30, 63, 0.15);
         &:hover {
             box-shadow: 0px 2px 2px 1px rgba(9, 30, 63, 0.15);
         }
