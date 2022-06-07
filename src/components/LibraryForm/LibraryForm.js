@@ -11,6 +11,9 @@ import {
   ButtonDiv,
   BasicDiv,
 } from './LibraryForm.styled.jsx';
+import { v4 as uuidv4 } from 'uuid';
+import { useSelector, useDispatch } from 'react-redux';
+import { booksSelectors, booksOperations } from '../../redux/books';
 import ButtonAdd from '../ButtonAdd/ButtonAdd';
 
 function LibraryForm() {
@@ -18,6 +21,25 @@ function LibraryForm() {
   const [author, setAuthor] = useState('');
   const [date, setDate] = useState('');
   const [pages, setPages] = useState('');
+  const titleInputId = uuidv4();
+  const authorInputId = uuidv4();
+  const dateInputId = uuidv4();
+  const pagesInputId = uuidv4();
+  const { getBooks } = booksSelectors;
+
+  const valueForm = useSelector(getBooks);
+  const dispatch = useDispatch();
+  const onSubmit = text => dispatch(booksOperations.addBooks(text));
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    const state = { title, author, date, pages };
+
+    // valueForm.some(book => book.title === title)
+    //   ? alert('Такой контакт уже есть')
+    onSubmit(state);
+    reset();
+  };
 
   const onChangeLibrary = event => {
     const { name, value } = event.currentTarget;
@@ -35,14 +57,6 @@ function LibraryForm() {
     }
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const state = { title, author, date, pages };
-
-    console.log(state);
-    reset();
-  };
-
   const reset = () => {
     setTitle('');
     setAuthor('');
@@ -55,11 +69,12 @@ function LibraryForm() {
       <Form onSubmit={handleSubmit}>
         <DivInput>
           <BasicDiv>
-            <LabelOne>
-              Book title
+            <LabelOne htmlFor={titleInputId}>
+              Назва книги
               <Input
                 onChange={onChangeLibrary}
                 value={title}
+                id={titleInputId}
                 name="title"
                 type="text"
                 pattern="^[a-zA-Zа-яА-Я0-9]+((['
@@ -71,11 +86,12 @@ function LibraryForm() {
           </BasicDiv>
           <OtherInput>
             <BasicDiv>
-              <LabelOne>
-                Author
+              <LabelOne htmlFor={authorInputId}>
+                Автор книги
                 <Input
                   onChange={onChangeLibrary}
                   value={author}
+                  id={authorInputId}
                   name="author"
                   type="text"
                   pattern="^[a-zA-Zа-яА-Я0-9]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -85,11 +101,12 @@ function LibraryForm() {
               </LabelOne>
             </BasicDiv>
             <NumberDiv>
-              <LabelTwo>
-                Publication date
+              <LabelTwo htmlFor={dateInputId}>
+                Рік випуску
                 <Input
                   onChange={onChangeLibrary}
                   value={date}
+                  id={dateInputId}
                   name="date"
                   type="text"
                   pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}"
@@ -98,11 +115,12 @@ function LibraryForm() {
                   required
                 />
               </LabelTwo>
-              <LabelTwo className="labelLibrary">
-                Amount of pages
+              <LabelTwo className="labelLibrary" htmlFor={pagesInputId}>
+                Кількість сторінок
                 <Input
                   onChange={onChangeLibrary}
                   value={pages}
+                  id={pagesInputId}
                   name="pages"
                   type="number"
                   pattern="[0-9]{,4}"
