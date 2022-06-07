@@ -1,4 +1,4 @@
-import { Button } from './ButtonAdd.styled.jsx';
+import { Button } from './ButtonAdd.styled.js';
 
 function ButtonAdd() {
   return (
