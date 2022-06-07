@@ -6,7 +6,7 @@ import RegisterPage from './pages/registerPage/registerPage';
 import TrainingPage from './pages/trainingPage/trainingPage';
 import StatisticsPage from './pages/statisticsPage/statisticsPage';
 import LibraryPage from './pages/libraryPage/libraryPage';
-import Header from './components/Header/Header';
+import Header from './components/header/Header';
 import QuoteSection from './components/QuoteSection/QuoteSection';
 
 import './App.css';
@@ -29,7 +29,7 @@ function App() {
           />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
-          <Route path="library" element={<LibraryPage />} />
+          <Route path="books" element={<LibraryPage />} />
           <Route path="training" element={<TrainingPage />} />
           <Route path="statistics" element={<StatisticsPage />} />
           <Route path="*" element={<Navigate to="library" replace />} />

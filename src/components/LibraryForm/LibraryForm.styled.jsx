@@ -106,18 +106,17 @@ export const LabelOne = styled.label`
 export const LabelTwo = styled.label`
             color: #898F9F;
         @media screen and (min-width: 768px) {
-    :nth-child(1) {
+    :nth-of-type(1){
     margin-left:32px;
 }
-    :nth-child(2) {
+    :nth-of-type(2) {
     margin-left:32px;
 }
 }
  @media screen and (min-width: 1280px) {
-         :nth-child(1) {
+       :nth-of-type(1) {
     margin-left:0px;
-}
-    :nth-child(2) {
+}:nth-of-type(2) {
     margin-left:16px;
 }
 

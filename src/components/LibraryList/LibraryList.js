@@ -1,7 +1,11 @@
-import ListAlreadyRead from './ListAlreadyRead/ListAlreadyRead';
+import ListAlreadyRead from './ListOther/ListAlreadyRead';
 import ListOther from './ListOther/ListOther';
+import { fetchBooks, addBooks } from '../../redux/books/books-operations';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Div } from './LibraryList.styled';
+import { getBooks } from '../../redux/books/books-selector';
 
 const example = [
   {
@@ -9,8 +13,8 @@ const example = [
     author: 'royling',
     year: 1113,
     pages: 100,
-    raiting: 4,
-    read: 'already',
+    rating: 4,
+    status: 'already',
   },
   {
     title:
@@ -19,51 +23,59 @@ const example = [
     year: 13333,
     raiting: 5,
     pages: 4100,
-    read: 'reading',
+    status: 'reading',
   },
   {
     title: 'harry Poter',
     author: 'roywwwwling',
     year: 3,
-    raiting: 1112,
+    rating: 1112,
     pages: 99,
-    read: 'reading',
+    status: 'reading',
   },
   {
     title: 'harry Poter',
     author: 'royling',
     year: 3,
     pages: 100,
-    raiting: 2,
-    read: 'going',
+    rating: 2,
+    status: 'going',
   },
   {
     title: 'harry Poter',
     author: 'royling',
     year: 3,
     pages: 100,
-    raiting: 2,
-    read: 'already',
+    rating: 2,
+    status: 'already',
   },
   {
     title: 'harry Poter',
     author: 'roylingaaaaaaaaadddddddddd',
     year: 3,
     pages: 100,
-    raiting: 2,
-    read: 'going',
+    rating: 2,
+    status: 'going',
   },
 ];
 
 function LibraryList() {
-  const reading = example.filter(arr => arr.read === 'reading');
-  const going = example.filter(arr => arr.read === 'going');
+  const dispatch = useDispatch();
+  const onContacts = useSelector(getBooks);
+
+  useEffect(() => {
+    dispatch(fetchBooks());
+  }, [dispatch]);
+
+  const reading = onContacts.filter(arr => arr.status === 'reading');
+  const going = onContacts.filter(arr => arr.status === 'going');
+  const already = onContacts.filter(arr => arr.status === 'already');
 
   return (
     <Div>
-      <ListAlreadyRead text="Going to read" array={example} />
-      <ListOther text="Reading now" array={reading} />
-      <ListOther text="Going to read " array={going} />
+      <ListAlreadyRead text="Прочитано" array={already} />
+      <ListOther text="Читаю" array={reading} />
+      <ListOther text="Маю намір прочитати" array={going} />
     </Div>
   );
 }
