@@ -1,5 +1,7 @@
+import TrainingForm from './TrainingForm/TrainingForm';
+
 const TrainingWrapper = () => {
-  return <div>Training</div>;
+  return <TrainingForm />;
 };
 
 export default TrainingWrapper;
