@@ -1,16 +1,14 @@
 import {
   Container,
-  UserTitle,
+  LinkStyled,
   Title,
   ButtonStyled,
   ContainerButton,
-} from './Logout.styled';
+} from './MotivationText.styled';
 
-function Logout({ onClose }) {
-  const user = {
-    name: 'Taras Bulba',
-    avatar: null,
-  };
+import sprite from '../../images/sprite/sprites.svg';
+
+function MotivationText({ onClose }) {
   //   const navigate = useNavigate();
   //     const [logout] = useLogoutMutation(token);
 
@@ -25,20 +23,26 @@ function Logout({ onClose }) {
   // };
   return (
     <Container>
-      <UserTitle>{user.name}!</UserTitle>
-
+      <LinkStyled>
+        <svg width="54" height="54">
+          <use href={`${sprite}#icon-like`} />
+        </svg>
+      </LinkStyled>
       <Title>
-        Якщо вивийдетез програми, не збереженні дані будуть втрачені
+        Ти молодчина,
+        <br /> але потрібно швидше!
+        <br />
+        Наступного разу тобі все вдасться)
       </Title>
       <ContainerButton>
         <li>
-          <ButtonStyled type="button" onClick={onClose}>
-            Відміна
+          <ButtonStyled type="button" autoFocus={true}>
+            Нове тренування
           </ButtonStyled>
         </li>
         <li>
-          <ButtonStyled type="button" autoFocus={true}>
-            Вийти
+          <ButtonStyled type="button" onClick={onClose}>
+            Назад
           </ButtonStyled>
         </li>
       </ContainerButton>
@@ -46,4 +50,4 @@ function Logout({ onClose }) {
   );
 }
 
-export default Logout;
+export default MotivationText;

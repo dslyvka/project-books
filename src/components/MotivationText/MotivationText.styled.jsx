@@ -4,28 +4,17 @@ export const Container = styled.div`
   display: block;
   flex-direction: column;
   background: #ffffff;
-  padding: 48px 20px;
+  padding: 44px 20px;
   width: 280px;
   @media (min-width: 768px) {
     width: 394px;
+    padding: 40px 20px 48px 20px;
   }
 `;
 
-export const UserTitle = styled.h3`
-  margin-bottom: 14px;
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  text-align: center;
-  color: #242a37;
-  @media (min-width: 768px) {
-    font-size: 18px;
-  }
-`;
 export const Title = styled.p`
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  margin-top: 4px;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
@@ -34,14 +23,15 @@ export const Title = styled.p`
   text-align: center;
   color: #242a37;
   @media (min-width: 768px) {
-    font-size: 17px;
     margin-bottom: 24px;
+    margin-top: 14px;
   }
 `;
 
 export const ButtonStyled = styled.button`
   height: 40px;
-  width: 97px;
+  width: 152px;
+  margin-bottom: 20px;
   background-color: inherit;
   border: 1px solid #242a37;
   font-family: 'Montserrat';
@@ -61,11 +51,28 @@ export const ButtonStyled = styled.button`
     transform: scale(1.05);
   }
   @media (min-width: 768px) {
-    width: 130px;
+    margin: 0;
   }
 `;
 
 export const ContainerButton = styled.ul`
   display: flex;
-  justify-content: space-evenly;
+  margin-bottom: -20px;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 0;
+  }
+`;
+
+export const LinkStyled = styled.div`
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  fill: #a6abb9;
 `;
