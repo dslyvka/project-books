@@ -5,8 +5,15 @@ import validationSchema from '../../validation/register';
 
 import GoogleAuthBtn from '../GoogleAuth/GoogleAuth';
 import { ButtonStyled } from '../RegularButton/Button.styled';
-import { StyledForm, StyledDiv } from './RegisterForm.styled';
-import QuoteSection from '../QuoteSection/QuoteSection';
+import {
+  StyledForm,
+  StyledDiv,
+  StyledP,
+  SubP,
+  ContainerP,
+} from './LoginForm.styled';
+
+import sprite from '../../images/sprite/sprites.svg';
 
 const LoginForm = () => {
   const width = useWindowWidth();
@@ -51,30 +58,8 @@ const LoginForm = () => {
           <StyledForm>
             <ul>
               <GoogleAuthBtn />
-              <li>
-                <label
-                  htmlFor="name"
-                  className="form__label"
-                  style={{ marginTop: '28px' }}
-                >
-                  Ім'я
-                  {!values.name.length || errors.name ? <span> *</span> : <></>}
-                </label>
 
-                <br />
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="..."
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.name}
-                />
-                <br />
-                {touched.name && errors.name && <span>{errors.name}</span>}
-              </li>
-
-              <li>
+              <li style={{ marginTop: '28px' }}>
                 <label htmlFor="email" className="form__label">
                   Електронна адреса
                   {!values.email.length || errors.email ? (
@@ -121,29 +106,6 @@ const LoginForm = () => {
                 )}
               </li>
 
-              <li>
-                <label htmlFor="confirmPassword" className="form__label">
-                  Підтвердити пароль
-                  {!values.confirmPassword.length || errors.confirmPassword ? (
-                    <span> *</span>
-                  ) : (
-                    <></>
-                  )}
-                </label>
-                <br />
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="..."
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.confirmPassword}
-                />
-                <br />
-                {touched.confirmPassword && errors.confirmPassword && (
-                  <span>{errors.confirmPassword}</span>
-                )}
-              </li>
               <ButtonStyled
                 disabled={
                   (!isValid && dirty) ||
@@ -156,17 +118,29 @@ const LoginForm = () => {
                 color="#FFFFFF"
                 backgroundColor="#FF6B08;"
               >
-                Зареєструватися
+                Увійти
               </ButtonStyled>
 
               <p>
-                Вже з нами? <a href="./">Увійти</a>
+                <a href="./">Реєстрація</a>
               </p>
             </ul>
           </StyledForm>
         )}
       </Formik>
-      {width >= 768 ? <QuoteSection /> : <></>}
+      <ContainerP>
+        <StyledP>
+          <svg>
+            <use href={`${sprite}#icon-quotes`}></use>
+          </svg>
+          Книги — это корабли мысли, странствующие по волнам времени и бережно
+          несущие свой драгоценный груз от поколения к поколению.
+          <svg>
+            <use href={`${sprite}#icon-Vector-`}></use>
+          </svg>
+        </StyledP>
+        <SubP>Бэкон Ф.</SubP>
+      </ContainerP>
     </StyledDiv>
   );
 };
