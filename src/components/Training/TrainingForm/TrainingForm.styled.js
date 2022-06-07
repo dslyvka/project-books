@@ -40,3 +40,50 @@ export const CalendarsContainer = styled.div`
     justify-content: center;
   }
 `;
+
+export const SelectAndButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+
+export const SelectContainer = styled.div`
+  position: relative;
+  margin-bottom: 35px;
+  background-color: #fff;
+  @media (min-width: 768px) {
+    flex-grow: 1;
+    margin-bottom: 0;
+    margin-right: 25px;
+  }
+  @media (min-width: 1280px) {
+    margin-right: 45px;
+  }
+`;
+
+export const FormAddButton = styled.button`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #242a37;
+  width: 171px;
+  height: 42px;
+  align-self: center;
+  &:hover,
+  &:focus {
+    background-color: #ff6b08;
+    color: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border: 0px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 181px;
+    height: 42px;
+  }
+`;

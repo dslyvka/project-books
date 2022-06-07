@@ -1,8 +1,12 @@
+import BookSelector from '../BookSelector/BookSelector';
 import DatePickerInput from '../DatePicker/DatePicker';
 import {
   FormContainer,
   FormTitle,
   CalendarsContainer,
+  SelectAndButtonContainer,
+  SelectContainer,
+  FormAddButton,
 } from './TrainingForm.styled';
 
 const TrainingForm = () => {
@@ -13,6 +17,12 @@ const TrainingForm = () => {
         <DatePickerInput />
         <DatePickerInput />
       </CalendarsContainer>
+      <SelectAndButtonContainer>
+        <SelectContainer>
+          <BookSelector />
+        </SelectContainer>
+        <FormAddButton type="submit">Додати</FormAddButton>
+      </SelectAndButtonContainer>
     </FormContainer>
   );
 };

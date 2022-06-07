@@ -1,7 +1,7 @@
 import React from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { HiOutlineCalendar, HiChevronDown } from 'react-icons/hi';
+// import DatePicker from 'react-datepicker';
+// import 'react-datepicker/dist/react-datepicker.css';
+// import { HiOutlineCalendar, HiChevronDown } from 'react-icons/hi';
 import {
   DatePickerWrapper,
   DatePickerStyled,
