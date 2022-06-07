@@ -24,6 +24,10 @@ export const ButtonStyled = styled.button`
   width: 280px;
   height: 60px;
 
+  @media screen and (min-width: 768px) {
+    width: 320px;
+  }
+
   margin: 0 auto 20px;
-  padding: 20px 64.3px;
+  padding: 20px 0;
 `;
