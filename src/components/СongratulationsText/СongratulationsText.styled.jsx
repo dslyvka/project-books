@@ -4,17 +4,16 @@ export const Container = styled.div`
   display: block;
   flex-direction: column;
   background: #ffffff;
-  padding: 44px 20px;
+  padding: 40px 20px;
   width: 280px;
   @media (min-width: 768px) {
     width: 394px;
-    padding: 40px 20px 48px 20px;
   }
 `;
 
 export const Title = styled.p`
   margin-bottom: 24px;
-  margin-top: 4px;
+  margin-top: 14px;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
@@ -22,49 +21,32 @@ export const Title = styled.p`
   line-height: 22px;
   text-align: center;
   color: #242a37;
-  @media (min-width: 768px) {
-    margin-bottom: 24px;
-    margin-top: 14px;
-  }
 `;
 
 export const ButtonStyled = styled.button`
   height: 40px;
-  width: 152px;
-  margin-bottom: 20px;
-  background-color: inherit;
-  border: 1px solid #242a37;
+  width: 130px;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
-  color: #242a37;
+  background-color: #ff6b08;
+  color: #ffffff;
+  border: none;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   transition-duration: 400ms;
   :hover,
   :focus {
-    background-color: #ff6b08;
-    color: #ffffff;
-    border: none;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     transform: scale(1.05);
-  }
-  @media (min-width: 768px) {
-    margin: 0;
   }
 `;
 
-export const ContainerButton = styled.ul`
+export const ContainerButton = styled.div`
   display: flex;
-  margin-bottom: -20px;
-  flex-direction: column;
   align-items: center;
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-around;
-    margin-bottom: 0;
-  }
+  justify-content: space-around;
 `;
 
 export const LinkStyled = styled.div`
@@ -74,5 +56,5 @@ export const LinkStyled = styled.div`
   justify-content: center;
   width: 54px;
   height: 54px;
-  fill: #a6abb9;
+  fill: #ff6b08;
 `;

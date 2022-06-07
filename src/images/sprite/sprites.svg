@@ -24,6 +24,9 @@
 <symbol id="icon-Star" viewBox="0 0 34 32">
 <path fill="none" stroke="#a6abb9" style="stroke: var(--color5, #a6abb9)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="2" d="M17 3.236l3.090 9.511h10l-8.090 5.878 0.225 0.691 2.866 8.82-8.090-5.878-8.090 5.878 3.090-9.511-8.090-5.878h10l3.090-9.511z"></path>
 </symbol>
+<symbol id="icon-Star-full" viewBox="0 0 34 32">
+<path fill="#FF6B08" stroke="#FF6B08" style="stroke: var(--color5, #FF6B08)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="2" d="M17 3.236l3.090 9.511h10l-8.090 5.878 0.225 0.691 2.866 8.82-8.090-5.878-8.090 5.878 3.090-9.511-8.090-5.878h10l3.090-9.511z"></path>
+</symbol>
 <symbol id="icon-arrow-back" viewBox="0 0 64 32">
 <path fill="#ff6b08" style="fill: var(--color6, #ff6b08)" d="M0.733 17.827c0.001 0.001 0.001 0.002 0.002 0.002l13.063 13.419c0.979 1.005 2.561 1.002 3.536-0.009s0.97-2.644-0.008-3.65l-8.771-9.009h52.945c1.381 0 2.5-1.155 2.5-2.581s-1.119-2.581-2.5-2.581h-52.945l8.77-9.010c0.979-1.005 0.982-2.639 0.008-3.65s-2.557-1.014-3.536-0.009l-13.063 13.419c-0.001 0.001-0.001 0.002-0.002 0.002-0.979 1.009-0.976 2.648 0 3.653z"></path>
 </symbol>

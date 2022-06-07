@@ -25,11 +25,11 @@ display: block;
         line-height: 40px;
         font-family: Roboto;
         color: #707375;
-        background-color: #F5F7FA
+        background-color: #F5F7FA;
         box-shadow: 0px 2px 2px rgba(9, 30, 63, 0.15);
-        &:hover {
-            box-shadow: 0px 2px 2px 1px rgba(9, 30, 63, 0.15);
-        }
+        // :hover {
+        //     box-shadow: 0px 2px 2px 1px rgba(9, 30, 63, 0.15);
+        // }
         & svg {
             display: inline-block;
             position: absolute;
