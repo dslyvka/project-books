@@ -12,6 +12,7 @@ export const LinkStyled = styled.div`
   width: 33px;
   height: 33px;
   transition-duration: 500ms;
+  fill: #a6abb9;
   :hover {
     transform: scale(1.2);
   }
