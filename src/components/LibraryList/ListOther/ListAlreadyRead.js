@@ -15,7 +15,7 @@ import ResumeButton from '../ResumeButton/ResumeButton';
 
 function ListAlreadyRead({ text, array }) {
   return (
-    <DivContainer>
+    <DivContainer margin="80px">
       {array.length !== 0 && (
         <Div>
           <h2>{text}</h2>

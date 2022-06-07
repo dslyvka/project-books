@@ -15,7 +15,7 @@ import {
 
 function ListOther({ text, array }) {
   return (
-    <DivContainer>
+    <DivContainer margin="32px">
       {array.length !== 0 && (
         <Div>
           <h2>{text}</h2>

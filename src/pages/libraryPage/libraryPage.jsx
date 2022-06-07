@@ -5,7 +5,7 @@ const LibraryPage = () => {
   return (
     <div>
       <LibraryForm />
-      <LibraryModal/>
+      {/* <LibraryModal/> */}
       <LibraryList/>
     </div>
      
@@ -14,11 +14,3 @@ const LibraryPage = () => {
 };
 
 export default LibraryPage;
-
-
-
-// 3 const LibraryPage = () => {
-//   return null;
-// };
-
-// export default LibraryPage;

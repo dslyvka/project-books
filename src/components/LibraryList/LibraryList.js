@@ -67,9 +67,9 @@ function LibraryList() {
     dispatch(fetchBooks());
   }, [dispatch]);
 
-  const reading = onContacts.filter(arr => arr.status === 'reading');
-  const going = onContacts.filter(arr => arr.status === 'going');
-  const already = onContacts.filter(arr => arr.status === 'already');
+  const reading = example.filter(arr => arr.status === 'reading');
+  const going = example.filter(arr => arr.status === 'going');
+  const already = example.filter(arr => arr.status === 'already');
 
   return (
     <Div>

@@ -70,7 +70,7 @@ function LibraryForm() {
         <DivInput>
           <BasicDiv>
             <LabelOne htmlFor={titleInputId}>
-              Book title
+              Назва книги
               <Input
                 onChange={onChangeLibrary}
                 value={title}
@@ -87,7 +87,7 @@ function LibraryForm() {
           <OtherInput>
             <BasicDiv>
               <LabelOne htmlFor={authorInputId}>
-                Author
+                Автор книги
                 <Input
                   onChange={onChangeLibrary}
                   value={author}
@@ -102,7 +102,7 @@ function LibraryForm() {
             </BasicDiv>
             <NumberDiv>
               <LabelTwo htmlFor={dateInputId}>
-                Publication date
+                Рік випуску
                 <Input
                   onChange={onChangeLibrary}
                   value={date}
@@ -116,7 +116,7 @@ function LibraryForm() {
                 />
               </LabelTwo>
               <LabelTwo className="labelLibrary" htmlFor={pagesInputId}>
-                Amount of pages
+                Кількість сторінок
                 <Input
                   onChange={onChangeLibrary}
                   value={pages}

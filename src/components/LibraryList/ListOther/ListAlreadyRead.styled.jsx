@@ -18,13 +18,20 @@ justify-content: space-between;
 `
 
 export const DivContainer = styled.div`
-margin-top:80px;
+margin-top:${props => props.margin};
+
+@media screen and (min-width: 768px) {
+margin-top:40px;
+}
+margin-top:${props => props.margin};
+
 h2{margin-bottom: 24px;
     font-weight: 500;
     font-size: 19px;
 line-height: 23px;
 }
 `
+
 
 
 
