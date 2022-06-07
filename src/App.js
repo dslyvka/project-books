@@ -29,7 +29,7 @@ function App() {
           />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
-          <Route path="books" element={<LibraryPage />} />
+          <Route path="library" element={<LibraryPage />} />
           <Route path="training" element={<TrainingPage />} />
           <Route path="statistics" element={<StatisticsPage />} />
           <Route path="*" element={<Navigate to="library" replace />} />
