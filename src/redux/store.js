@@ -1,8 +1,12 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import booksReducer from './books/books-reducer';
 import {
-  // persistStore,
-  // persistReducer,
+  configureStore,
+  getDefaultMiddleware,
+  combineReducers,
+} from '@reduxjs/toolkit';
+
+import {
+  persistStore,
+  persistReducer,
   FLUSH,
   PAUSE,
   REHYDRATE,
@@ -10,21 +14,48 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+
+import storage from 'redux-persist/lib/storage';
 import logger from 'redux-logger';
 
-const middleware = [
-  ...getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, PAUSE, REHYDRATE, PERSIST, PURGE, REGISTER],
-    },
-  }),
-  logger,
-];
+import authReducer from './auth/auth-reducer';
+import booksReducer from './books/books-reducer';
 
-export const store = configureStore({
-  reducer: {
-    books: booksReducer,
-  },
+const middleware =
+  process.env.NODE_ENV === 'development'
+    ? [
+        ...getDefaultMiddleware({
+          serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+          },
+        }),
+        logger,
+      ]
+    : [
+        ...getDefaultMiddleware({
+          serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+          },
+        }),
+      ];
+
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
+
+const rootReducer = combineReducers({
+  auth: persistReducer(authPersistConfig, authReducer),
+  books: booksReducer,
 });
 
-export default store;
+const store = configureStore({
+  reducer: rootReducer,
+  devTools: process.env.NODE_ENV === 'development',
+  middleware,
+});
+
+const persistor = persistStore(store);
+
+export { store, persistor };

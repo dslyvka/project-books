@@ -1,7 +1,11 @@
 import { Formik } from 'formik';
 import { useWindowWidth } from '@react-hook/window-size';
 
-import validationSchema from '../../validation/register';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import actions from '../../redux/auth/auth-actions';
+
+import validationSchema from '../../validation/login';
 
 import GoogleAuthBtn from '../GoogleAuth/GoogleAuth';
 import { ButtonStyled } from '../RegularButton/Button.styled';
@@ -17,20 +21,20 @@ import sprite from '../../images/sprite/sprites.svg';
 
 const LoginForm = () => {
   const width = useWindowWidth();
-  // console.log(width);
+  const dispatch = useDispatch();
+    const navigate = useNavigate();
 
   return (
     <StyledDiv>
       <Formik
         initialValues={{
-          name: '',
           email: '',
           password: '',
-          confirmPassword: '',
         }}
         validateOnBlur
         validationSchema={validationSchema}
         onSubmit={values => {
+          const { email, password } = values;
           // fetch('http://localhost:3001/api/users/signup', {
           //   method: 'POST',
           //   body: JSON.stringify({
@@ -42,6 +46,8 @@ const LoginForm = () => {
           //     'Content-Type': 'application/json',
           //   },
           // });
+          dispatch(actions.login({ email, password }));
+          navigate('/library');
           console.log(values);
         }}
       >
@@ -122,7 +128,7 @@ const LoginForm = () => {
               </ButtonStyled>
 
               <p>
-                <a href="./">Реєстрація</a>
+                <a href="./register">Реєстрація</a>
               </p>
             </ul>
           </StyledForm>

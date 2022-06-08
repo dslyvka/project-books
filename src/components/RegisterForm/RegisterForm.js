@@ -8,8 +8,14 @@ import { ButtonStyled } from '../RegularButton/Button.styled';
 import { StyledForm, StyledDiv } from './RegisterForm.styled';
 import QuoteSection from '../QuoteSection/QuoteSection';
 
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import actions from '../../redux/auth/auth-actions';
+
 const RegisterForm = () => {
   const width = useWindowWidth();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // console.log(width);
 
   return (
@@ -35,7 +41,12 @@ const RegisterForm = () => {
           //     'Content-Type': 'application/json',
           //   },
           // });
-          console.log(values);
+          // console.log(values);
+
+          const { name, email, password } = values;
+          dispatch(actions.register({ name, email, password }));
+          navigate('/login');
+          // console.log(values);
         }}
       >
         {({
@@ -145,12 +156,12 @@ const RegisterForm = () => {
                 )}
               </li>
               <ButtonStyled
-                disabled={
-                  (!isValid && dirty) ||
-                  (!isValid && !dirty) ||
-                  (Object.keys(touched).length === 0 &&
-                    touched.constructor === Object)
-                }
+                // disabled={
+                //   (!isValid && dirty) ||
+                //   (!isValid && !dirty) ||
+                //   (Object.keys(touched).length === 0 &&
+                //     touched.constructor === Object)
+                // }
                 type="submit"
                 onClick={handleSubmit}
                 color="#FFFFFF"
@@ -160,7 +171,7 @@ const RegisterForm = () => {
               </ButtonStyled>
 
               <p>
-                Вже з нами? <a href="./">Увійти</a>
+                Вже з нами? <a href="./login">Увійти</a>
               </p>
             </ul>
           </StyledForm>
