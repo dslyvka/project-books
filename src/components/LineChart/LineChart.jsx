@@ -80,7 +80,7 @@ const LineChart = ({days, pages, readPages}) =>{
   const { width } = useWindowDimensions();
 
   // Для привязки анотації (підписи назв графіків) до останнього елемента масиву графіків ПЛАН і ФАКТ
-  function pointPlan(ctx) {
+  function point(ctx, value) {
   const dataset = ctx.chart.data.datasets[0];
   const values = dataset.data.filter((value, i) => i > dataset.data.length - 2);
   const y = Math.max(...values);
@@ -88,13 +88,13 @@ const LineChart = ({days, pages, readPages}) =>{
   return {x, y};
   };
 
-  function pointFact(ctx) {
-  const dataset = ctx.chart.data.datasets[1];
-  const values = dataset.data.filter((value, i) => i > dataset.data.length - 2);
-  const y = Math.max(...values);
-  const x = dataset.data.lastIndexOf(y);
-  return {x, y};
-  };
+  // function pointFact(ctx) {
+  // const dataset = ctx.chart.data.datasets[1];
+  // const values = dataset.data.filter((value, i) => i > dataset.data.length - 2);
+  // const y = Math.max(...values);
+  // const x = dataset.data.lastIndexOf(y);
+  // return {x, y};
+  // };
 
   // Вираховуємо скільки користувач прочитав сторінок в день
   const getReadPagesperDay = (value) => { 
@@ -274,9 +274,9 @@ const LineChart = ({days, pages, readPages}) =>{
               shadowOffsetX: 2,
               shadowOffsetY: 3,
               xAdjust: -30,
-              xValue: (ctx) => pointFact(ctx).x,
+              xValue: (ctx) => point(ctx, 0).x,
               yAdjust: -30,
-              yValue: (ctx) => pointFact(ctx).y,
+              yValue: (ctx) => point(ctx, 1).y,
             },
           },
         },
