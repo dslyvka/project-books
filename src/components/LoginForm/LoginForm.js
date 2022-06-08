@@ -2,6 +2,7 @@ import { Formik } from 'formik';
 import { useWindowWidth } from '@react-hook/window-size';
 
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import actions from '../../redux/auth/auth-actions';
 
 import validationSchema from '../../validation/login';
@@ -21,6 +22,7 @@ import sprite from '../../images/sprite/sprites.svg';
 const LoginForm = () => {
   const width = useWindowWidth();
   const dispatch = useDispatch();
+    const navigate = useNavigate();
 
   return (
     <StyledDiv>
@@ -45,6 +47,7 @@ const LoginForm = () => {
           //   },
           // });
           dispatch(actions.login({ email, password }));
+          navigate('/library');
           console.log(values);
         }}
       >
@@ -125,7 +128,7 @@ const LoginForm = () => {
               </ButtonStyled>
 
               <p>
-                <a href="./">Реєстрація</a>
+                <a href="./register">Реєстрація</a>
               </p>
             </ul>
           </StyledForm>
