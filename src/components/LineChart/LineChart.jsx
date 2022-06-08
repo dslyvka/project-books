@@ -88,14 +88,6 @@ const LineChart = ({days, pages, readPages}) =>{
   return {x, y};
   };
 
-  // function pointFact(ctx) {
-  // const dataset = ctx.chart.data.datasets[1];
-  // const values = dataset.data.filter((value, i) => i > dataset.data.length - 2);
-  // const y = Math.max(...values);
-  // const x = dataset.data.lastIndexOf(y);
-  // return {x, y};
-  // };
-
   // Вираховуємо скільки користувач прочитав сторінок в день
   const getReadPagesperDay = (value) => { 
     return value.slice(-1)[0];
@@ -250,9 +242,9 @@ const LineChart = ({days, pages, readPages}) =>{
               shadowOffsetX: 2,
               shadowOffsetY: 3,
               xAdjust: -30,
-              xValue: (ctx) => pointPlan(ctx).x,
+              xValue: (ctx) => point(ctx).x,
               yAdjust: -30,
-              yValue: (ctx) => pointPlan(ctx).y,
+              yValue: (ctx) => point(ctx).y,
             },
             fact: {
               type: 'label',
