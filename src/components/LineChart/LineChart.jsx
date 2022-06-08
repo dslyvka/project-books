@@ -81,7 +81,7 @@ const LineChart = ({days, pages, readPages}) =>{
 
   // Для привязки анотації (підписи назв графіків) до останнього елемента масиву графіків ПЛАН і ФАКТ
   function point(ctx, value) {
-  const dataset = ctx.chart.data.datasets[0];
+  const dataset = ctx.chart.data.datasets[value];
   const values = dataset.data.filter((value, i) => i > dataset.data.length - 2);
   const y = Math.max(...values);
   const x = dataset.data.lastIndexOf(y);
@@ -242,9 +242,9 @@ const LineChart = ({days, pages, readPages}) =>{
               shadowOffsetX: 2,
               shadowOffsetY: 3,
               xAdjust: -30,
-              xValue: (ctx) => point(ctx).x,
+              xValue: (ctx) => point(ctx, 0).x,
               yAdjust: -30,
-              yValue: (ctx) => point(ctx).y,
+              yValue: (ctx) => point(ctx, 0).y,
             },
             fact: {
               type: 'label',
@@ -266,7 +266,7 @@ const LineChart = ({days, pages, readPages}) =>{
               shadowOffsetX: 2,
               shadowOffsetY: 3,
               xAdjust: -30,
-              xValue: (ctx) => point(ctx, 0).x,
+              xValue: (ctx) => point(ctx, 1).x,
               yAdjust: -30,
               yValue: (ctx) => point(ctx, 1).y,
             },
