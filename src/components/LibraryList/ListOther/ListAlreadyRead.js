@@ -11,11 +11,15 @@ import {
   Td,
   TdTitle,
 } from './ListAlreadyRead.styled';
-import ResumeButton from '../ResumeButton/ResumeButton';
+// import ResumeButton from '../ResumeButton/ResumeButton';
+import LibraryResumeModal from '../../LibraryResumeModal/Resume/Resume';
+import { useToggle } from '../../../hooks/useToggle';
 
 function ListAlreadyRead({ text = 'Text', array = [] }) {
+  const { isOpen, open, close } = useToggle();
   return (
     <DivContainer margin="80px">
+      {isOpen && <LibraryResumeModal closer={{ close }} />}
       {array.length !== 0 && (
         <Div>
           <h2>{text}</h2>
@@ -55,7 +59,8 @@ function ListAlreadyRead({ text = 'Text', array = [] }) {
                     </DivTr>
                     <DivTr>
                       <td>
-                        <ResumeButton>Resume</ResumeButton>
+                        {/* <ResumeButton>Resume</ResumeButton> */}
+                        <button onClick={open}>Resume!</button>
                       </td>
                     </DivTr>
                   </Tr>
