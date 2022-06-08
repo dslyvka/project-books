@@ -1,7 +1,7 @@
 import LibraryIcon from '../LibraryIcon/LibraryIcon';
 import {
   DivContainer,
-  DivTablet,
+  TrTablet,
   DivTrOther,
   Div,
   Table,
@@ -10,10 +10,9 @@ import {
   ThTabletOther,
   Td,
   Tr,
-  ThTablet,
 } from './ListAlreadyRead.styled';
 
-function ListOther({ text, array }) {
+function ListOther({ text, array = [] }) {
   return (
     <DivContainer margin="32px">
       {array.length !== 0 && (
@@ -21,12 +20,12 @@ function ListOther({ text, array }) {
           <h2>{text}</h2>
           <Table>
             <tbody>
-              <DivTablet>
+              <TrTablet>
                 <ThTabletOther>Навза книги</ThTabletOther>
                 <ThTabletOther>Автор</ThTabletOther>
                 <ThTabletOther>Рік</ThTabletOther>
                 <ThTabletOther>Стор.</ThTabletOther>
-              </DivTablet>
+              </TrTablet>
               {array.map(({ id, title, author, year, pages, status }) => (
                 <Tr key={id}>
                   <DivTrOther>

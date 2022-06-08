@@ -3,7 +3,7 @@ import {
   DivContainer,
   Div,
   DivTr,
-  DivTablet,
+  TrTablet,
   Table,
   ThTablet,
   Tr,
@@ -13,7 +13,7 @@ import {
 } from './ListAlreadyRead.styled';
 import ResumeButton from '../ResumeButton/ResumeButton';
 
-function ListAlreadyRead({ text, array }) {
+function ListAlreadyRead({ text = 'Text', array = [] }) {
   return (
     <DivContainer margin="80px">
       {array.length !== 0 && (
@@ -21,16 +21,17 @@ function ListAlreadyRead({ text, array }) {
           <h2>{text}</h2>
           <Table>
             <tbody>
-              <DivTablet>
+              <TrTablet>
                 <ThTablet>Навза книги</ThTablet>
                 <ThTablet>Автор</ThTablet>
                 <ThTablet>Рік</ThTablet>
                 <ThTablet>Стор.</ThTablet>
                 <ThTablet>Рейтинг</ThTablet>
                 <ThTablet></ThTablet>
-              </DivTablet>
+              </TrTablet>
+
               {array.map(
-                ({ id, title, author, year, pages, rating, status }) => (
+                ({ id, title, author, year, pages, rating = 0, status }) => (
                   <Tr key={id}>
                     <DivTr>
                       <td>{<LibraryIcon book={status} />}</td>
@@ -42,7 +43,6 @@ function ListAlreadyRead({ text, array }) {
                     </DivTr>
                     <DivTr>
                       <Th>Рік</Th>
-
                       <Td width="63px">{year}</Td>
                     </DivTr>
                     <DivTr>
