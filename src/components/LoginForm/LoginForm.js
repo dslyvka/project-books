@@ -1,7 +1,10 @@
 import { Formik } from 'formik';
 import { useWindowWidth } from '@react-hook/window-size';
 
-import validationSchema from '../../validation/register';
+import { useDispatch } from 'react-redux';
+import actions from '../../redux/auth/auth-actions';
+
+import validationSchema from '../../validation/login';
 
 import GoogleAuthBtn from '../GoogleAuth/GoogleAuth';
 import { ButtonStyled } from '../RegularButton/Button.styled';
@@ -17,20 +20,19 @@ import sprite from '../../images/sprite/sprites.svg';
 
 const LoginForm = () => {
   const width = useWindowWidth();
-  // console.log(width);
+  const dispatch = useDispatch();
 
   return (
     <StyledDiv>
       <Formik
         initialValues={{
-          name: '',
           email: '',
           password: '',
-          confirmPassword: '',
         }}
         validateOnBlur
         validationSchema={validationSchema}
         onSubmit={values => {
+          const { email, password } = values;
           // fetch('http://localhost:3001/api/users/signup', {
           //   method: 'POST',
           //   body: JSON.stringify({
@@ -42,6 +44,7 @@ const LoginForm = () => {
           //     'Content-Type': 'application/json',
           //   },
           // });
+          dispatch(actions.login({ email, password }));
           console.log(values);
         }}
       >

@@ -145,12 +145,12 @@ const RegisterForm = () => {
                 )}
               </li>
               <ButtonStyled
-                disabled={
-                  (!isValid && dirty) ||
-                  (!isValid && !dirty) ||
-                  (Object.keys(touched).length === 0 &&
-                    touched.constructor === Object)
-                }
+                // disabled={
+                //   (!isValid && dirty) ||
+                //   (!isValid && !dirty) ||
+                //   (Object.keys(touched).length === 0 &&
+                //     touched.constructor === Object)
+                // }
                 type="submit"
                 onClick={handleSubmit}
                 color="#FFFFFF"
