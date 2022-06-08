@@ -18,9 +18,15 @@ export const Form = styled.form`
 
 }`;
 
-export const BasicDiv = styled.div`
+export const BasicDiv = styled.li`
 display:flex;
 justify-content:center;
+
+ @media screen and (min-width: 1280px) {
+        :last-child{
+        margin-left:16px;
+    }
+}
 `
 
 
@@ -86,19 +92,22 @@ export const Input = styled.input`
        outline:none;
     }`;
 
-export const DivInput = styled.div`
+export const DivInput = styled.ul`
     display: flex;
     flex-direction: column;
+
 
      @media screen and (min-width: 1280px) {
   display: flex;
     flex-direction: row;
+    
     
 }`
 
 export const LabelOne = styled.label`
  @media screen and (min-width: 1280px) {
              margin-right:16px ;
+             
  }
       color: #898F9F;
       `
@@ -109,18 +118,12 @@ export const LabelTwo = styled.label`
     :nth-of-type(1){
     margin-left:32px;
 }
-    :nth-of-type(2) {
-    margin-left:32px;
-}
 }
  @media screen and (min-width: 1280px) {
        :nth-of-type(1) {
     margin-left:0px;
-}:nth-of-type(2) {
-    margin-left:16px;
 }
-
-      `
+}    `
 
 
 export const OtherInput = styled.div`
@@ -141,7 +144,6 @@ export const ButtonDiv = styled.div`
         display: flex;
         justify-content:center;
           @media screen and (min-width: 1280px) {
-              margin-top:2px;
               margin-left:34px;
               align-items: center;
           }`
