@@ -8,7 +8,7 @@ flex-wrap: wrap;
 flex-direction: column;
 `
 
-export const DivTablet = styled.div`
+export const TrTablet = styled.tr`
 display:flex;
 color: #898F9F;
 juctify-content:end;
@@ -40,7 +40,10 @@ width: 100%;
 
 max-width:500px;
 @media screen and (min-width: 768px) {
-max-width:1280px;
+max-width:704px;
+}
+@media screen and (min-width: 1280px) {
+max-width:1248px;
 }
 
 `
@@ -76,8 +79,9 @@ width:150px;
 margin-left: 12px;
     }
 `
+// td
 
-export const Th = styled.th`
+export const Th = styled.td`
  word-break:keep-all;
 margin-left:34px;
 color: #898F9F;
@@ -85,19 +89,20 @@ color: #898F9F;
     display:none}
 
 `
+// th
 export const ThTablet = styled.th`
 display:none;
 
     @media screen and (min-width: 768px) {
         
     display:flex;
-    :first-child{
+    :nth-of-type(1){
         width:210px;
 }
-    :nth-child(2){
+    :nth-of-type(2){
  width:130px;
 }
-    :nth-child(5){
+    :nth-of-type(5){
  width:155px;
 }}`
 
@@ -105,10 +110,10 @@ export const ThTabletOther = styled.th`
 display:none;
     @media screen and (min-width: 768px) {
     display:flex;
-    :first-child{
+    :nth-of-type(1){
         width:180px;
 }
-    :nth-child(2){
+    :nth-of-type(2){
  width:180px;
 }}`
 
@@ -123,6 +128,8 @@ width: 50%;
 //         display:flex;
 // justify-content:center;
 //  }'
+
+// td
 
 export const DivTr = styled.div`
 :last-child{
@@ -140,13 +147,13 @@ justify-content:center;
 margin-bottom: 0px; 
   display:flex;
   justify-content: space-between;
-          :nth-child(2){
+          :nth-of-type(2){
     width: 120px
 }
-          :nth-child(3){
+          :nth-of-type(3){
     width: 50px
 }
-          :nth-child(4){
+          :nth-of-type(4){
     width: 40px
 }
   
@@ -155,7 +162,7 @@ margin-bottom: 0px;
     margin-bottom:0px;
 }
 }`
-
+// div
 
 export const DivTrOther = styled.div`
  margin-bottom:14px;
@@ -169,18 +176,19 @@ margin-bottom: 0px;
   display:flex;
   justify-content: space-between;
   
-          :nth-child(2){
+          :nth-of-type(2){
     width: 200px
 }
-          :nth-child(3){
+          :nth-of-type(3){
     width: 50px
 }
-          :nth-child(4){
+          :nth-of-type(4){
     width: 40px
 }
   }
     :last-child {
     margin-bottom:0px;
 }}`
+// div
 
 

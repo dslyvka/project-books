@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://project-books-api.herokuapp.com/api/';
+axios.defaults.baseURL = 'https://project-books-api.herokuapp.com/api';
 
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
@@ -16,7 +16,7 @@ export const fetchBooks = createAsyncThunk(
   },
 );
 
-export const addBooks = createAsyncThunk('books/addBooks', async text => {
+export const addBooks = createAsyncThunk('/books/addBooks', async text => {
   const books = {
     title: text.title,
     autor: text.author,

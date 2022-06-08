@@ -6,7 +6,7 @@ import RegisterPage from './pages/registerPage/registerPage';
 import TrainingPage from './pages/trainingPage/trainingPage';
 import StatisticsPage from './pages/statisticsPage/statisticsPage';
 import LibraryPage from './pages/libraryPage/libraryPage';
-import Header from './components/Header/Header';
+import Header from './components/header/Header';
 import QuoteSection from './components/QuoteSection/QuoteSection';
 
 import './App.css';

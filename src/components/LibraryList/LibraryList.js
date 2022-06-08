@@ -15,6 +15,7 @@ const example = [
     pages: 100,
     rating: 4,
     status: 'already',
+    id: '12345',
   },
   {
     title:
@@ -24,6 +25,7 @@ const example = [
     raiting: 5,
     pages: 4100,
     status: 'reading',
+    id: '123456',
   },
   {
     title: 'harry Poter',
@@ -32,6 +34,7 @@ const example = [
     rating: 1112,
     pages: 99,
     status: 'reading',
+    id: '123457',
   },
   {
     title: 'harry Poter',
@@ -40,6 +43,7 @@ const example = [
     pages: 100,
     rating: 2,
     status: 'going',
+    id: '123458',
   },
   {
     title: 'harry Poter',
@@ -48,6 +52,7 @@ const example = [
     pages: 100,
     rating: 2,
     status: 'already',
+    id: '123459',
   },
   {
     title: 'harry Poter',
@@ -56,6 +61,7 @@ const example = [
     pages: 100,
     rating: 2,
     status: 'going',
+    id: '123461',
   },
 ];
 
@@ -68,14 +74,14 @@ function LibraryList() {
   }, [dispatch]);
 
   const reading = example.filter(arr => arr.status === 'reading');
-  const going = example.filter(arr => arr.status === 'going');
+  const going = onContacts.filter(arr => arr.status === 'going');
   const already = example.filter(arr => arr.status === 'already');
 
   return (
     <Div>
       <ListAlreadyRead text="Прочитано" array={already} />
       <ListOther text="Читаю" array={reading} />
-      <ListOther text="Маю намір прочитати" array={going} />
+      <ListOther text="Маю намір прочитати" array={onContacts.going} />
     </Div>
   );
 }
