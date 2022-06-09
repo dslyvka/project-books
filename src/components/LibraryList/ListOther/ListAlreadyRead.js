@@ -2,14 +2,15 @@ import LibraryIcon from '../LibraryIcon/LibraryIcon';
 import {
   DivContainer,
   Div,
-  DivTr,
-  TrTablet,
-  Table,
-  ThTablet,
-  Tr,
-  Th,
-  Td,
-  TdTitle,
+  Ulalready,
+  UlTablet,
+  UL,
+  LiTablet,
+  Li,
+  LiTitle,
+  LiData,
+  LiNameBook,
+  Button,
 } from './ListAlreadyRead.styled';
 // import ResumeButton from '../ResumeButton/ResumeButton';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -21,51 +22,50 @@ function ListAlreadyRead({ text = 'Text', array = [] }) {
       {array.length !== 0 && (
         <Div>
           <h2>{text}</h2>
-          <Table>
-            <tbody>
-              <TrTablet>
-                <ThTablet>Навза книги</ThTablet>
-                <ThTablet>Автор</ThTablet>
-                <ThTablet>Рік</ThTablet>
-                <ThTablet>Стор.</ThTablet>
-                <ThTablet>Рейтинг</ThTablet>
-                <ThTablet></ThTablet>
-              </TrTablet>
+          <UL>
+            <UlTablet>
+              <LiTablet>Навза книги</LiTablet>
+              <LiTablet>Автор</LiTablet>
+              <LiTablet>Рік</LiTablet>
+              <LiTablet>Стор.</LiTablet>
+              <LiTablet>Рейтинг</LiTablet>
+              <LiTablet></LiTablet>
+            </UlTablet>
 
-              {array.map(
-                ({ id, title, author, year, pages, rating = 0, status }) => (
-                  <Tr key={id}>
-                    <DivTr>
-                      <td>{<LibraryIcon book={status} />}</td>
-                      <TdTitle>{title}</TdTitle>
-                    </DivTr>
-                    <DivTr>
-                      <Th>Автор</Th>
-                      <Td width="40px">{author}</Td>
-                    </DivTr>
-                    <DivTr>
-                      <Th>Рік</Th>
-                      <Td width="63px">{year}</Td>
-                    </DivTr>
-                    <DivTr>
-                      <Th>Стор.</Th>
-                      <Td width="45px"> {pages}</Td>
-                    </DivTr>
-                    <DivTr>
-                      <Th>Рейтинг</Th>
-                      <Td width="25px"> {rating}</Td>
-                    </DivTr>
-                    <DivTr>
-                      <td>
-                        {/* <ResumeButton>Resume</ResumeButton> */}
-                        <button onClick={() => navigate(id)}>Resume</button>
-                      </td>
-                    </DivTr>
-                  </Tr>
-                ),
-              )}
-            </tbody>
-          </Table>
+
+            {array.map(
+              ({ id, title, author, year, pages, rating = 0, status }) => (
+                <Li key={id}>
+                  <Ulalready>
+                    <li>{<LibraryIcon book={status} />}</li>
+                    <LiNameBook>{title}</LiNameBook>
+                  </Ulalready>
+                  <Ulalready>
+                    <LiTitle>Автор</LiTitle>
+                    <LiData width="40px">{author}</LiData>
+                  </Ulalready>
+                  <Ulalready>
+                    <LiTitle>Рік</LiTitle>
+                    <LiData width="63px">{year}</LiData>
+                  </Ulalready>
+                  <Ulalready>
+                    <LiTitle>Стор.</LiTitle>
+                    <LiData width="45px"> {pages}</LiData>
+                  </Ulalready>
+                  <Ulalready>
+                    <LiTitle>Рейтинг</LiTitle>
+                    <LiData width="25px"> {rating}</LiData>
+                  </Ulalready>
+                  <Ulalready>
+                    <li>
+                      <Button onClick={open}>Resume</Button>
+                      {/* <button>Resume!</button> */}
+                    </li>
+                  </Ulalready>
+                </Li>
+              ),
+            )}
+          </UL>
         </Div>
       )}
       <Outlet />

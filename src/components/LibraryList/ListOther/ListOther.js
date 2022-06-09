@@ -1,15 +1,15 @@
 import LibraryIcon from '../LibraryIcon/LibraryIcon';
 import {
   DivContainer,
-  TrTablet,
-  DivTrOther,
+  UlTablet,
+  UlOther,
   Div,
-  Table,
-  TdTitle,
-  Th,
-  ThTabletOther,
-  Td,
-  Tr,
+  UL,
+  LiNameBook,
+  LiTitle,
+  LiTabletOther,
+  LiData,
+  Li,
 } from './ListAlreadyRead.styled';
 
 function ListOther({ text, array = [] }) {
@@ -18,36 +18,34 @@ function ListOther({ text, array = [] }) {
       {array.length !== 0 && (
         <Div>
           <h2>{text}</h2>
-          <Table>
-            <tbody>
-              <TrTablet>
-                <ThTabletOther>Навза книги</ThTabletOther>
-                <ThTabletOther>Автор</ThTabletOther>
-                <ThTabletOther>Рік</ThTabletOther>
-                <ThTabletOther>Стор.</ThTabletOther>
-              </TrTablet>
-              {array.map(({ id, title, author, year, pages, status }) => (
-                <Tr key={id}>
-                  <DivTrOther>
-                    <td> {<LibraryIcon book={status} />} </td>
-                    <TdTitle>{title}</TdTitle>
-                  </DivTrOther>
-                  <DivTrOther>
-                    <Th>Автор</Th>
-                    <Td width="40px">{author}</Td>
-                  </DivTrOther>
-                  <DivTrOther>
-                    <Th>Рік</Th>
-                    <Td width="63px">{year}</Td>
-                  </DivTrOther>
-                  <DivTrOther>
-                    <Th>Стор.</Th>
-                    <Td width="45px"> {pages}</Td>
-                  </DivTrOther>
-                </Tr>
-              ))}
-            </tbody>
-          </Table>
+          <UL>
+            <UlTablet>
+              <LiTabletOther>Навза книги</LiTabletOther>
+              <LiTabletOther>Автор</LiTabletOther>
+              <LiTabletOther>Рік</LiTabletOther>
+              <LiTabletOther>Стор.</LiTabletOther>
+            </UlTablet>
+            {array.map(({ id, title, author, year, pages, status }) => (
+              <Li key={id}>
+                <UlOther>
+                  <li> {<LibraryIcon book={status} />} </li>
+                  <LiNameBook>{title}</LiNameBook>
+                </UlOther>
+                <UlOther>
+                  <LiTitle>Автор</LiTitle>
+                  <LiData width="40px">{author}</LiData>
+                </UlOther>
+                <UlOther>
+                  <LiTitle>Рік</LiTitle>
+                  <LiData width="63px">{year}</LiData>
+                </UlOther>
+                <UlOther>
+                  <LiTitle>Стор.</LiTitle>
+                  <LiData width="45px"> {pages}</LiData>
+                </UlOther>
+              </Li>
+            ))}
+          </UL>
         </Div>
       )}
     </DivContainer>
