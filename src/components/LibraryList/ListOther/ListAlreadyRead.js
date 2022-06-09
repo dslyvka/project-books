@@ -10,6 +10,7 @@ import {
   LiTitle,
   LiData,
   LiNameBook,
+  Button,
 } from './ListAlreadyRead.styled';
 // import ResumeButton from '../ResumeButton/ResumeButton';
 import LibraryResumeModal from '../../LibraryResumeModal/Resume/Resume';
@@ -58,8 +59,8 @@ function ListAlreadyRead({ text = 'Text', array = [] }) {
                   </Ulalready>
                   <Ulalready>
                     <li>
-                      {/* <ResumeButton>Resume</ResumeButton> */}
-                      <button onClick={open}>Resume!</button>
+                      <Button onClick={open}>Resume</Button>
+                      {/* <button>Resume!</button> */}
                     </li>
                   </Ulalready>
                 </Li>
