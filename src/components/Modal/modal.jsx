@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
-import { ModalWrapper } from './Modal.styled';
+import { ModalWrapper, ChildrenStyled } from './Modal.styled';
 
 const Modal = ({ onClose, children }) => {
   useEffect(() => {
     window.addEventListener('keydown', close);
+    document.getElementsByTagName('body')[0].style.overflow = 'hidden';
     return () => {
       window.removeEventListener('keydown', close);
+      document.getElementsByTagName('body')[0].style.overflow = 'auto';
     };
   });
 
@@ -15,7 +17,7 @@ const Modal = ({ onClose, children }) => {
 
   return (
     <ModalWrapper onClick={close}>
-      <div>{children}</div>
+      <ChildrenStyled>{children}</ChildrenStyled>
     </ModalWrapper>
   );
 };

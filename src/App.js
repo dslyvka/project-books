@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { useEffect, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 //Сделать Lazy-loading всего этого- и возможно экспортировать в общий index.js, или нет
 import LoginPage from './pages/loginPage/loginPage';
@@ -9,14 +9,22 @@ import LibraryPage from './pages/libraryPage/libraryPage';
 import Header from './components/Header/Header';
 import QuoteSection from './components/QuoteSection/QuoteSection';
 import LibraryResumeModal from './components/LibraryResumeModal/Resume/Resume';
-
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import GoogleAuth from './components/GoogleAuth/GoogleAuth';
-
+import actions from './redux/auth/auth-actions';
 import { useWindowWidth } from '@react-hook/window-size';
 
 function App() {
   const onlyWidth = useWindowWidth();
+  const dispatch = useDispatch();
+  const { isLoggedIn, token } = useSelector(state => state.auth);
+
+  useEffect(() => {
+    if (!isLoggedIn && token) {
+      dispatch(actions.fetchCurrentUser());
+    }
+  }, []);
 
   return (
     //Придумать позже функционал вместо Loading- спиннер и тп

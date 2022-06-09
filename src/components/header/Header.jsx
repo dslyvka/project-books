@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   Container,
   TextStyled,
@@ -16,6 +17,7 @@ import Logout from '../Logout/Logout';
 
 function Header() {
   const [showModal, setShowModal] = useState(false);
+  const { isLoggedIn } = useSelector(state => state.auth);
 
   const togleModal = () => {
     setShowModal(showModal => !showModal);
@@ -24,7 +26,7 @@ function Header() {
   return (
     <>
       <Container>
-        {!true ? (
+        {!isLoggedIn ? (
           <ContainerToCenter>
             <TextStyled>BR</TextStyled>
           </ContainerToCenter>
