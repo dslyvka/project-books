@@ -7,7 +7,7 @@ import {
 
 import actions from './auth-actions';
 
-const { register, login, logout, fetchCurrentUser } = actions;
+const { register, login, loginG, logout, fetchCurrentUser } = actions;
 
 const initialState = {
   user: { name: null, email: null },
@@ -27,6 +27,12 @@ const authReducer = createReducer(initialState, {
     console.log(payload);
   },
   [login.fulfilled]: (state, { payload }) => ({
+    ...state,
+    isLoggedIn: true,
+    token: payload.token,
+    user: payload.user,
+  }),
+  [loginG]: (state, { payload }) => ({
     ...state,
     isLoggedIn: true,
     token: payload.token,

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://project-books-api.herokuapp.com/api';
 
@@ -31,6 +31,12 @@ const login = createAsyncThunk('auth/login', async credentials => {
   } catch (error) {
     console.log(error);
   }
+});
+
+const loginG = createAction('auth/loginG', ({ name, email, token }) => {
+  return {
+    payload: { token, user: { name, email } },
+  };
 });
 
 const logout = createAsyncThunk('auth/logout', async () => {
@@ -67,6 +73,7 @@ const actions = {
   login,
   logout,
   fetchCurrentUser,
+  loginG,
 };
 
 export default actions;
