@@ -1,16 +1,23 @@
 import Modal from '../../Modal/Modal';
 import ResumeForm from '../ResumeForm/ResumeForm';
 import { Button } from './Resume.styled';
-import { useSvg } from '../../../hooks/useSvg';
 import { useState } from 'react';
 import Rate from '../Rate/Rate';
 import { ModalContainer, ButtonWrapper, Title } from './Resume.styled';
+import sprites from '../../../images/sprite/sprites.svg';
+import { useNavigate } from 'react-router-dom';
 
-export const LibraryResumeModal = ({ closer }) => {
+export const LibraryResumeModal = () => {
+  const [showModal, setShowModal] = useState(true);
   const [rate, setRate] = useState(0);
   const [resume, setResume] = useState('');
 
-  const { close } = closer;
+  const navigate = useNavigate();
+
+  const togleModal = () => {
+    setShowModal(showModal => !showModal);
+    navigate('library');
+  };
 
   const updateRate = val => {
     setRate(val);
@@ -28,53 +35,39 @@ export const LibraryResumeModal = ({ closer }) => {
     console.log(rate, resume);
     setRate(0);
     setResume('');
-    close();
+    togleModal();
   };
 
   return (
-    <Modal onClose={close}>
-      <ModalContainer>
-        <Title>Обрати рейтинг книги</Title>
-        <Rate
-          emptyIcon={useSvg('icon-Star', 17, 17)}
-          fullIcon={useSvg('icon-Star-full', 17, 17)}
-          update={updateRate}
-        />
-        <Title>Резюме</Title>
-        <ResumeForm updateResume={updateResume} />
-        <ButtonWrapper>
-          <Button onClick={close}>Назад</Button>
-          <Button type="submit" onClick={getData}>
-            Зберегти
-          </Button>
-        </ButtonWrapper>
-      </ModalContainer>
-    </Modal>
+    showModal && (
+      <Modal onClose={togleModal}>
+        <ModalContainer>
+          <Title>Обрати рейтинг книги</Title>
+          <Rate
+            emptyIcon={
+              <svg pointerEvents="none" width="17" height="17">
+                <use href={`${sprites}#icon-Star`} />
+              </svg>
+            }
+            fullIcon={
+              <svg pointerEvents="none" width="17" height="17">
+                <use href={`${sprites}#icon-Star-full`} />
+              </svg>
+            }
+            update={updateRate}
+          />
+          <Title>Резюме</Title>
+          <ResumeForm updateResume={updateResume} />
+          <ButtonWrapper>
+            <Button onClick={togleModal}>Назад</Button>
+            <Button type="submit" onClick={getData}>
+              Зберегти
+            </Button>
+          </ButtonWrapper>
+        </ModalContainer>
+      </Modal>
+    )
   );
 };
 
 export default LibraryResumeModal;
-
-//////////////////////////////////////////////////////////////////////
-// УСТАНОВИТЬ   npm i react-simple-star-rating
-/////////////////////////////////////////////////////////////////////
-
-// import Modal from '../../components/Modal/Modal';
-// import LibraryResumeModal from '../../components/LibraryResumeModal/Resume/Resume';
-// import { useToggle } from '../../hooks/useToggle';
-
-// //к кнопке RESUME подключить onClick=open
-
-// const LibraryPage = () => {
-//   const { isOpen, open, close } = useToggle();
-//   return (
-//     <>
-//       <button onClick={open}>Resume!</button>
-
-//       {/* Открытие модального окна при нажатии на RESUME       */}
-//       {isOpen && <LibraryResumeModal closer={{ close }} />}
-//     </>
-//   );
-// };
-
-// export default LibraryPage;

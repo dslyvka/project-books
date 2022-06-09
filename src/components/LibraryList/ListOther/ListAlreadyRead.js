@@ -12,14 +12,12 @@ import {
   TdTitle,
 } from './ListAlreadyRead.styled';
 // import ResumeButton from '../ResumeButton/ResumeButton';
-import LibraryResumeModal from '../../LibraryResumeModal/Resume/Resume';
-import { useToggle } from '../../../hooks/useToggle';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 function ListAlreadyRead({ text = 'Text', array = [] }) {
-  const { isOpen, open, close } = useToggle();
+  const navigate = useNavigate();
   return (
     <DivContainer margin="80px">
-      {isOpen && <LibraryResumeModal closer={{ close }} />}
       {array.length !== 0 && (
         <Div>
           <h2>{text}</h2>
@@ -60,7 +58,7 @@ function ListAlreadyRead({ text = 'Text', array = [] }) {
                     <DivTr>
                       <td>
                         {/* <ResumeButton>Resume</ResumeButton> */}
-                        <button onClick={open}>Resume!</button>
+                        <button onClick={() => navigate(id)}>Resume</button>
                       </td>
                     </DivTr>
                   </Tr>
@@ -70,6 +68,7 @@ function ListAlreadyRead({ text = 'Text', array = [] }) {
           </Table>
         </Div>
       )}
+      <Outlet />
     </DivContainer>
   );
 }

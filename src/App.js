@@ -8,6 +8,7 @@ import StatisticsPage from './pages/statisticsPage/statisticsPage';
 import LibraryPage from './pages/libraryPage/libraryPage';
 import Header from './components/Header/Header';
 import QuoteSection from './components/QuoteSection/QuoteSection';
+import LibraryResumeModal from './components/LibraryResumeModal/Resume/Resume';
 
 import './App.css';
 import GoogleAuth from './components/GoogleAuth/GoogleAuth';
@@ -29,7 +30,9 @@ function App() {
           />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
-          <Route path="library" element={<LibraryPage />} />
+          <Route path="library" element={<LibraryPage />}>
+            <Route path=":id" element={<LibraryResumeModal />} />
+          </Route>
           <Route path="training" element={<TrainingPage />} />
           <Route path="statistics" element={<StatisticsPage />} />
           <Route path="*" element={<Navigate to="library" replace />} />
