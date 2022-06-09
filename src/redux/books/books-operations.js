@@ -11,7 +11,7 @@ export const fetchBooks = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return rejectWithValue(alert(error.message));
+      return rejectWithValue(console.log(error.message));
     }
   },
 );

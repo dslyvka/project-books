@@ -25,16 +25,6 @@ const LibraryForm = () => {
   const dispatch = useDispatch();
   const onSubmit = text => dispatch(booksOperations.addBooks(text));
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    // const state = { title, author, date, pages };
-
-    // valueForm.some(book => book.title === title)
-    //   ? alert('Такой контакт уже есть')
-    // onSubmit(state);
-    // reset();
-  };
-
   return (
     <Container>
       <Formik
@@ -47,9 +37,21 @@ const LibraryForm = () => {
         validateOnBlur
         validationSchema={validationSchema}
         onSubmit={values => {
-          valueForm.some(book => book.title === values.title)
-            ? alert('Такой контакт уже есть')
-            : onSubmit(values);
+          const { title, author, date, pages } = values;
+          // fetch('http://localhost:3001/api/users/signup', {
+          //   method: 'POST',
+          //   body: JSON.stringify({
+          //     name: values.name,
+          //     email: values.email,
+          //     password: values.password,
+          //   }),
+          //   headers: {
+          //     'Content-Type': 'application/json',
+          //   },
+          // });
+          dispatch(booksOperations.addBooks({ title, author, date, pages }));
+
+          console.log(values);
         }}
       >
         {({
@@ -82,7 +84,6 @@ const LibraryForm = () => {
                     value={values.title}
                   />
                 </LabelOne>
-
                 <br />
                 {touched.title && errors.title && <span>{errors.title}</span>}
               </BasicDiv>
@@ -91,7 +92,7 @@ const LibraryForm = () => {
                   <LabelOne htmlFor="author">
                     Автор книги
                     {!values.author.length || errors.author ? (
-                      <span>{errors.author}</span>
+                      <span>*</span>
                     ) : (
                       <></>
                     )}
@@ -155,12 +156,17 @@ const LibraryForm = () => {
               </OtherInput>
               <ButtonDiv>
                 <ButtonAdd
+                  onClick={event => {
+                    event.preventDefault();
+                    handleSubmit(values);
+                  }}
                   disabled={
                     (!isValid && dirty) ||
                     (!isValid && !dirty) ||
                     (Object.keys(touched).length === 0 &&
                       touched.constructor === Object)
                   }
+                  type="submit"
                 />
               </ButtonDiv>
             </DivInput>

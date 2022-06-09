@@ -81,7 +81,7 @@ function LibraryList() {
     <Div>
       <ListAlreadyRead text="Прочитано" array={already} />
       <ListOther text="Читаю" array={reading} />
-      <ListOther text="Маю намір прочитати" array={onContacts.going} />
+      <ListOther text="Маю намір прочитати" array={going} />
     </Div>
   );
 }

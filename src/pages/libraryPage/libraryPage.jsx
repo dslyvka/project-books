@@ -5,7 +5,7 @@ const LibraryPage = () => {
   return (
     <div>
       <LibraryForm />
-      <LibraryModal />
+      {/* <LibraryModal /> */}
       <LibraryList />
     </div>
   );
