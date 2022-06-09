@@ -1,8 +1,9 @@
 import { Formik } from 'formik';
 import { useWindowWidth } from '@react-hook/window-size';
-
+import { useEffect } from 'react';
+import queryString from 'query-string';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import actions from '../../redux/auth/auth-actions';
 
 import validationSchema from '../../validation/login';
@@ -22,7 +23,25 @@ import sprite from '../../images/sprite/sprites.svg';
 const LoginForm = () => {
   const width = useWindowWidth();
   const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const location = useLocation();
+  let {
+    token = null,
+    email = null,
+    name = null,
+  } = queryString.parse(location.search);
+
+  if (token) {
+    dispatch(actions.loginG({ token, email, name }));
+  }
+
+  // useEffect(() => {
+  //   navigate('/library');
+  // }, token);
+
+  // useEffect(() => {}, []);
+  // console.log(params);
 
   return (
     <StyledDiv>
