@@ -1,5 +1,5 @@
 import { useEffect, Suspense } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 //Сделать Lazy-loading всего этого- и возможно экспортировать в общий index.js, или нет
 import LoginPage from './pages/loginPage/loginPage';
 import RegisterPage from './pages/registerPage/registerPage';
@@ -19,6 +19,7 @@ function App() {
   const onlyWidth = useWindowWidth();
   const dispatch = useDispatch();
   const { isLoggedIn, token } = useSelector(state => state.auth);
+  const { isPageRefreshing } = useSelector(state => state.auth);
 
   useEffect(() => {
     if (!isLoggedIn && token) {
@@ -28,25 +29,33 @@ function App() {
 
   return (
     //Придумать позже функционал вместо Loading- спиннер и тп
-    //Приватные и Публичные роуты сделать
-    <Suspense fallback={<p>Loading...</p>}>
-      <Routes>
-        <Route path="/" element={<Header />}>
-          <Route
-            index
-            element={onlyWidth < 768 ? <QuoteSection /> : <LoginPage />}
-          />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
-          <Route path="library" element={<LibraryPage />}>
-            <Route path=":id" element={<LibraryResumeModal />} />
+
+    isPageRefreshing ? (
+      <p>Loading...</p>
+    ) : (
+      <Suspense fallback={<p>Loading...</p>}>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Outlet />}>
+            <Route
+              index
+              element={onlyWidth < 768 ? <QuoteSection /> : <LoginPage />}
+            />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
+
+            <Route path="library" element={<LibraryPage />}>
+              <Route path=":id" element={<LibraryResumeModal />} />
+            </Route>
+
+            <Route path="training" element={<TrainingPage />} />
+            <Route path="statistics" element={<StatisticsPage />} />
+            <Route path="*" element={<Navigate to="login" replace />} />
+            <Route />
           </Route>
-          <Route path="training" element={<TrainingPage />} />
-          <Route path="statistics" element={<StatisticsPage />} />
-          <Route path="*" element={<Navigate to="library" replace />} />
-        </Route>
-      </Routes>
-    </Suspense>
+        </Routes>
+      </Suspense>
+    )
   );
 }
 
