@@ -60,24 +60,25 @@ ChartJS.register(
   annotationPlugin,
 );
 
-  // Компонент приймає 3 пропа
-  // 1-й кількість днів тренування - параметр days
+  // Компонент приймає 3 пропи
+  // 1-й кінцева дата тренування - параметр date
   // 2-й загальна кількість сторінок в тренуванні - параметр pages
   // 3-й масив з кількістю сторінок прочитаних по днях - параметр readPages
   // Приклад для рендеру
   // <LineChart
-  //   days={9}
-  //   pages={300}
+  //   date={9}
+  //   pages={600}
   //   readPages={[45, 52, 36, 65, 31, 20, 60]}
   // />
 
-const LineChart = ({days, pages, readPages}) =>{
+const LineChart = ({date, pages, readPages}) =>{
   const [chartData, setChartData] = useState({
     datasets: [],
   });
   const [chartOptions, setChartOptions] = useState({});
-
   const { width } = useWindowDimensions();
+  const days = Math.ceil((new Date(date) - new Date()) / 86400000);
+  const pagesLeft = pages - readPages.reduce((a, b) => a + b, 0); 
 
   // Для привязки анотації (підписи назв графіків) до останнього елемента масиву графіків ПЛАН і ФАКТ
   function point(ctx, value) {
@@ -88,62 +89,54 @@ const LineChart = ({days, pages, readPages}) =>{
   return {x, y};
   };
 
-  // Вираховуємо скільки користувач прочитав сторінок в день
-  const getReadPagesperDay = (value) => { 
-    return value.slice(-1)[0];
-  };
-  const readPagesPerDay = getReadPagesperDay(readPages);
-      
-  
-    // Для відображення початкових точок в пустому графіку - ще в роботі
-    // if (pagesArray.length === 0) {
-    //   return [40];
-    // }
-  
-  useEffect(() => {
-    // Отримуємо кількість днів тренування і розбиваємо на масив в функції getDaysArray
-    const getDaysArray = (days) => {
-    const daysArray = [];
-    for (let i = 1; i <= days; i++) {
-      daysArray.push(i);
-    }
-    return daysArray;
-    };
-    
-    // Вираховуємо середню кількість сторінок в день і розбиваємо на масив для побудови графіка ПЛАН в функції getAveragePagesPerDay
-    const getAveragePagesPerDay = (pages) => {
-    const averagePagesPerDay = Math.round(pages / days);
-    const daysArray = getDaysArray(days);
+  // Вираховуємо масив для графіка ПЛАН в функції getAveragePagesPerDay
+    const getAveragePagesPerDay = () => {
+    const averagePagesPerDay = Math.round(pagesLeft / days);
     const pagesArray = [];
-    for (let i = 1; i <= daysArray.length; i++) {
+    for (let i = 1; i <= days; i++) {
       pagesArray.push(averagePagesPerDay);
       };
     return pagesArray;
   };
 
+  const resultPlanArray = () => { 
+    const averagePages = getAveragePagesPerDay().slice();
+    const planArray = [];
+    for (let i = 1; i <= readPages.length; i++) {
+      planArray.push(0);
+      averagePages.pop();
+    };
+    return [...planArray, ...averagePages];
+  };
+
+  // Вираховуємо план прочитання на день
+  const readPlanAtDay = resultPlanArray().slice(-1)[0];
+  
+  useEffect(() => {
     // Для відображення різних графіків на мобілці, таблет і десктопі отримуємо масиви відповідних довжин
     const chartReadData = (value) => {
-      const getDays = getDaysArray(days).slice(-value);
-      const averagePagesPerDay = getAveragePagesPerDay(pages).slice(-value);
-        if (readPages.length < value) {
-          return [averagePagesPerDay, readPages, getDays];
-        } else { 
-          const chartArray = readPages.slice(-value);
-          return [averagePagesPerDay, chartArray, getDays];
-        }
+      const averagePagesPerDay = resultPlanArray().slice(-value);
+      if (readPages.length < value) {
+        return [averagePagesPerDay, readPages];
+      } else {
+        const chartArray = readPages.slice(-value);
+        return [averagePagesPerDay, chartArray];
+      }
     };
-
     // Отримуємо конкретний масив для графіків
     const chartReadDataDatasets = (value, el) => {
       if (el === "plan") {
         return chartReadData(value).slice(0, 1)[0];
       } else if (el === "fact") {
-        return chartReadData(value).slice(1, 2)[0];
-      } else if (el === "days") {
         return chartReadData(value).slice(-1)[0];
-      }
+      } else if (el === "days") {
+        const daysArray = [];
+        for (let i = 1; i <= value; i++) {
+        daysArray.push(value);
+      };
+        return daysArray;
+      };
     };
-    
     // Передаємо дані для побудови графіків відповідно до ширини екрана
     const drawDepensScreenSize = (el) => {
       if (width < 768) {
@@ -154,14 +147,29 @@ const LineChart = ({days, pages, readPages}) =>{
         return chartReadDataDatasets(7, el);
       };
     };
-
-  // Для запобігання накладання анотацій (підписи назв графіків) при близьких значеннях по осі У - ще в роботі
-  // const setBetwenAnotationPositions = () => { 
-  //   if (getAveragePagesPerDay(pages).length === readPages.length) { 
-
-  //   }
-  //   return y;
-  // };
+  // Вираховуємо прогнозовану максимальну висоту графіка - треба ще потестити ...
+    const getMaxHeight = () => {
+      const maxReadPages = Math.max(...readPages);
+      if (readPlanAtDay && maxReadPages !== -Infinity) {
+        return Math.abs((readPlanAtDay - maxReadPages) * 2) === 0 ? readPlanAtDay * 2 : Math.abs((readPlanAtDay - maxReadPages) * 2);
+      } else {
+        return readPlanAtDay ? readPlanAtDay * 2 : 100;
+      }
+    };
+    // console.log(getMaxHeight());
+  
+  // Для запобігання накладання анотацій (підписи назв графіків) при близьких значеннях по осі У - ще в роботі ...
+    const setBetwenAnotationPositions = () => {
+      const differense = readPlanAtDay - readPages.slice(-1)[0];
+      // console.log("differense", differense);
+      // console.log("%", 15 * (getMaxHeight() / 100));
+      if (resultPlanArray().length === readPages.length && differense < 15 * (getMaxHeight() / 100)) {
+        return 30;
+      } else {
+        return -30;
+    }
+    };
+    // console.log("y :", setBetwenAnotationPositions());
 
     setChartData({
       labels: drawDepensScreenSize("days"),
@@ -170,7 +178,7 @@ const LineChart = ({days, pages, readPages}) =>{
           label: 'ПЛАН',
           tension: 0.4,
           pointRadius: 5,
-          data: drawDepensScreenSize("plan"),
+          data: readPlanAtDay? drawDepensScreenSize("plan") : [30],
           borderWidth: 2,
           borderColor: '#FF6B08',
           backgroundColor: '#FF6B08',
@@ -179,7 +187,7 @@ const LineChart = ({days, pages, readPages}) =>{
           label: 'ФАКТ',
           tension: 0.4,
           pointRadius: 5,
-          data: drawDepensScreenSize("fact"),
+          data: readPlanAtDay? drawDepensScreenSize("fact") : [10],
           borderWidth: 2,
           borderColor: '#242A37',
           backgroundColor: '#242A37',
@@ -215,7 +223,7 @@ const LineChart = ({days, pages, readPages}) =>{
         y: {
           display: false,
           min: 0,
-          suggestedMax: 100,
+          suggestedMax: getMaxHeight(),
         },
       },
       responsive: true,
@@ -241,9 +249,9 @@ const LineChart = ({days, pages, readPages}) =>{
               shadowBlur: 10,
               shadowOffsetX: 2,
               shadowOffsetY: 3,
-              xAdjust: -30,
+              xAdjust: readPlanAtDay && days !== 1 ? -30 : 40,
               xValue: (ctx) => point(ctx, 0).x,
-              yAdjust: -30,
+              yAdjust: readPlanAtDay ? -30 : 0,
               yValue: (ctx) => point(ctx, 0).y,
             },
             fact: {
@@ -265,9 +273,9 @@ const LineChart = ({days, pages, readPages}) =>{
               shadowBlur: 10,
               shadowOffsetX: 2,
               shadowOffsetY: 3,
-              xAdjust: -30,
+              xAdjust: readPlanAtDay && readPages.length !== 1 ? -30 : 40,
               xValue: (ctx) => point(ctx, 1).x,
-              yAdjust: -30,
+              yAdjust: readPlanAtDay ? setBetwenAnotationPositions() : 0,
               yValue: (ctx) => point(ctx, 1).y,
             },
           },
@@ -292,11 +300,11 @@ const LineChart = ({days, pages, readPages}) =>{
         },
       },
     });
-  }, [width, days, pages, readPages]);
+  }, [width, readPages, readPlanAtDay]);
 
   return(
     <Wrapper>
-      <PagesValue><p>{readPagesPerDay}</p></PagesValue>
+      <PagesValue><p>{readPlanAtDay ? readPlanAtDay : 0}</p></PagesValue>
       <Line options={chartOptions} data={chartData} />
     </Wrapper>
   );
