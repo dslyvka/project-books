@@ -116,6 +116,15 @@ export const StyledForm = styled.form`
         outline: none;
       }
     }
+    .input__error {
+      // position: absolute;
+      // left: 0;
+      // bottom: 0;
+      color: red;
+      // margin: 0 auto 5px;
+      padding-bottom: 15px;
+      display: block;
+    }
   }
 
   p {

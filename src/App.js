@@ -24,7 +24,7 @@ function App() {
     if (!isLoggedIn && token) {
       dispatch(actions.fetchCurrentUser());
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     //Придумать позже функционал вместо Loading- спиннер и тп

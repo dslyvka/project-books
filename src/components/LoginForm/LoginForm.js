@@ -24,24 +24,20 @@ const LoginForm = () => {
   const width = useWindowWidth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const location = useLocation();
+
   let {
     token = null,
     email = null,
     name = null,
   } = queryString.parse(location.search);
 
-  if (token) {
-    dispatch(actions.loginG({ token, email, name }));
-  }
-
-  // useEffect(() => {
-  //   navigate('/library');
-  // }, token);
-
-  // useEffect(() => {}, []);
-  // console.log(params);
+  useEffect(() => {
+    if (token && email && name) {
+      dispatch(actions.loginG({ token, email, name }));
+      navigate('/library');
+    }
+  }, []);
 
   return (
     <StyledDiv>
@@ -54,17 +50,7 @@ const LoginForm = () => {
         validationSchema={validationSchema}
         onSubmit={values => {
           const { email, password } = values;
-          // fetch('http://localhost:3001/api/users/signup', {
-          //   method: 'POST',
-          //   body: JSON.stringify({
-          //     name: values.name,
-          //     email: values.email,
-          //     password: values.password,
-          //   }),
-          //   headers: {
-          //     'Content-Type': 'application/json',
-          //   },
-          // });
+
           dispatch(actions.login({ email, password }));
           navigate('/library');
           console.log(values);
@@ -80,7 +66,14 @@ const LoginForm = () => {
           handleBlur,
           handleSubmit,
         }) => (
-          <StyledForm>
+          <StyledForm
+            onKeyDown={e => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSubmit(values);
+              }
+            }}
+          >
             <ul>
               <GoogleAuthBtn />
 
@@ -103,7 +96,9 @@ const LoginForm = () => {
                   value={values.email}
                 />
                 <br />
-                {touched.email && errors.email && <span>{errors.email}</span>}
+                {touched.email && errors.email && (
+                  <span className="input__error">{errors.email}</span>
+                )}
               </li>
 
               <li>
@@ -121,23 +116,24 @@ const LoginForm = () => {
                   type="password"
                   name="password"
                   placeholder="..."
+                  maxLength="30"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
                 />
                 <br />
                 {touched.password && errors.password && (
-                  <span>{errors.password}</span>
+                  <span className="input__error">{errors.password}</span>
                 )}
               </li>
 
               <ButtonStyled
-                disabled={
-                  (!isValid && dirty) ||
-                  (!isValid && !dirty) ||
-                  (Object.keys(touched).length === 0 &&
-                    touched.constructor === Object)
-                }
+                // disabled={
+                //   (!isValid && dirty) ||
+                //   (!isValid && !dirty) ||
+                //   (Object.keys(touched).length === 0 &&
+                //     touched.constructor === Object)
+                // }
                 type="submit"
                 onClick={handleSubmit}
                 color="#FFFFFF"
@@ -171,3 +167,15 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
+// fetch('http://localhost:3001/api/users/signup', {
+//   method: 'POST',
+//   body: JSON.stringify({
+//     name: values.name,
+//     email: values.email,
+//     password: values.password,
+//   }),
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+// });
