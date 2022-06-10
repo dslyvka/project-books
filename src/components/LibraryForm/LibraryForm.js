@@ -23,7 +23,13 @@ const LibraryForm = () => {
 
   const valueForm = useSelector(getBooks);
   const dispatch = useDispatch();
-  const onSubmit = text => dispatch(booksOperations.addBooks(text));
+  // const submit = text => dispatch(booksOperations.addBooks(text));
+
+  const onSubmit = async (values, formikProps) => {
+    await dispatch(booksOperations.addBooks(values));
+    formikProps.resetForm('');
+    console.log('onSubmit -> values, formikProps', values);
+  };
 
   return (
     <Container>
@@ -36,23 +42,27 @@ const LibraryForm = () => {
         }}
         validateOnBlur
         validationSchema={validationSchema}
-        onSubmit={values => {
-          const { title, author, date, pages } = values;
-          // fetch('http://localhost:3001/api/users/signup', {
-          //   method: 'POST',
-          //   body: JSON.stringify({
-          //     name: values.name,
-          //     email: values.email,
-          //     password: values.password,
-          //   }),
-          //   headers: {
-          //     'Content-Type': 'application/json',
-          //   },
-          // });
-          dispatch(booksOperations.addBooks({ title, author, date, pages }));
+        onSubmit={onSubmit}
 
-          console.log(values);
-        }}
+        // {values => {
+        //   const { title, author, date, pages } = values;
+
+        //   fetch('https://project-books-api.herokuapp.com/api/books', {
+        //     method: 'POST',
+        //     body: JSON.stringify({
+        //       title: values.title,
+        //       author: values.author,
+        //       year: values.year,
+        //       pages: values.pages,
+        //     }),
+        //     headers: {
+        //       'Content-Type': 'application/json',
+        //     },
+        //   });
+        //   // dispatch(booksOperations.addBooks({ title, author, date, pages }));
+
+        //   console.log(values);
+        // }}
       >
         {({
           values,
@@ -64,13 +74,19 @@ const LibraryForm = () => {
           handleBlur,
           handleSubmit,
         }) => (
-          <Form>
+          <Form
+            role="form"
+            onSubmit={e => {
+              e.preventDefault();
+              handleSubmit();
+            }}
+          >
             <DivInput>
               <BasicDiv>
                 <LabelOne htmlFor="title">
                   Назва книги
                   {!values.title.length || errors.title ? (
-                    <span>*</span>
+                    <span>не маєпочинатиися з прробіла чи дефіза</span>
                   ) : (
                     <></>
                   )}
@@ -142,7 +158,7 @@ const LibraryForm = () => {
                     )}
                     <br />
                     <Input
-                      type="number"
+                      type="text"
                       name="pages"
                       placeholder="..."
                       onChange={handleChange}
@@ -156,17 +172,12 @@ const LibraryForm = () => {
               </OtherInput>
               <ButtonDiv>
                 <ButtonAdd
-                  onClick={event => {
-                    event.preventDefault();
-                    handleSubmit(values);
-                  }}
                   disabled={
                     (!isValid && dirty) ||
                     (!isValid && !dirty) ||
                     (Object.keys(touched).length === 0 &&
                       touched.constructor === Object)
                   }
-                  type="submit"
                 />
               </ButtonDiv>
             </DivInput>

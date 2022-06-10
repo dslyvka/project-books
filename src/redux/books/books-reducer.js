@@ -3,7 +3,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { addBooks, fetchBooks } from './books-operations';
 
 const items = createReducer([], {
-  [fetchBooks.fulfilled]: (_, { payload }) => payload,
+  [fetchBooks.fulfilled]: (_, { payload }) => payload.books,
   [addBooks.fulfilled]: (state, { payload }) => [...state, payload],
 });
 
