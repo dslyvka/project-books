@@ -1,19 +1,26 @@
-import { useEffect, Suspense } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
-//Сделать Lazy-loading всего этого- и возможно экспортировать в общий index.js, или нет
-import LoginPage from './pages/loginPage/loginPage';
-import RegisterPage from './pages/registerPage/registerPage';
-import TrainingPage from './pages/trainingPage/trainingPage';
-import StatisticsPage from './pages/statisticsPage/statisticsPage';
-import LibraryPage from './pages/libraryPage/libraryPage';
 import Header from './components/Header/Header';
-import QuoteSection from './components/QuoteSection/QuoteSection';
-import LibraryResumeModal from './components/LibraryResumeModal/Resume/Resume';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+
 import GoogleAuth from './components/GoogleAuth/GoogleAuth';
 import actions from './redux/auth/auth-actions';
 import { useWindowWidth } from '@react-hook/window-size';
+
+const LoginPage = lazy(() => import('./pages/loginPage/loginPage'));
+const RegisterPage = lazy(() => import('./pages/registerPage/registerPage'));
+const TrainingPage = lazy(() => import('./pages/trainingPage/trainingPage'));
+const StatisticsPage = lazy(() =>
+  import('./pages/statisticsPage/statisticsPage'),
+);
+const LibraryPage = lazy(() => import('./pages/libraryPage/libraryPage'));
+const QuoteSection = lazy(() =>
+  import('./components/QuoteSection/QuoteSection'),
+);
+const LibraryResumeModal = lazy(() =>
+  import('./components/LibraryResumeModal/Resume/Resume'),
+);
 
 function App() {
   const onlyWidth = useWindowWidth();
