@@ -68,7 +68,7 @@ ChartJS.register(
   // <LineChart
   //   date={"06/15/2022"}
   //   pages={600}
-  //   readPages={[45, 52, 36, 65, 31, 20, 60]}
+  //   readPages={[45, 52, 36]}
   // />
 
 const LineChart = ({date, pages, readPages}) =>{
