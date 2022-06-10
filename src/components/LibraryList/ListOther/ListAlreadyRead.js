@@ -14,16 +14,16 @@ import {
 } from './ListAlreadyRead.styled';
 // import ResumeButton from '../ResumeButton/ResumeButton';
 import { Outlet, useNavigate } from 'react-router-dom';
-import LibraryResumeModal from '../../LibraryResumeModal/Resume/Resume';
-import { useToggle } from '../../../hooks/useToggle';
+// import LibraryResumeModal from '../../LibraryResumeModal/Resume/Resume';
+// import { useToggle } from '../../../hooks/useToggle';
 
 function ListAlreadyRead({ text = 'Text', array = [] }) {
   const navigate = useNavigate();
-  const { isOpen, open, close } = useToggle();
+  // const { isOpen, open, close } = useToggle();
 
   return (
     <DivContainer margin="80px">
-      {isOpen && <LibraryResumeModal closer={{ close }} />}
+      {/* {isOpen && <LibraryResumeModal closer={{ close }} />} */}
       {array.length !== 0 && (
         <Div>
           <h2>{text}</h2>
@@ -53,7 +53,7 @@ function ListAlreadyRead({ text = 'Text', array = [] }) {
                     <LiData width="63px">{year}</LiData>
                   </Ulalready>
                   <Ulalready>
-                    <LiTitle>Стор.</LiTitle>
+                    <LiTitle>Стор</LiTitle>
                     <LiData width="45px"> {pages}</LiData>
                   </Ulalready>
                   <Ulalready>
@@ -62,8 +62,7 @@ function ListAlreadyRead({ text = 'Text', array = [] }) {
                   </Ulalready>
                   <Ulalready>
                     <li>
-                      <Button onClick={open}>Resume</Button>
-                      {/* <button>Resume!</button> */}
+                      <Button onClick={() => navigate(id)}>Resume</Button>
                     </li>
                   </Ulalready>
                 </Li>

@@ -2,7 +2,7 @@ import { Button } from './ButtonAdd.styled.js';
 
 function ButtonAdd() {
   return (
-    <Button  >
+    <Button   type="submit">
       Add
     </Button>
   );
