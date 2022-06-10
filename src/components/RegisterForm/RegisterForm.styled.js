@@ -54,6 +54,8 @@ export const StyledForm = styled.form`
       margin: 0 auto;
       width: 280px;
 
+      position: relative;
+
       @media screen and (min-width: ${breakpoints[1]}px) {
         width: 320px;
       }
@@ -114,6 +116,16 @@ export const StyledForm = styled.form`
       input:focus {
         outline: none;
       }
+    }
+
+    .input__error {
+      // position: absolute;
+      // left: 0;
+      // bottom: 0;
+      color: red;
+      // margin: 0 auto 5px;
+      padding-bottom: 15px;
+      display: block;
     }
   }
 
