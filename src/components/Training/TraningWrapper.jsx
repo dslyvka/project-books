@@ -1,7 +1,12 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Responsive from 'react-responsive';
 import TrainingForm from './TrainingForm/TrainingForm';
 import TrainingList from './TrainingList/TrainingList';
 import MyGoal from '../MyGoal/MyGoal';
+import LineChart from '../LineChart/LineChart';
+import TrainingOpenModalButton from './TrainingOpenModalButton/TrainingOpenModalButton';
+import TrainingModal from './TrainingModal/TrainingModal';
 import {
   TrainingWrapperStyled,
   TrainingWrapperStyledUpperPart,
@@ -16,11 +21,22 @@ const TrainingWrapper = () => {
   );
 
   const Desktop = props => <Responsive {...props} minWidth={1280} />;
+
+  const [isTrainingModalShown, setTrainingModalShown] = useState(false);
+  const openModal = () => {
+    setTrainingModalShown(!isTrainingModalShown);
+  };
   return (
     <TrainingWrapperStyled>
       <Mobile>
         <MyGoal />
         <TrainingList />
+        {/* <LineChart /> */}
+        <TrainingOpenModalButton openModal={openModal} />
+        <TrainingModal
+          isTrainingModalShown={isTrainingModalShown}
+          setTrainingModalShown={setTrainingModalShown}
+        />
       </Mobile>
       <Tablet>
         <MyGoal />
