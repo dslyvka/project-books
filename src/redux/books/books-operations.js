@@ -50,3 +50,27 @@ export const addBooks = createAsyncThunk(
     }
   },
 );
+export const reviewBook = createAsyncThunk(
+  'books/review',
+  async (values, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    token.set(persistedToken);
+    const review = {
+      review: values.resume,
+      rating: (values.rate / 20).toString(),
+    };
+    console.log('review', review);
+
+    try {
+      const { data } = await axios.patch(
+        `/books/${values.id}/${values.id}`,
+        review,
+      );
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);

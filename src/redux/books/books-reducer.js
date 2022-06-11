@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import { addBooks, fetchBooks } from './books-operations';
+import { addBooks, fetchBooks, reviewBook } from './books-operations';
 
 const items = createReducer([], {
   [fetchBooks.fulfilled]: (_, { payload }) => payload.books,
   [addBooks.fulfilled]: (state, { payload }) => [...state, payload],
+  [reviewBook.fulfilled]: (state, { payload }) => [state, payload],
 });
 
 const loading = createReducer(false, {
@@ -14,6 +15,9 @@ const loading = createReducer(false, {
   [fetchBooks.pending]: () => true,
   [fetchBooks.fulfilled]: () => false,
   [fetchBooks.rejected]: () => false,
+  [reviewBook.pending]: () => true,
+  [reviewBook.fulfilled]: () => false,
+  [reviewBook.rejected]: () => false,
 });
 
 const error = createReducer(null, {
@@ -21,6 +25,8 @@ const error = createReducer(null, {
   [fetchBooks.pending]: () => null,
   [addBooks.rejected]: (_, action) => action.payload,
   [addBooks.pending]: () => null,
+  [reviewBook.pending]: () => null,
+  [reviewBook.rejected]: (_, { action }) => action.payload,
 });
 
 export default combineReducers({

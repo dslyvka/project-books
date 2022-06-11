@@ -5,15 +5,19 @@ import { useState } from 'react';
 import Rate from '../Rate/Rate';
 import { ModalContainer, ButtonWrapper, Title } from './Resume.styled';
 import sprites from '../../../images/sprite/sprites.svg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { booksOperations } from '../../../redux/books';
 
 export const LibraryResumeModal = () => {
   const [showModal, setShowModal] = useState(true);
   const [rate, setRate] = useState(0);
   const [resume, setResume] = useState('');
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+  const { id } = useParams();
   const togleModal = () => {
     setShowModal(showModal => !showModal);
     navigate('library');
@@ -31,8 +35,8 @@ export const LibraryResumeModal = () => {
     if (!rate || resume === '') {
       return null;
     }
-    //Отправляем данные на бек и обнуляем , закрываем
-    console.log(rate, resume);
+    dispatch(booksOperations.reviewBook({ rate, resume, id }));
+    console.log('review ->', { rate, resume, id });
     setRate(0);
     setResume('');
     togleModal();
