@@ -5,13 +5,23 @@ import { useState } from 'react';
 import Rate from '../Rate/Rate';
 import { ModalContainer, ButtonWrapper, Title } from './Resume.styled';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { booksOperations } from '../../../redux/books';
+import { getBooks } from '../../../redux/books/books-selector';
 
 export const LibraryResumeModal = () => {
+  let review = '';
+  let rating = 0;
+
+  const { already } = useSelector(getBooks);
+  if (already !== 'undefined') {
+    review = already.find(id => id).review;
+    rating = already.find(id => id).rating;
+  }
+
   const [showModal, setShowModal] = useState(true);
-  const [rate, setRate] = useState(0);
-  const [resume, setResume] = useState('');
+  const [rate, setRate] = useState(rating);
+  const [resume, setResume] = useState(review);
 
   const dispatch = useDispatch();
 
@@ -44,9 +54,9 @@ export const LibraryResumeModal = () => {
       <Modal onClose={togleModal}>
         <ModalContainer>
           <Title>Обрати рейтинг книги</Title>
-          <Rate update={updateRate} init={false} read={false} />
+          <Rate update={updateRate} init={rate} read={false} />
           <Title>Резюме</Title>
-          <ResumeForm updateResume={updateResume} />
+          <ResumeForm updateResume={updateResume} initial={resume} />
           <ButtonWrapper>
             <Button onClick={togleModal}>Назад</Button>
             <Button type="submit" onClick={getData}>
