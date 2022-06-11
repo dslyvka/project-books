@@ -14,10 +14,10 @@ export const LibraryResumeModal = () => {
   let rating = 0;
 
   const { already } = useSelector(getBooks);
-  if (already !== null) {
-    review = already.find(id => id).review;
-    rating = already.find(id => id).rating;
-  }
+  // if (Object.keys(already)) {
+  //   review = already.find(id => id).review;
+  //   rating = already.find(id => id).rating;
+  // }
 
   const [showModal, setShowModal] = useState(true);
   const [rate, setRate] = useState(rating);
