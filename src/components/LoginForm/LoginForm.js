@@ -1,7 +1,12 @@
 import { Formik } from 'formik';
 import { useWindowWidth } from '@react-hook/window-size';
+import { useEffect } from 'react';
+import queryString from 'query-string';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
+import actions from '../../redux/auth/auth-actions';
 
-import validationSchema from '../../validation/register';
+import validationSchema from '../../validation/login';
 
 import GoogleAuthBtn from '../GoogleAuth/GoogleAuth';
 import { ButtonStyled } from '../RegularButton/Button.styled';
@@ -17,31 +22,37 @@ import sprite from '../../images/sprite/sprites.svg';
 
 const LoginForm = () => {
   const width = useWindowWidth();
-  // console.log(width);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  let {
+    token = null,
+    email = null,
+    name = null,
+  } = queryString.parse(location.search);
+
+  useEffect(() => {
+    if (token && email && name) {
+      dispatch(actions.loginG({ token, email, name }));
+      navigate('/library');
+    }
+  }, []);
 
   return (
     <StyledDiv>
       <Formik
         initialValues={{
-          name: '',
           email: '',
           password: '',
-          confirmPassword: '',
         }}
         validateOnBlur
         validationSchema={validationSchema}
         onSubmit={values => {
-          // fetch('http://localhost:3001/api/users/signup', {
-          //   method: 'POST',
-          //   body: JSON.stringify({
-          //     name: values.name,
-          //     email: values.email,
-          //     password: values.password,
-          //   }),
-          //   headers: {
-          //     'Content-Type': 'application/json',
-          //   },
-          // });
+          const { email, password } = values;
+
+          dispatch(actions.login({ email, password }));
+          navigate('/library');
           console.log(values);
         }}
       >
@@ -55,7 +66,14 @@ const LoginForm = () => {
           handleBlur,
           handleSubmit,
         }) => (
-          <StyledForm>
+          <StyledForm
+            onKeyDown={e => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSubmit(values);
+              }
+            }}
+          >
             <ul>
               <GoogleAuthBtn />
 
@@ -78,7 +96,9 @@ const LoginForm = () => {
                   value={values.email}
                 />
                 <br />
-                {touched.email && errors.email && <span>{errors.email}</span>}
+                {touched.email && errors.email && (
+                  <span className="input__error">{errors.email}</span>
+                )}
               </li>
 
               <li>
@@ -96,23 +116,24 @@ const LoginForm = () => {
                   type="password"
                   name="password"
                   placeholder="..."
+                  maxLength="30"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
                 />
                 <br />
                 {touched.password && errors.password && (
-                  <span>{errors.password}</span>
+                  <span className="input__error">{errors.password}</span>
                 )}
               </li>
 
               <ButtonStyled
-                disabled={
-                  (!isValid && dirty) ||
-                  (!isValid && !dirty) ||
-                  (Object.keys(touched).length === 0 &&
-                    touched.constructor === Object)
-                }
+                // disabled={
+                //   (!isValid && dirty) ||
+                //   (!isValid && !dirty) ||
+                //   (Object.keys(touched).length === 0 &&
+                //     touched.constructor === Object)
+                // }
                 type="submit"
                 onClick={handleSubmit}
                 color="#FFFFFF"
@@ -122,7 +143,7 @@ const LoginForm = () => {
               </ButtonStyled>
 
               <p>
-                <a href="./">Реєстрація</a>
+                <a href="./register">Реєстрація</a>
               </p>
             </ul>
           </StyledForm>
@@ -146,3 +167,15 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
+// fetch('http://localhost:3001/api/users/signup', {
+//   method: 'POST',
+//   body: JSON.stringify({
+//     name: values.name,
+//     email: values.email,
+//     password: values.password,
+//   }),
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+// });

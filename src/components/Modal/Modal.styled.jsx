@@ -9,6 +9,10 @@ export const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #2b2b2b1a;
   z-index: 1200;
+`;
+
+export const ChildrenStyled = styled.div`
+  box-shadow: 10px 10px 20px rgba(9, 30, 63, 0.2);
 `;

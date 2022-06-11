@@ -23,16 +23,12 @@ const LibraryForm = () => {
 
   const valueForm = useSelector(getBooks);
   const dispatch = useDispatch();
-  const onSubmit = text => dispatch(booksOperations.addBooks(text));
+  // const submit = text => dispatch(booksOperations.addBooks(text));
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    // const state = { title, author, date, pages };
-
-    // valueForm.some(book => book.title === title)
-    //   ? alert('Такой контакт уже есть')
-    // onSubmit(state);
-    // reset();
+  const onSubmit = async (values, formikProps) => {
+    await dispatch(booksOperations.addBooks(values));
+    formikProps.resetForm('');
+    console.log('onSubmit -> values, formikProps', values);
   };
 
   return (
@@ -46,11 +42,27 @@ const LibraryForm = () => {
         }}
         validateOnBlur
         validationSchema={validationSchema}
-        onSubmit={values => {
-          valueForm.some(book => book.title === values.title)
-            ? alert('Такой контакт уже есть')
-            : onSubmit(values);
-        }}
+        onSubmit={onSubmit}
+
+        // {values => {
+        //   const { title, author, date, pages } = values;
+
+        //   fetch('https://project-books-api.herokuapp.com/api/books', {
+        //     method: 'POST',
+        //     body: JSON.stringify({
+        //       title: values.title,
+        //       author: values.author,
+        //       year: values.year,
+        //       pages: values.pages,
+        //     }),
+        //     headers: {
+        //       'Content-Type': 'application/json',
+        //     },
+        //   });
+        //   // dispatch(booksOperations.addBooks({ title, author, date, pages }));
+
+        //   console.log(values);
+        // }}
       >
         {({
           values,
@@ -62,13 +74,19 @@ const LibraryForm = () => {
           handleBlur,
           handleSubmit,
         }) => (
-          <Form>
+          <Form
+            role="form"
+            onSubmit={e => {
+              e.preventDefault();
+              handleSubmit();
+            }}
+          >
             <DivInput>
               <BasicDiv>
                 <LabelOne htmlFor="title">
                   Назва книги
                   {!values.title.length || errors.title ? (
-                    <span>*</span>
+                    <span>не маєпочинатиися з прробіла чи дефіза</span>
                   ) : (
                     <></>
                   )}
@@ -82,7 +100,6 @@ const LibraryForm = () => {
                     value={values.title}
                   />
                 </LabelOne>
-
                 <br />
                 {touched.title && errors.title && <span>{errors.title}</span>}
               </BasicDiv>
@@ -91,7 +108,7 @@ const LibraryForm = () => {
                   <LabelOne htmlFor="author">
                     Автор книги
                     {!values.author.length || errors.author ? (
-                      <span>{errors.author}</span>
+                      <span>*</span>
                     ) : (
                       <></>
                     )}
@@ -141,7 +158,7 @@ const LibraryForm = () => {
                     )}
                     <br />
                     <Input
-                      type="number"
+                      type="text"
                       name="pages"
                       placeholder="..."
                       onChange={handleChange}

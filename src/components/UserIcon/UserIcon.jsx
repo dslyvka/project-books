@@ -1,23 +1,20 @@
 import { useEffect, useState } from 'react';
 import { TextStyled, UserContainer, NameStuled } from './UserIcon.styled';
+import { useSelector } from 'react-redux';
 
 function UserIcon() {
-  const user = {
-    name: 'Taras Bulba',
-    avatar: null,
-  };
+  const { user } = useSelector(state => state.auth);
   const [userInit, setUserInit] = useState('');
+
   useEffect(() => {
     const arr = user.name.trim().split(' ');
 
     let initTitle = '';
+
     arr.forEach(el => {
       initTitle += el.charAt(0).toUpperCase();
     });
-    // console.log(initTitle);
     setUserInit(initTitle.slice(0, 2));
-
-    // setUserInit(user.name.trim().charAt(0).toUpperCase());
   }, [user]);
 
   return (

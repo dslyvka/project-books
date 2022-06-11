@@ -8,8 +8,14 @@ import { ButtonStyled } from '../RegularButton/Button.styled';
 import { StyledForm, StyledDiv } from './RegisterForm.styled';
 import QuoteSection from '../QuoteSection/QuoteSection';
 
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import actions from '../../redux/auth/auth-actions';
+
 const RegisterForm = () => {
   const width = useWindowWidth();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // console.log(width);
 
   return (
@@ -35,7 +41,12 @@ const RegisterForm = () => {
           //     'Content-Type': 'application/json',
           //   },
           // });
-          console.log(values);
+          // console.log(values);
+
+          const { name, email, password } = values;
+          dispatch(actions.register({ name, email, password }));
+          navigate('/login');
+          // console.log(values);
         }}
       >
         {({
@@ -48,7 +59,14 @@ const RegisterForm = () => {
           handleBlur,
           handleSubmit,
         }) => (
-          <StyledForm>
+          <StyledForm
+            onKeyDown={e => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSubmit(values);
+              }
+            }}
+          >
             <ul>
               <GoogleAuthBtn />
               <li>
@@ -66,12 +84,15 @@ const RegisterForm = () => {
                   type="text"
                   name="name"
                   placeholder="..."
+                  maxLength="100"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.name}
                 />
-                <br />
-                {touched.name && errors.name && <span>{errors.name}</span>}
+                {touched.name && errors.name && (
+                  <span className="input__error">{errors.name}</span>
+                  )}
+                  <br />
               </li>
 
               <li>
@@ -88,12 +109,15 @@ const RegisterForm = () => {
                   type="email"
                   name="email"
                   placeholder="your@email.com"
+                  maxLength="63"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
                 />
                 <br />
-                {touched.email && errors.email && <span>{errors.email}</span>}
+                {touched.email && errors.email && (
+                  <span className="input__error">{errors.email}</span>
+                )}
               </li>
 
               <li>
@@ -111,13 +135,14 @@ const RegisterForm = () => {
                   type="password"
                   name="password"
                   placeholder="..."
+                  maxLength="30"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
                 />
                 <br />
                 {touched.password && errors.password && (
-                  <span>{errors.password}</span>
+                  <span className="input__error">{errors.password}</span>
                 )}
               </li>
 
@@ -135,22 +160,26 @@ const RegisterForm = () => {
                   type="password"
                   name="confirmPassword"
                   placeholder="..."
+                  maxLength="30"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.confirmPassword}
+                  onPaste={e => {
+                    e.preventDefault();
+                  }}
                 />
                 <br />
                 {touched.confirmPassword && errors.confirmPassword && (
-                  <span>{errors.confirmPassword}</span>
+                  <span className="input__error">{errors.confirmPassword}</span>
                 )}
               </li>
               <ButtonStyled
-                disabled={
-                  (!isValid && dirty) ||
-                  (!isValid && !dirty) ||
-                  (Object.keys(touched).length === 0 &&
-                    touched.constructor === Object)
-                }
+                // disabled={
+                //   (!isValid && dirty) ||
+                //   (!isValid && !dirty) ||
+                //   (Object.keys(touched).length === 0 &&
+                //     touched.constructor === Object)
+                // }
                 type="submit"
                 onClick={handleSubmit}
                 color="#FFFFFF"
@@ -160,7 +189,7 @@ const RegisterForm = () => {
               </ButtonStyled>
 
               <p>
-                Вже з нами? <a href="./">Увійти</a>
+                Вже з нами? <a href="./login">Увійти</a>
               </p>
             </ul>
           </StyledForm>

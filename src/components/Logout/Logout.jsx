@@ -1,34 +1,28 @@
+import { useNavigate } from 'react-router-dom';
+import actions from '../../redux/auth/auth-actions';
+import { useDispatch } from 'react-redux';
 import {
   Container,
-  UserTitle,
   Title,
   ButtonStyled,
   ContainerButton,
 } from './Logout.styled';
 
 function Logout({ onClose }) {
-  const user = {
-    name: 'Taras Bulba',
-    avatar: null,
-  };
-  //   const navigate = useNavigate();
-  //     const [logout] = useLogoutMutation(token);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // const logoutUser = token => {
-  //   console.log(token);
-  //   togleModal();
-  //       logout(token);
-  //       dispatch(logAct(false));
-  //       dispatch(tokenAct(''));
-  //       toast.success('You are logged out.');
-  //       navigate('/login');
-  // };
+  const logoutUser = () => {
+    onClose();
+    dispatch(actions.logout());
+    //       dispatch(tokenAct(''));
+    //       toast.success('You are logged out.');
+    navigate('/login');
+  };
   return (
     <Container>
-      <UserTitle>{user.name}!</UserTitle>
-
       <Title>
-        Якщо вивийдетез програми, не збереженні дані будуть втрачені
+        Якщо Ви вийдете з програми, незбереженні дані будуть втрачені
       </Title>
       <ContainerButton>
         <li>
@@ -37,7 +31,7 @@ function Logout({ onClose }) {
           </ButtonStyled>
         </li>
         <li>
-          <ButtonStyled type="button" autoFocus={true}>
+          <ButtonStyled type="button" autoFocus={true} onClick={logoutUser}>
             Вийти
           </ButtonStyled>
         </li>
