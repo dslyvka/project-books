@@ -31,7 +31,6 @@ const LibraryModal = () => {
                 Крок 1.
                 <br />
               </Title>
-
               <ArticleBlock>
                 <svg width="22" height="17" fill="#a6abb9">
                   <use href={`${sprites}#icon-book`}></use>

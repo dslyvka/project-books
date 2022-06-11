@@ -1,5 +1,6 @@
 import BookSelector from '../BookSelector/BookSelector';
 import DatePickerInput from '../DatePicker/DatePicker';
+// import TrainingList from '../TrainingList/TrainingList';
 import {
   FormContainer,
   FormTitle,
@@ -11,19 +12,22 @@ import {
 
 const TrainingForm = () => {
   return (
-    <FormContainer>
-      <FormTitle>Моє тренування </FormTitle>
-      <CalendarsContainer>
-        <DatePickerInput />
-        <DatePickerInput />
-      </CalendarsContainer>
-      <SelectAndButtonContainer>
-        <SelectContainer>
-          <BookSelector />
-        </SelectContainer>
-        <FormAddButton type="submit">Додати</FormAddButton>
-      </SelectAndButtonContainer>
-    </FormContainer>
+    <>
+      <FormContainer>
+        <FormTitle>Моє тренування </FormTitle>
+        <CalendarsContainer>
+          <DatePickerInput />
+          <DatePickerInput />
+        </CalendarsContainer>
+        <SelectAndButtonContainer>
+          <SelectContainer>
+            <BookSelector />
+          </SelectContainer>
+          <FormAddButton type="submit">Додати</FormAddButton>
+        </SelectAndButtonContainer>
+      </FormContainer>
+      {/* <TrainingList /> */}
+    </>
   );
 };
 
