@@ -82,9 +82,9 @@ const LineChart = ({startDate, endDate, pages, readPages}) =>{
   const [chartOptions, setChartOptions] = useState({});
   const {width} = useWindowDimensions();
   const allDays = Math.ceil((new Date(endDate) - new Date(startDate)) / 86400000);
-  const pagesLeft = pages - readPages.reduce((a, b) => a + b, 0); 
   const daysLeft = Math.ceil((new Date(endDate) - new Date()) / 86400000);
-
+  const readToday = readPages.slice(- daysLeft)[0];
+  const pagesLeft = pages - readPages.reduce((a, b) => a + b, 0) + readToday;
 
   // Для привязки анотації (підписи назв графіків) до останнього елемента масиву графіків ПЛАН і ФАКТ
   function point(ctx, value) {
@@ -96,11 +96,11 @@ const LineChart = ({startDate, endDate, pages, readPages}) =>{
   };
 
   // Вираховуємо масив для графіка ПЛАН в функції getAveragePagesPerDay
-    const getAveragePagesPerDay = () => {
-    const averagePagesPerDay = Math.round(pagesLeft / daysLeft);
+  const getAveragePagesPerDay = () => {
+    const averagePagesPerDay = Math.ceil(pagesLeft / daysLeft);
     const pagesArray = [];
     for (let i = 1; i <= allDays; i++) {
-      pagesArray.push(averagePagesPerDay);
+        pagesArray.push(averagePagesPerDay);
       };
     return pagesArray;
   };
@@ -109,51 +109,54 @@ const LineChart = ({startDate, endDate, pages, readPages}) =>{
   const resultPlanArray = () => { 
     const averagePages = getAveragePagesPerDay().slice();
     const planArray = [];
-    for (let i = 1; i <= allDays - daysLeft; i++) {
-      planArray.push(0);
-      averagePages.pop();
-    };
+      for (let i = 1; i <= allDays - daysLeft; i++) {
+        planArray.push(0);
+        averagePages.pop();
+      }
     return [...planArray, ...averagePages];
   };
 
   // Вираховуємо план прочитання на день
-  const readPlanAtDay = resultPlanArray().slice(-1)[0];
+  const readPlanAtDay = getAveragePagesPerDay().slice(-1)[0];
   
   useEffect(() => {
-    // Для відображення різних графіків на мобілці, таблет і десктопі отримуємо масиви відповідних довжин
-    const chartReadData = (value) => {
-      const averagePagesPerDay = resultPlanArray().slice(-value);
-      if (readPages.length < value) {
-        return [averagePagesPerDay, readPages];
-      } else {
-        const chartArray = readPages.slice(-value);
-        return [averagePagesPerDay, chartArray];
-      }
+  // Для відображення різних графіків на мобілці, таблет і десктопі отримуємо масиви відповідних довжин
+  const chartReadData = (value) => {
+    const averagePagesPerDay = resultPlanArray().slice(-value);
+    if (readPages.length < value) {
+      return [averagePagesPerDay, readPages];
+    } else {
+      const chartArray = readPages.slice(-value);
+      return [averagePagesPerDay, chartArray];
+    }
+  };
+
+  // Отримуємо конкретний масив для графіків
+  const chartReadDataDatasets = (value, el) => {
+    if (el === "plan") {
+      return chartReadData(value).slice(0, 1)[0];
+    } else if (el === "fact") {
+      return chartReadData(value).slice(-1)[0];
+    } else if (el === "days") {
+      const daysArray = [];
+      for (let i = 1; i <= value; i++) {
+      daysArray.push(value);
     };
-    // Отримуємо конкретний масив для графіків
-    const chartReadDataDatasets = (value, el) => {
-      if (el === "plan") {
-        return chartReadData(value).slice(0, 1)[0];
-      } else if (el === "fact") {
-        return chartReadData(value).slice(-1)[0];
-      } else if (el === "days") {
-        const daysArray = [];
-        for (let i = 1; i <= value; i++) {
-        daysArray.push(value);
-      };
-        return daysArray;
-      };
+      return daysArray;
     };
-    // Передаємо дані для побудови графіків відповідно до ширини екрана
-    const drawDepensScreenSize = (el) => {
-      if (width < 768) {
-        return chartReadDataDatasets(3, el);
-      } else if (width < 1280) {
-        return chartReadDataDatasets(6, el);
-      } else if (width >= 1280) {
-        return chartReadDataDatasets(7, el);
-      };
+  };
+
+  // Передаємо дані для побудови графіків відповідно до ширини екрана
+  const drawDepensScreenSize = (el) => {
+    if (width < 768) {
+      return chartReadDataDatasets(3, el);
+    } else if (width < 1280) {
+      return chartReadDataDatasets(6, el);
+    } else if (width >= 1280) {
+      return chartReadDataDatasets(7, el);
     };
+  };
+  
   // Вираховуємо прогнозовану максимальну висоту графіка
   const maxReadPages = Math.max(...readPages);
   const getBiggersValue = () => { 
@@ -173,14 +176,14 @@ const LineChart = ({startDate, endDate, pages, readPages}) =>{
   };
   
   // Для запобігання накладання анотацій (підписи назв графіків) при близьких значеннях по осі У - ще в роботі ...
-    const setBetwenAnotationPositions = () => {
-      const differense = readPlanAtDay - readPages.slice(-1)[0];
-      if (resultPlanArray().length === readPages.length+1 && differense < 15 * (getMaxHeight() / 100)) {
-        return 0;
-      } else {
-        return -30;
-    }
-    };
+  const setBetwenAnotationPositions = () => {
+    const differense = readPlanAtDay - readPages.slice(-1)[0];
+    if (resultPlanArray().length === readPages.length+1 && differense < 15 * (getMaxHeight() / 100)) {
+      return 0;
+    } else {
+      return -30;
+  }
+  };
 
     setChartData({
       labels: drawDepensScreenSize("days"),

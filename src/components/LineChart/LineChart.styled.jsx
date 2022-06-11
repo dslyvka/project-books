@@ -39,7 +39,7 @@ export const PagesValue = styled.div`
   padding-bottom: 2.5px;
   position: absolute;
   top: 13px;
-  right: 40px;
+  right: 35px;
   z-index: 1;
   font-family: "'Montserrat', sans-serif";
   font-weight: 500;
@@ -47,11 +47,11 @@ export const PagesValue = styled.div`
   line-height: 1.25;
   @media screen and (min-width: 768px) {
     top: 23px;
-    right: 440px;
+    right: 435px;
   }
 
   @media screen and (min-width: 1280px) {
-    right: 675px;
+    right: 670px;
   }
 
 `;
