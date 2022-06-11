@@ -38,8 +38,8 @@ function ListAlreadyRead({ text = 'Text', array = [] }) {
             </UlTablet>
 
             {array.map(
-              ({ id, title, author, year, pages, rating = 0, status }) => (
-                <Li key={id}>
+              ({ _id, title, author, year, pages, rating = 0, status }) => (
+                <Li key={_id}>
                   <Ulalready>
                     <li>{<LibraryIcon book={status} />}</li>
                     <LiNameBook>{title}</LiNameBook>
@@ -62,7 +62,7 @@ function ListAlreadyRead({ text = 'Text', array = [] }) {
                   </Ulalready>
                   <Ulalready>
                     <li>
-                      <Button onClick={() => navigate(id)}>Resume</Button>
+                      <Button onClick={() => navigate(_id)}>Resume</Button>
                     </li>
                   </Ulalready>
                 </Li>
