@@ -31,7 +31,12 @@ const TrainingWrapper = () => {
       <Mobile>
         <MyGoal />
         <TrainingList />
-        {/* <LineChart /> */}
+        <LineChart
+          startDate={'06/08/2022'}
+          endDate={'06/15/2022'}
+          pages={600}
+          readPages={[150, 0, 100, 0, 0, 0, 0]}
+        />
         <TrainingOpenModalButton openModal={openModal} />
         <TrainingModal
           isTrainingModalShown={isTrainingModalShown}
@@ -42,6 +47,12 @@ const TrainingWrapper = () => {
         <MyGoal />
         <TrainingForm />
         <TrainingList />
+        <LineChart
+          startDate={'06/08/2022'}
+          endDate={'06/15/2022'}
+          pages={600}
+          readPages={[150, 0, 100, 0, 0, 0, 0]}
+        />
       </Tablet>
       <Desktop>
         <TrainingWrapperStyledUpperPart>
@@ -52,6 +63,12 @@ const TrainingWrapper = () => {
 
           <MyGoal />
         </TrainingWrapperStyledUpperPart>
+        <LineChart
+          startDate={'06/08/2022'}
+          endDate={'06/15/2022'}
+          pages={600}
+          readPages={[150, 0, 100, 0, 0, 0, 0]}
+        />
       </Desktop>
     </TrainingWrapperStyled>
   );

@@ -92,3 +92,8 @@ export const FormAddButton = styled.button`
     height: 42px;
   }
 `;
+export const ErrorMessage = styled.p`
+  position: absolute;
+  font-size: 11px;
+  color: red;
+`;

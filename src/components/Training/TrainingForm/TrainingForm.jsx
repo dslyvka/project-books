@@ -1,3 +1,9 @@
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useFormik } from 'formik';
+import moment from 'moment';
+import trainingActions from '../../../redux/training/trainingActions';
+import trainingSelectors from '../../../redux/training/trainingSelectors';
 import BookSelector from '../BookSelector/BookSelector';
 import DatePickerInput from '../DatePicker/DatePicker';
 // import TrainingList from '../TrainingList/TrainingList';
@@ -8,16 +14,57 @@ import {
   SelectAndButtonContainer,
   SelectContainer,
   FormAddButton,
+  ErrorMessage,
 } from './TrainingForm.styled';
 
 const TrainingForm = () => {
+  const start = useSelector(trainingSelectors.selectStartDate);
+  const end = useSelector(trainingSelectors.selectEndDate);
+
+  const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      start: start ? start : '',
+      end: end ? end : '',
+    },
+  });
+
+  const handleStartDate = date => {
+    const start = moment(date).format('YYYY-MM-DD');
+    formik.setFieldValue('start', start);
+    dispatch(trainingActions.trainingStartDate(start));
+  };
+
+  const handleEndDate = date => {
+    const end = moment(date).format('YYYY-MM-DD');
+    formik.setFieldValue('end', end);
+    dispatch(trainingActions.trainingEndDate(end));
+  };
+
   return (
     <>
       <FormContainer>
         <FormTitle>Моє тренування </FormTitle>
         <CalendarsContainer>
-          <DatePickerInput />
-          <DatePickerInput />
+          <DatePickerInput
+            value={formik.values.start}
+            placeholderText="Початок"
+            onChange={handleStartDate}
+            pickedDate={start ? new Date(start) : ''}
+          />
+          {formik.touched.start && formik.errors.start ? (
+            <ErrorMessage>{formik.errors.start}</ErrorMessage>
+          ) : null}
+          <DatePickerInput
+            value={formik.values.end}
+            placeholderText="Кінець"
+            onChange={handleEndDate}
+            pickedDate={end ? new Date(end) : ''}
+          />
+          {formik.touched.end && formik.errors.end ? (
+            <ErrorMessage>{formik.errors.end}</ErrorMessage>
+          ) : null}
         </CalendarsContainer>
         <SelectAndButtonContainer>
           <SelectContainer>
