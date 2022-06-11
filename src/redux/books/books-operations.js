@@ -62,10 +62,7 @@ export const reviewBook = createAsyncThunk(
     console.log('review', review);
 
     try {
-      const { data } = await axios.patch(
-        `/books/${values.id}/${values.id}`,
-        review,
-      );
+      const { data } = await axios.patch(`/books/${values.id}/review`, review);
       console.log(data);
       return data;
     } catch (error) {
