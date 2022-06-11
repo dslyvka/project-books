@@ -60,25 +60,31 @@ ChartJS.register(
   annotationPlugin,
 );
 
-  // Компонент приймає 3 пропи
-  // 1-й кінцева дата тренування - параметр date
-  // 2-й загальна кількість сторінок в тренуванні - параметр pages
-  // 3-й масив з кількістю сторінок прочитаних по днях - параметр readPages
+  // Компонент приймає 4 пропи
+  // 1-й кінцева дата тренування - параметр endDate
+  // 2-й дата початку тренування - параметр startDate
+  // 3-й загальна кількість сторінок в тренуванні - параметр pages
+  // 4-й масив з кількістю сторінок прочитаних по днях - параметр readPages
   // Приклад для рендеру
   // <LineChart
-  //   date={"06/15/2022"}
+  //   startDate={'06/08/2022'}
+  //   endDate={'06/15/2022'}
   //   pages={600}
-  //   readPages={[45, 52, 36]}
+  //   readPages={[150, 0, 100, 0, 0, 0, 0]}
   // />
+  // УМОВА - readPages має бути довжиною відповідно до кількості днів тренування і замість пустих значень мають бути нулі
+  // це для того, щоб якщо користувач не прочитав нічого за день і не вніс результат там не було невідоме значення
 
-const LineChart = ({date, pages, readPages}) =>{
+const LineChart = ({startDate, endDate, pages, readPages}) =>{
   const [chartData, setChartData] = useState({
     datasets: [],
   });
   const [chartOptions, setChartOptions] = useState({});
-  const { width } = useWindowDimensions();
-  const days = Math.ceil((new Date(date) - new Date()) / 86400000);
+  const {width} = useWindowDimensions();
+  const allDays = Math.ceil((new Date(endDate) - new Date(startDate)) / 86400000);
   const pagesLeft = pages - readPages.reduce((a, b) => a + b, 0); 
+  const daysLeft = Math.ceil((new Date(endDate) - new Date()) / 86400000);
+
 
   // Для привязки анотації (підписи назв графіків) до останнього елемента масиву графіків ПЛАН і ФАКТ
   function point(ctx, value) {
@@ -91,18 +97,19 @@ const LineChart = ({date, pages, readPages}) =>{
 
   // Вираховуємо масив для графіка ПЛАН в функції getAveragePagesPerDay
     const getAveragePagesPerDay = () => {
-    const averagePagesPerDay = Math.round(pagesLeft / days);
+    const averagePagesPerDay = Math.round(pagesLeft / daysLeft);
     const pagesArray = [];
-    for (let i = 1; i <= days; i++) {
+    for (let i = 1; i <= allDays; i++) {
       pagesArray.push(averagePagesPerDay);
       };
     return pagesArray;
   };
 
+  // Отримуємо кінцевий масив для графіка ПЛАН з врахуванням днів які вже минули
   const resultPlanArray = () => { 
     const averagePages = getAveragePagesPerDay().slice();
     const planArray = [];
-    for (let i = 1; i <= readPages.length; i++) {
+    for (let i = 1; i <= allDays - daysLeft; i++) {
       planArray.push(0);
       averagePages.pop();
     };
@@ -147,29 +154,33 @@ const LineChart = ({date, pages, readPages}) =>{
         return chartReadDataDatasets(7, el);
       };
     };
-  // Вираховуємо прогнозовану максимальну висоту графіка - треба ще потестити ...
-    const getMaxHeight = () => {
-      const maxReadPages = Math.max(...readPages);
-      if (readPlanAtDay && maxReadPages !== -Infinity) {
-        return Math.abs((readPlanAtDay - maxReadPages) * 2) === 0 ? readPlanAtDay * 2 : Math.abs((readPlanAtDay - maxReadPages) * 2);
-      } else {
-        return readPlanAtDay ? readPlanAtDay * 2 : 100;
-      }
-    };
-    // console.log(getMaxHeight());
+  // Вираховуємо прогнозовану максимальну висоту графіка
+  const maxReadPages = Math.max(...readPages);
+  const getBiggersValue = () => { 
+    if (maxReadPages > readPlanAtDay) {
+      return maxReadPages;
+    } else {
+      return readPlanAtDay;
+    }
+  };
+
+  const getMaxHeight = () => {
+    if (readPlanAtDay && maxReadPages !== -Infinity) {
+      return getBiggersValue() * 1.3;
+    } else {
+      return readPlanAtDay ? readPlanAtDay * 1.3 : 100;
+    }
+  };
   
   // Для запобігання накладання анотацій (підписи назв графіків) при близьких значеннях по осі У - ще в роботі ...
     const setBetwenAnotationPositions = () => {
       const differense = readPlanAtDay - readPages.slice(-1)[0];
-      // console.log("differense", differense);
-      // console.log("%", 15 * (getMaxHeight() / 100));
-      if (resultPlanArray().length === readPages.length && differense < 15 * (getMaxHeight() / 100)) {
-        return 30;
+      if (resultPlanArray().length === readPages.length+1 && differense < 15 * (getMaxHeight() / 100)) {
+        return 0;
       } else {
         return -30;
     }
     };
-    // console.log("y :", setBetwenAnotationPositions());
 
     setChartData({
       labels: drawDepensScreenSize("days"),
@@ -244,12 +255,13 @@ const LineChart = ({date, pages, readPages}) =>{
                 size: 12,
                 lineHeight: 1.22,
               },
+              color: '#FF6B08',
               backgroundColor: '#F5F7FA',
               backgroundShadowColor: 'rgba(9, 30, 63, 0.1)',
               shadowBlur: 10,
               shadowOffsetX: 2,
               shadowOffsetY: 3,
-              xAdjust: readPlanAtDay && days !== 1 ? -30 : 40,
+              xAdjust: readPlanAtDay && allDays !== 1 ? -30 : 40,
               xValue: (ctx) => point(ctx, 0).x,
               yAdjust: readPlanAtDay ? -30 : 0,
               yValue: (ctx) => point(ctx, 0).y,
