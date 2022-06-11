@@ -79,7 +79,7 @@ export const TrainingListItemPages = styled.p`
   }
 `;
 
-export const DeleteIconStyled = styled(DeleteIcon)`
+export const DeleteIconStyled = styled.svg`
   color: #898f9f;
   &:hover {
     color: #ff6b08;
@@ -98,7 +98,7 @@ export const DeleteIconStyled = styled(DeleteIcon)`
 `;
 
 export const DeleteButton = styled.button`
-  padding: 0;
+  /* padding: 0;
   width: 18px;
   height: 18px;
   border-radius: 50%;
@@ -110,5 +110,27 @@ export const DeleteButton = styled.button`
     width: 100%;
     height: 100%;
     fill: currentColor;
+  } */
+
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: transparent;
+  border-style: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  @media screen and (min-width: 480px) {
+    right: -7px;
+  }
+
+  @media screen and (min-width: 768px) {
+    right: 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    right: 35px;
   }
 `;

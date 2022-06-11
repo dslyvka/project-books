@@ -1,6 +1,4 @@
-import { ReactComponent as BookIcon } from '../../../images/icons/training/bookIcon.svg';
-import { ReactComponent as DeleteIcon } from '../../../images/icons/training/deleteIcon.svg';
-
+import Icons from '../../../images/sprite/sprites.svg';
 import {
   TrainingListItemStyled,
   BookIconStyled,
@@ -21,7 +19,10 @@ const TrainingListItem = () => {
       <TrainingListItemYear>...</TrainingListItemYear>
       <TrainingListItemPages>...</TrainingListItemPages>
       <DeleteButton>
-        <DeleteIconStyled />
+        {/* <DeleteIconStyled /> */}
+        <DeleteIconStyled width="14px" height="18px">
+          <use xlinkHref={`${Icons}#icon-delete`} />
+        </DeleteIconStyled>
       </DeleteButton>
     </TrainingListItemStyled>
   );
