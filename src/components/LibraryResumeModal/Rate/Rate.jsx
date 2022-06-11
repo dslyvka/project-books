@@ -1,7 +1,8 @@
 import { Rating } from 'react-simple-star-rating';
 import { useState } from 'react';
+import sprites from '../../../images/sprite/sprites.svg';
 
-const Rate = ({ emptyIcon, fullIcon, update }) => {
+const Rate = ({ update, init, read }) => {
   const [rating, setRating] = useState(0);
 
   const handleRating = rate => {
@@ -11,10 +12,20 @@ const Rate = ({ emptyIcon, fullIcon, update }) => {
 
   return (
     <Rating
+      readonly={read}
+      initialValue={init}
       onClick={handleRating}
       ratingValue={rating}
-      emptyIcon={emptyIcon}
-      fullIcon={fullIcon}
+      emptyIcon={
+        <svg pointerEvents="none" width="17" height="17">
+          <use href={`${sprites}#icon-Star`} />
+        </svg>
+      }
+      fullIcon={
+        <svg pointerEvents="none" width="17" height="17">
+          <use href={`${sprites}#icon-Star-full`} />
+        </svg>
+      }
     />
   );
 };
