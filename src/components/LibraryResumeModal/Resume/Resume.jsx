@@ -14,7 +14,7 @@ export const LibraryResumeModal = () => {
   let rating = 0;
 
   const { already } = useSelector(getBooks);
-  if (already !== 'undefined') {
+  if (already === null) {
     review = already.find(id => id).review;
     rating = already.find(id => id).rating;
   }
