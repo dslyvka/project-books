@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { useSelector } from 'react-redux';
 axios.defaults.baseURL = 'https://project-books-api.herokuapp.com/api';
 
 const token = {
