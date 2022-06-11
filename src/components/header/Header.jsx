@@ -9,7 +9,7 @@ import {
   ShowMobilecontainer,
 } from './Header.styled';
 import { Outlet } from 'react-router-dom';
-// import Modal from '../Modal/Modal';
+import Modal from '../Modal/Modal';
 import UserIcon from '../UserIcon/UserIcon';
 import NavigateIcon from '../NavigateIcon/NavigateIcon';
 import Logout from '../Logout/Logout';
@@ -43,11 +43,11 @@ function Header() {
                 Вихід
               </ButtonStyled>
             </div>
-            {/* {showModal && (
+            {showModal && (
               <Modal onClose={togleModal}>
                 <Logout onClose={togleModal} />
               </Modal>
-            )} */}
+            )}
           </ContainerNotCenter>
         )}
       </Container>
