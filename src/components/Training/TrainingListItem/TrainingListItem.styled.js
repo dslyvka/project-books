@@ -36,6 +36,10 @@ export const BookIconStyled = styled(BookIcon)`
 `;
 
 export const TrainingListItemTitle = styled.p`
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #242a37;
   /* composes: field; */
   @media (max-width: 320px) {
     margin-bottom: 17px;
@@ -50,6 +54,10 @@ export const TrainingListItemTitle = styled.p`
   }
 `;
 export const TrainingListItemAuthor = styled.p`
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #242a37;
   @media (max-width: 320px) {
     margin-bottom: 17px;
   }
@@ -62,6 +70,10 @@ export const TrainingListItemAuthor = styled.p`
   }
 `;
 export const TrainingListItemYear = styled.p`
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #242a37;
   @media (max-width: 320px) {
     margin-bottom: 17px;
   }
@@ -72,6 +84,10 @@ export const TrainingListItemYear = styled.p`
   }
 `;
 export const TrainingListItemPages = styled.p`
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #242a37;
   @media (min-width: 768px) {
     width: 76px;
 

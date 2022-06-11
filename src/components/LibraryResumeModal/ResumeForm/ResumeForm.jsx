@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Input, Label } from './ResumeForm.styled';
 
-const ResumeForm = ({ updateResume }) => {
-  const [resume, setResume] = useState('');
-
+const ResumeForm = ({ updateResume, initial }) => {
+  const [resume, setResume] = useState(initial);
+  console.log(initial);
   const handleChange = e => {
     setResume(e.target.value);
     updateResume(e.target.value);

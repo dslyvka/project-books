@@ -18,6 +18,8 @@ export const FormTitle = styled.h1`
   height: 60px;
   margin-bottom: 20px;
   padding: 11px 0;
+  font-family: Montserrat;
+  font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 1.9;
@@ -89,4 +91,9 @@ export const FormAddButton = styled.button`
     width: 181px;
     height: 42px;
   }
+`;
+export const ErrorMessage = styled.p`
+  position: absolute;
+  font-size: 11px;
+  color: red;
 `;

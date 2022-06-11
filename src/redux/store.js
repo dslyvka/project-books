@@ -20,6 +20,7 @@ import logger from 'redux-logger';
 
 import authReducer from './auth/auth-reducer';
 import booksReducer from './books/books-reducer';
+import { trainingReducer } from './training';
 
 const middleware =
   process.env.NODE_ENV === 'development'
@@ -48,6 +49,7 @@ const authPersistConfig = {
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   books: booksReducer,
+  training: trainingReducer,
 });
 
 const store = configureStore({

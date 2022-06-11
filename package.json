@@ -15,6 +15,7 @@
     "chartjs-plugin-annotation": "^1.4.0",
     "formik": "^2.2.9",
     "modern-normalize": "^1.1.0",
+    "moment": "^2.29.3",
     "netlify-cli": "^10.4.0",
     "normalize.css": "^8.0.1",
     "query-string": "^7.1.1",

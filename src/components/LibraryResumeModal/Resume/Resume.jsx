@@ -4,20 +4,32 @@ import { Button } from './Resume.styled';
 import { useState } from 'react';
 import Rate from '../Rate/Rate';
 import { ModalContainer, ButtonWrapper, Title } from './Resume.styled';
-import sprites from '../../../images/sprite/sprites.svg';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { booksOperations } from '../../../redux/books';
+import { getBooks } from '../../../redux/books/books-selector';
 
 export const LibraryResumeModal = () => {
+  let review = '';
+  let rating = 0;
+
+  const { already } = useSelector(getBooks);
+  console.log('already,------------------', already);
+
+  if (already !== undefined) {
+    review = already.find(id => id).review;
+    rating = already.find(id => id).rating;
+  }
+
   const [showModal, setShowModal] = useState(true);
-  const [rate, setRate] = useState(0);
-  const [resume, setResume] = useState('');
+  const [rate, setRate] = useState(rating);
+  const [resume, setResume] = useState(review);
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const { id } = useParams();
+
   const togleModal = () => {
     setShowModal(showModal => !showModal);
     navigate('library');
@@ -36,9 +48,6 @@ export const LibraryResumeModal = () => {
       return null;
     }
     dispatch(booksOperations.reviewBook({ rate, resume, id }));
-    console.log('review ->', { rate, resume, id });
-    setRate(0);
-    setResume('');
     togleModal();
   };
 
@@ -47,21 +56,9 @@ export const LibraryResumeModal = () => {
       <Modal onClose={togleModal}>
         <ModalContainer>
           <Title>Обрати рейтинг книги</Title>
-          <Rate
-            emptyIcon={
-              <svg pointerEvents="none" width="17" height="17">
-                <use href={`${sprites}#icon-Star`} />
-              </svg>
-            }
-            fullIcon={
-              <svg pointerEvents="none" width="17" height="17">
-                <use href={`${sprites}#icon-Star-full`} />
-              </svg>
-            }
-            update={updateRate}
-          />
+          <Rate update={updateRate} init={rate} read={false} />
           <Title>Резюме</Title>
-          <ResumeForm updateResume={updateResume} />
+          <ResumeForm updateResume={updateResume} initial={resume} />
           <ButtonWrapper>
             <Button onClick={togleModal}>Назад</Button>
             <Button type="submit" onClick={getData}>
