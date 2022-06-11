@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
+// import { getBooks, getPlanBooks } from '../books/books-selector';
 import { getBooks } from '../books/books-selector';
 
 const getIsStarted = state => state.training.isStarted;
@@ -16,6 +17,11 @@ const getSelectBooks = createSelector([getBooks, getSelectIds], (books, ids) =>
     return book ? [...acc, book] : acc;
   }, []),
 );
+
+// const getPlanNotSelectBooks = createSelector(
+//   [getPlanBooks, getSelectIds],
+//   (books, ids) => books.filter(({ _id }) => !ids.includes(_id)),
+// );
 
 const selectStartDate = state => state.training.selectStartDate;
 const selectEndDate = state => state.training.selectEndDate;
@@ -58,6 +64,7 @@ const trainingSelectors = {
   getEndDate,
   getSelectIds,
   getSelectBooks,
+  // getPlanNotSelectBooks,
   selectStartDate,
   selectEndDate,
   getLoading,
