@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { useSelector } from 'react-redux';
 axios.defaults.baseURL = 'https://project-books-api.herokuapp.com/api';
 
 const token = {
@@ -43,6 +42,30 @@ export const addBooks = createAsyncThunk(
     };
     try {
       const { data } = await axios.post('/books', books);
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);
+export const reviewBook = createAsyncThunk(
+  'books/review',
+  async (values, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    token.set(persistedToken);
+    const review = {
+      review: values.resume,
+      rating: (values.rate / 20).toString(),
+    };
+    console.log('review', review);
+
+    try {
+      const { data } = await axios.patch(
+        `/books/${values.id}/${values.id}`,
+        review,
+      );
       console.log(data);
       return data;
     } catch (error) {
