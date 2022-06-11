@@ -16,6 +16,7 @@ import {
 import { Outlet, useNavigate } from 'react-router-dom';
 // import LibraryResumeModal from '../../LibraryResumeModal/Resume/Resume';
 // import { useToggle } from '../../../hooks/useToggle';
+import Rate from '../../LibraryResumeModal/Rate/Rate';
 
 function ListAlreadyRead({ text = 'Text', array = [] }) {
   const navigate = useNavigate();
@@ -58,7 +59,9 @@ function ListAlreadyRead({ text = 'Text', array = [] }) {
                   </Ulalready>
                   <Ulalready>
                     <LiTitle>Рейтинг</LiTitle>
-                    <LiData width="25px"> {rating}</LiData>
+                    <LiData width="25px">
+                      <Rate init={rating} read={true} />
+                    </LiData>
                   </Ulalready>
                   <Ulalready>
                     <li>
