@@ -1,4 +1,5 @@
-import Icons from '../../../images/sprite/sprites.svg';
+// import Icons from '../../../images/sprite/sprites.svg';
+import { ReactComponent as DeleteIcon } from '../../../images/icons/training/deleteIcon.svg';
 import {
   TrainingListItemStyled,
   BookIconStyled,
@@ -6,7 +7,6 @@ import {
   TrainingListItemAuthor,
   TrainingListItemYear,
   TrainingListItemPages,
-  DeleteIconStyled,
   DeleteButton,
 } from './TrainingListItem.styled';
 
@@ -14,15 +14,13 @@ const TrainingListItem = () => {
   return (
     <TrainingListItemStyled>
       <BookIconStyled />
-      <TrainingListItemTitle>...</TrainingListItemTitle>
-      <TrainingListItemAuthor>...</TrainingListItemAuthor>
-      <TrainingListItemYear>...</TrainingListItemYear>
-      <TrainingListItemPages>...</TrainingListItemPages>
-      <DeleteButton>
-        {/* <DeleteIconStyled /> */}
-        <DeleteIconStyled width="14px" height="18px">
-          <use xlinkHref={`${Icons}#icon-delete`} />
-        </DeleteIconStyled>
+      <TrainingListItemTitle>Заповіт</TrainingListItemTitle>
+      <TrainingListItemAuthor>Тарас Шевченко</TrainingListItemAuthor>
+      <TrainingListItemYear>1859</TrainingListItemYear>
+      <TrainingListItemPages>320</TrainingListItemPages>
+
+      <DeleteButton type="button">
+        <DeleteIcon />
       </DeleteButton>
     </TrainingListItemStyled>
   );

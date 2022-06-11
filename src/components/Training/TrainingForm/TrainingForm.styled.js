@@ -3,11 +3,14 @@ import styled from '@emotion/styled';
 export const FormContainer = styled.form`
   display: grid;
   align-items: start;
+  margin-top: 20px;
   @media (min-width: 768px) {
     margin-bottom: 40px;
+    margin-top: 40px;
   }
   @media (min-width: 1280px) {
     margin-bottom: 40px;
+    margin-top: 40px;
   }
 `;
 
