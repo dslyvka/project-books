@@ -67,17 +67,18 @@ import { getBooks } from '../../redux/books/books-selector';
 
 function LibraryList() {
   const dispatch = useDispatch();
-  const onContacts = useSelector(getBooks);
-  console.log(onContacts);
 
   useEffect(() => {
     dispatch(fetchBooks());
   }, [dispatch]);
 
+  const onContacts = useSelector(getBooks);
+  console.log('onContacts', onContacts);
   // const reading = example.filter(arr => arr.status === 'reading');
   const reading = onContacts.reading;
   // const going = onContacts.filter(arr => arr.status === 'going');
   const going = onContacts.going;
+  console.log('going', going);
   // const already = example.filter(arr => arr.status === 'already');
   const already = onContacts.already;
   return (

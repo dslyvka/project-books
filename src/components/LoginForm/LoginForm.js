@@ -35,7 +35,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (token && email && name) {
       dispatch(actions.loginG({ token, email, name }));
-      navigate('/library');
+      // navigate('/library');
     }
   }, []);
 
@@ -52,7 +52,7 @@ const LoginForm = () => {
           const { email, password } = values;
 
           dispatch(actions.login({ email, password }));
-          navigate('/library');
+          // navigate('/library');
           console.log(values);
         }}
       >
