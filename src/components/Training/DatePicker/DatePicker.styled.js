@@ -18,6 +18,8 @@ export const DatePickerWrapper = styled.div`
 `;
 
 export const DatePickerStyled = styled(DatePicker)`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
   width: 100%;
   height: 42px;
   padding: 5px 47px;

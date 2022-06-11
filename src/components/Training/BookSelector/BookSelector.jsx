@@ -1,7 +1,17 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Select from 'react-select';
+import { trainingSelectors } from '../../../redux/training';
 
-const BookSelector = () => {
+const BookSelector = ({ onChange }) => {
+  // const booksToRead = useSelector(trainingSelectors.getPlanNotSelectBooks);
+
+  // const bookSelect = booksToRead.map(book => ({
+  //   ...book,
+  //   label: book.title,
+  //   value: book.title,
+  // }));
+
   const customStyles = {
     input: (provided, state) => ({
       ...provided,
@@ -19,7 +29,15 @@ const BookSelector = () => {
       color: '#a6abb9',
     }),
   };
-  return <Select styles={customStyles} />;
+  return (
+    <Select
+      defaultValue=""
+      placeholder="Оберіть книжку"
+      // options={bookSelect}
+      onChange={value => onChange(value)}
+      styles={customStyles}
+    />
+  );
 };
 
 export default BookSelector;
