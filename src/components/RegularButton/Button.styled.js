@@ -8,6 +8,7 @@ export const ButtonStyled = styled.button`
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+  cursor: pointer;
 
   font-family: 'Montserrat';
   font-style: normal;
@@ -30,4 +31,10 @@ export const ButtonStyled = styled.button`
 
   margin: 0 auto 20px;
   padding: 20px 0;
+
+  transition: all 0.85s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  :hover {
+    font-size: 19px;
+  }
 `;

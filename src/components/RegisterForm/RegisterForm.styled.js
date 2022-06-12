@@ -98,6 +98,7 @@ export const StyledForm = styled.form`
 
       margin: 0 auto 20px;
       padding: 12px 0px 13px 12px;
+      
 
       background-color: #f5f7fa;
       box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
