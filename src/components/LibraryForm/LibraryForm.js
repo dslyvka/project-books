@@ -6,12 +6,13 @@ import {
   Form,
   Input,
   Container,
-  LabelOne,
-  LabelTwo,
+  Label,
   DivInput,
   OtherInput,
   ButtonDiv,
   BasicDiv,
+  SpanErr,
+  SpanRed,
 } from './LibraryForm.styled.jsx';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -83,91 +84,108 @@ const LibraryForm = () => {
           >
             <DivInput>
               <BasicDiv>
-                <LabelOne htmlFor="title">
+                <Label htmlFor="title">
                   Назва книги
                   {!values.title.length || errors.title ? (
-                    <span>не маєпочинатиися з прробіла чи дефіза</span>
+                    <SpanRed> *</SpanRed>
                   ) : (
-                    <></>
+                    <> </>
                   )}
-                  <br />
-                  <Input
-                    type="text"
-                    name="title"
-                    placeholder="..."
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.title}
-                  />
-                </LabelOne>
+                </Label>
                 <br />
-                {touched.title && errors.title && <span>{errors.title}</span>}
+                <Input
+                  type="text"
+                  name="title"
+                  placeholder="..."
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.title}
+                  autocomplete="off"
+                />
+                {touched.title && errors.title && (
+                  <SpanErr widthtablet="704px" widthDesc="346px">
+                    {errors.title}
+                  </SpanErr>
+                )}
               </BasicDiv>
               <OtherInput>
                 <BasicDiv>
-                  <LabelOne htmlFor="author">
+                  <Label htmlFor="author">
                     Автор книги
                     {!values.author.length || errors.author ? (
-                      <span>*</span>
+                      <SpanRed> *</SpanRed>
                     ) : (
                       <></>
                     )}
-                    <br />
-                    <Input
-                      type="text"
-                      name="author"
-                      placeholder="..."
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.author}
-                    />
-                  </LabelOne>
+                  </Label>
                   <br />
+                  <Input
+                    type="text"
+                    name="author"
+                    placeholder="..."
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.author}
+                    autocomplete="off"
+                  />
+
                   {touched.author && errors.author && (
-                    <span>{errors.author}</span>
+                    <SpanErr widthtablet="336px" widthDesc="250px">
+                      {errors.author}
+                    </SpanErr>
                   )}
                 </BasicDiv>
                 <BasicDiv>
-                  <LabelTwo htmlFor="date">
+                  <Label htmlFor="date">
                     Рік випуску
                     {!values.date.length || errors.date ? (
-                      <span>{errors.date}</span>
+                      <SpanRed> *</SpanRed>
                     ) : (
                       <></>
                     )}
-                    <br />
-                    <Input
-                      type="text"
-                      name="date"
-                      placeholder="..."
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.date}
-                    />
-                  </LabelTwo>
+                  </Label>
                   <br />
-                  {touched.date && errors.date && <span>{errors.date}</span>}
+                  <Input
+                    type="text"
+                    name="date"
+                    placeholder="..."
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.date}
+                    autocomplete="off"
+                  />
+
+                  {touched.date && errors.date && (
+                    <SpanErr widthtablet="152px" widthDesc="134px">
+                      {errors.date}
+                    </SpanErr>
+                  )}
                 </BasicDiv>
                 <BasicDiv>
-                  <LabelTwo htmlFor="pages">
+                  <Label htmlFor="pages">
                     Кількість сторінок
                     {!values.pages.length || errors.pages ? (
-                      <span>*</span>
+                      <SpanRed> *</SpanRed>
                     ) : (
                       <></>
                     )}
-                    <br />
-                    <Input
-                      type="text"
-                      name="pages"
-                      placeholder="..."
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.pages}
-                    />
-                  </LabelTwo>
+                  </Label>
                   <br />
-                  {touched.pages && errors.pages && <span>{errors.pages}</span>}
+                  <Input
+                    type="text"
+                    name="pages"
+                    placeholder="..."
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.pages}
+                    autocomplete="off"
+                  />
+
+                  {touched.pages && errors.pages && (
+                    <SpanErr widthtablet="152px" widthDesc="134px">
+                      {errors.pages}
+                    </SpanErr>
+                  )}
                 </BasicDiv>
               </OtherInput>
               <ButtonDiv>
