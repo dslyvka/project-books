@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { ButtonStyled } from '../RegularButton/Button.styled';
 import { Div, DivButton, Button } from './LibraryList.styled';
 import { getBooks } from '../../redux/books/books-selector';
+import { Link } from 'react-router-dom';
 
 // const example = [
 //   {
@@ -87,9 +88,11 @@ function LibraryList() {
       <ListOther text="Читаю" array={reading} />
       <ListOther text="Маю намір прочитати" array={going} />
       <DivButton>
-        <Button type="button" color="#FFFFFF" backgroundColor="#FF6B08">
-          Моє тренування
-        </Button>
+        <Link to="/training" end className="button">
+          <Button type="button" color="#FFFFFF" backgroundColor="#FF6B08">
+            Моє тренування
+          </Button>
+        </Link>
       </DivButton>
     </Div>
   );
