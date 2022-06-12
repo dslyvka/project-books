@@ -12,8 +12,7 @@ export const Button = styled.button`
   width: 171px;
   height: 42px;
   align-self: center;
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: #ff6b08;
     color: #ffffff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);

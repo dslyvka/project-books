@@ -3,6 +3,11 @@ import styled from '@emotion/styled';
 
 export const  Container = styled.div`
 display:flex;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
   flex-direction: column;
     justify-content: center;
     margin-top: 32px;
@@ -14,23 +19,43 @@ export const Form = styled.form`
         display: flex;
     flex-direction: row;
   justify-content: center;
-    @media screen and (min-width: 768px) {
-
-}`;
+`;
 
 export const BasicDiv = styled.li`
-display:flex;
-justify-content:center;
 
  @media screen and (min-width: 1280px) {
-        :last-child{
-        margin-left:16px;
-    }
-}
+             margin-right:16px ;
+                  :last-child{
+    margin-right:0px;
+ }}`
+
+export const SpanErr = styled.p`
+margin-bottom:20px;
+color:red;
+max-width:280px;
+
+
+        @media screen and (min-width: 768px) {
+max-width:${props => props.widthtablet};
+
+        }
+         @media screen and (min-width: 1280px) {
+   max-width:${props => props.widthDesc};      
+   margin-top:20px;
+        }
+
+        
+widthDesc
+        `
+
+export const SpanRed = styled.span`
+color:red;
 `
 
 
 export const Input = styled.input`
+
+
 
     display: flex;
     flex-direction: column;
@@ -42,9 +67,7 @@ export const Input = styled.input`
     margin-bottom: 20px;
     background-color: #F6F7FB;
     min-width: 280px;
-                                :list-child{
-                         margin-left:32px;
-};
+
 
 
 
@@ -69,6 +92,7 @@ export const Input = styled.input`
 }};      }
  @media screen and (min-width: 1280px) {
              min-width: 134px;
+             margin-bottom: 0px;
 
 
       width: ${props => {
@@ -95,6 +119,7 @@ export const Input = styled.input`
 export const DivInput = styled.ul`
     display: flex;
     flex-direction: column;
+    justify-content:center;
 
 
      @media screen and (min-width: 1280px) {
@@ -104,32 +129,19 @@ export const DivInput = styled.ul`
     
 }`
 
-export const LabelOne = styled.label`
- @media screen and (min-width: 1280px) {
-             margin-right:16px ;
-             
- }
+export const Label = styled.label`
+
       color: #898F9F;
       `
       
-export const LabelTwo = styled.label`
-            color: #898F9F;
-        @media screen and (min-width: 768px) {
-    :nth-of-type(1){
-    margin-left:32px;
-}
-}
- @media screen and (min-width: 1280px) {
-       :nth-of-type(1) {
-    margin-left:0px;
-}
-}    `
+
 
 
 export const OtherInput = styled.div`
     @media screen and (min-width: 768px) {
-        
+    
         display: flex;
+        justify-content:space-between;
 flex-direction: row;
 }`
 
@@ -144,6 +156,9 @@ export const ButtonDiv = styled.div`
         display: flex;
         justify-content:center;
           @media screen and (min-width: 1280px) {
+            flex-wrap: wrap;
               margin-left:34px;
-              align-items: center;
+              align-content: flex-start;
+              margin-top:24px;
+
           }`

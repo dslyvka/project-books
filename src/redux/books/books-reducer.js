@@ -5,7 +5,7 @@ import { addBooks, fetchBooks, reviewBook } from './books-operations';
 const items = createReducer(
   {},
   {
-    [fetchBooks.fulfilled]: (_, { payload }) => payload.books,
+    [fetchBooks.fulfilled]: (_, { payload = '' }) => payload.books,
     [addBooks.fulfilled]: (state, { payload }) => ({ ...state, payload }),
     [reviewBook.fulfilled]: (state, { payload }) => ({ ...state, payload }),
   },
