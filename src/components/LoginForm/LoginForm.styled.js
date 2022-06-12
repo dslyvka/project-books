@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
-import backgroundImage from '../../images/mobile/registerBackground.jpg';
+import backgroundImageMobile from '../../images/mobile/registerBackground.jpg';
+import backgroundImageTablet from '../../images/tablet/registerBackground.jpg';
+import backgroundImageDesktop from '../../images/desktop/registerBackground.jpg';
 import sprite from '../../images/sprite/sprites.svg';
 
 const breakpoints = [480, 768, 1280];
@@ -17,16 +19,28 @@ export const StyledForm = styled.form`
       rgba(9, 30, 63, 0.8),
       rgba(9, 30, 63, 0.8)
     ),
-    url(${backgroundImage});
+    url(${backgroundImageMobile});
   background-size: cover;
 
   padding: 32px 0 32px;
 
   @media screen and (min-width: ${breakpoints[1]}px) {
+    background-image: linear-gradient(
+        to right,
+        rgba(9, 30, 63, 0.8),
+        rgba(9, 30, 63, 0.8)
+      ),
+      url(${backgroundImageTablet});
     padding: 64px 0;
   }
 
   @media screen and (min-width: ${breakpoints[2]}px) {
+    background-image: linear-gradient(
+        to right,
+        rgba(9, 30, 63, 0.8),
+        rgba(9, 30, 63, 0.8)
+      ),
+      url(${backgroundImageDesktop});
     padding: 245px 75px 175px;
     width: 550px;
   }
