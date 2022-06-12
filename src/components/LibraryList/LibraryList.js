@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { ButtonStyled } from '../RegularButton/Button.styled';
 import { Div, DivButton, Button } from './LibraryList.styled';
 import { getBooks } from '../../redux/books/books-selector';
+import { Link } from 'react-router-dom';
 
 // const example = [
 //   {
@@ -67,30 +68,28 @@ import { getBooks } from '../../redux/books/books-selector';
 
 function LibraryList() {
   const dispatch = useDispatch();
+  const onContacts = useSelector(getBooks);
 
   useEffect(() => {
     dispatch(fetchBooks());
   }, [dispatch]);
 
-  const onContacts = useSelector(getBooks);
-  console.log('onContacts', onContacts);
-  // const reading = example.filter(arr => arr.status === 'reading');
-  const reading = onContacts.reading;
-  // const going = onContacts.filter(arr => arr.status === 'going');
-  const going = onContacts.going;
-  console.log('going', going);
-  // const already = example.filter(arr => arr.status === 'already');
-  const already = onContacts.already;
+  const { reading = [], going = [], already = [] } = onContacts;
+
   return (
     <Div>
       <ListAlreadyRead text="Прочитано" array={already} />
       <ListOther text="Читаю" array={reading} />
       <ListOther text="Маю намір прочитати" array={going} />
-      <DivButton>
-        <Button type="button" color="#FFFFFF" backgroundColor="#FF6B08">
-          Моє тренування
-        </Button>
-      </DivButton>
+      {going.length !== 0 && (
+        <DivButton>
+          <Link to="/training" end className="button">
+            <Button type="button" color="#FFFFFF" backgroundColor="#FF6B08">
+              Моє тренування
+            </Button>
+          </Link>
+        </DivButton>
+      )}
     </Div>
   );
 }

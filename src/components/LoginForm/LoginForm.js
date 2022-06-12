@@ -26,6 +26,8 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  sessionStorage.clear();
+
   let {
     token = null,
     email = null,

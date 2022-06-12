@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
-import backgroundImage from '../../images/mobile/registerBackground.jpg';
+import backgroundImageMobile from '../../images/mobile/registerBackground.jpg';
+import backgroundImageTablet from '../../images/tablet/registerBackground.jpg';
+import backgroundImageDesktop from '../../images/desktop/registerBackground.jpg';
 import sprite from '../../images/sprite/sprites.svg';
 
 const breakpoints = [480, 768, 1280];
@@ -17,16 +19,28 @@ export const StyledForm = styled.form`
       rgba(9, 30, 63, 0.8),
       rgba(9, 30, 63, 0.8)
     ),
-    url(${backgroundImage});
+    url(${backgroundImageMobile});
   background-size: cover;
 
   padding: 32px 0 32px;
 
   @media screen and (min-width: ${breakpoints[1]}px) {
+    background-image: linear-gradient(
+        to right,
+        rgba(9, 30, 63, 0.8),
+        rgba(9, 30, 63, 0.8)
+      ),
+      url(${backgroundImageTablet});
     padding: 64px 0;
   }
 
   @media screen and (min-width: ${breakpoints[2]}px) {
+    background-image: linear-gradient(
+        to right,
+        rgba(9, 30, 63, 0.8),
+        rgba(9, 30, 63, 0.8)
+      ),
+      url(${backgroundImageDesktop});
     padding: 245px 75px 175px;
     width: 550px;
   }
@@ -52,11 +66,17 @@ export const StyledForm = styled.form`
     }
 
     li {
-      margin: 0 auto;
+      margin: 0 auto 20px;
       width: 280px;
 
       @media screen and (min-width: ${breakpoints[1]}px) {
         width: 320px;
+      }
+
+      :last-of-type {
+        @media screen and (min-width: ${breakpoints[1]}px) {
+          margin-bottom: 35px;
+        }
       }
     }
 
@@ -95,7 +115,7 @@ export const StyledForm = styled.form`
       -moz-box-shadow: none;
       box-shadow: none;
 
-      margin: 0 auto 20px;
+      margin: 0 auto;
       padding: 12px 0px 13px 12px;
 
       background-color: #f5f7fa;
@@ -116,15 +136,23 @@ export const StyledForm = styled.form`
         outline: none;
       }
     }
+
     .input__error {
-      // position: absolute;
-      // left: 0;
-      // bottom: 0;
       color: red;
-      // margin: 0 auto 5px;
-      padding-bottom: 15px;
+      padding-top: 7px;
       display: block;
+
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
     }
+
+    // .input__plug {
+    //   display: block;
+    //   height: 37px;
+    // }
   }
 
   p {

@@ -8,14 +8,14 @@ const BASE_URL = 'https://project-books-api.herokuapp.com/api';
 const GoogleAuthBtn = () => {
   return (
     <ButtonGoogle>
+        <svg width="20" height="20">
+          <use href={`${sprite}#icon-google`}></use>
+        </svg>
       <a
         href={`${BASE_URL}/users/google`}
         className="google-btn"
         // target="_blank" rel="noreferrer"
       >
-        <svg width="20" height="20">
-          <use href={`${sprite}#icon-google`}></use>
-        </svg>
         Google
       </a>
     </ButtonGoogle>

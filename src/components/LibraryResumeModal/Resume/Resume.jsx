@@ -44,7 +44,7 @@ export const LibraryResumeModal = () => {
   };
 
   const getData = () => {
-    if (!rate || resume === '') {
+    if (rate === null || resume === '') {
       return null;
     }
     dispatch(booksOperations.reviewBook({ rate, resume, id }));
