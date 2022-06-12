@@ -66,11 +66,17 @@ export const StyledForm = styled.form`
     }
 
     li {
-      margin: 0 auto;
+      margin: 0 auto 20px;
       width: 280px;
 
       @media screen and (min-width: ${breakpoints[1]}px) {
         width: 320px;
+      }
+
+      :last-of-type {
+        @media screen and (min-width: ${breakpoints[1]}px) {
+          margin-bottom: 35px;
+        }
       }
     }
 
@@ -109,7 +115,7 @@ export const StyledForm = styled.form`
       -moz-box-shadow: none;
       box-shadow: none;
 
-      margin: 0 auto 20px;
+      margin: 0 auto;
       padding: 12px 0px 13px 12px;
 
       background-color: #f5f7fa;
@@ -130,15 +136,23 @@ export const StyledForm = styled.form`
         outline: none;
       }
     }
+
     .input__error {
-      // position: absolute;
-      // left: 0;
-      // bottom: 0;
       color: red;
-      // margin: 0 auto 5px;
-      padding-bottom: 15px;
+      padding-top: 7px;
       display: block;
+
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
     }
+
+    // .input__plug {
+    //   display: block;
+    //   height: 37px;
+    // }
   }
 
   p {
