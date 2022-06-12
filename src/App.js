@@ -1,8 +1,9 @@
-import { useEffect, Suspense, lazy } from 'react';
+import { Suspense, lazy, useLayoutEffect } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Header from './components/Header/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+import { Spinner } from './components/Spinner/Spinner';
 
 import GoogleAuth from './components/GoogleAuth/GoogleAuth';
 import actions from './redux/auth/auth-actions';
@@ -25,44 +26,42 @@ const LibraryResumeModal = lazy(() =>
 function App() {
   const onlyWidth = useWindowWidth();
   const dispatch = useDispatch();
-  const { isLoggedIn, token } = useSelector(state => state.auth);
-  const { isPageRefreshing } = useSelector(state => state.auth);
 
-  useEffect(() => {
+  const { isLoggedIn, token, isPageRefreshing } = useSelector(
+    state => state.auth,
+  );
+
+  useLayoutEffect(() => {
     if (!isLoggedIn && token) {
       dispatch(actions.fetchCurrentUser());
     }
-  }, [dispatch]);
+  }, [dispatch, isLoggedIn, token]);
 
-  return (
-    //Придумать позже функционал вместо Loading- спиннер и тп
+  return isPageRefreshing ? (
+    <Spinner />
+  ) : (
+    <Suspense fallback={<Spinner />}>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Outlet />}>
+          <Route
+            index
+            element={onlyWidth < 768 ? <QuoteSection /> : <LoginPage />}
+          />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
 
-    isPageRefreshing ? (
-      <p>Loading...</p>
-    ) : (
-      <Suspense fallback={<p>Loading...</p>}>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Outlet />}>
-            <Route
-              index
-              element={onlyWidth < 768 ? <QuoteSection /> : <LoginPage />}
-            />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="register" element={<RegisterPage />} />
-
-            <Route path="library" element={<LibraryPage />}>
-              <Route path=":id" element={<LibraryResumeModal />} />
-            </Route>
-
-            <Route path="training" element={<TrainingPage />} />
-            <Route path="statistics" element={<StatisticsPage />} />
-            <Route path="*" element={<Navigate to="login" replace />} />
-            <Route />
+          <Route path="library" element={<LibraryPage />}>
+            <Route path=":id" element={<LibraryResumeModal />} />
           </Route>
-        </Routes>
-      </Suspense>
-    )
+
+          <Route path="training" element={<TrainingPage />} />
+          <Route path="statistics" element={<StatisticsPage />} />
+          <Route path="*" element={<Navigate to="login" replace />} />
+          <Route />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
