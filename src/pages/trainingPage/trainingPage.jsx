@@ -3,6 +3,9 @@ import TrainingWrapper from '../../components/Training/TraningWrapper';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+
+import { PageAnimation } from '../../components/PageAnimation/PageAnimation';
+
 import StartTrainingBtn from '../../components/StartTrainingBtn/StartTrainingBtn';
 
 const TrainingPage = () => {
@@ -17,10 +20,13 @@ const TrainingPage = () => {
 
   return (
     isLoggedIn && (
-      <Container>
-        <TrainingWrapper />
-        <StartTrainingBtn />
-      </Container>
+      <PageAnimation>
+        <Container>
+          <TrainingWrapper />
+              <StartTrainingBtn />
+        </Container>
+      </PageAnimation>
+
     )
   );
 };
