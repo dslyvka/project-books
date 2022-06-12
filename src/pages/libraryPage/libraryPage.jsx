@@ -7,8 +7,6 @@ import { useEffect } from 'react';
 
 const LibraryPage = () => {
   const { isLoggedIn } = useSelector(state => state.auth);
-  const { items } = useSelector(state => state.books);
-  console.log(items);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,7 +19,7 @@ const LibraryPage = () => {
     isLoggedIn && (
       <div>
         <LibraryForm />
-        {!Object.keys(items).length && <LibraryModal />}
+        {!sessionStorage.getItem('firstVisit') && <LibraryModal />}
         <LibraryList />
       </div>
     )
