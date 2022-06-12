@@ -19,6 +19,7 @@ const LibraryModal = () => {
 
   const togleModal = () => {
     setShowModal(showModal => !showModal);
+    sessionStorage.setItem('firstVisit', '1');
   };
 
   return (
