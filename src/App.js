@@ -1,6 +1,6 @@
 import { Suspense, lazy, useLayoutEffect } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import Header from './components/header/Header';
+import Header from './components/Header/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import { Spinner } from './components/Spinner/Spinner';
