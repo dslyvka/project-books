@@ -68,13 +68,13 @@ import { Link } from 'react-router-dom';
 
 function LibraryList() {
   const dispatch = useDispatch();
-  const onContacts = useSelector(getBooks);
+  const onBooks = useSelector(getBooks);
 
   useEffect(() => {
     dispatch(fetchBooks());
   }, []);
 
-  const { reading = [], going = [], already = [] } = onContacts;
+  const { reading = [], going = [], already = [] } = onBooks;
 
   return (
     <Div>

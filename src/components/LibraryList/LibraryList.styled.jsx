@@ -32,7 +32,7 @@ export const Button = styled.button`
   line-height: 1.25;
   /* identical to box height */
 :hover{
-  background-color:#242A37;
+  background-color:#6D7A8D;
   color:white;
 }
   background-color: #ff6b08;
@@ -54,10 +54,12 @@ export const DivButton = styled.div`
 margin-top:28px;
 display:flex;
 justify-content:center;
+margin-bottom: 30px;
 
 
 @media screen and (min-width: 768px) { 
   margin-top:40px;  
+  margin-bottom: 40px;
 }
 .button {
     display: block;

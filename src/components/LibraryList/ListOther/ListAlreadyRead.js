@@ -33,7 +33,7 @@ function ListAlreadyRead({ text = 'Text', array = [] }) {
               <LiTablet>Навза книги</LiTablet>
               <LiTablet>Автор</LiTablet>
               <LiTablet>Рік</LiTablet>
-              <LiTablet>Стор.</LiTablet>
+              <LiTablet>Стор</LiTablet>
               <LiTablet>Рейтинг</LiTablet>
               <LiTablet></LiTablet>
             </UlTablet>
@@ -55,17 +55,17 @@ function ListAlreadyRead({ text = 'Text', array = [] }) {
                   </Ulalready>
                   <Ulalready>
                     <LiTitle>Стор</LiTitle>
-                    <LiData width="45px"> {pages}</LiData>
+                    <LiData width="49px"> {pages}</LiData>
                   </Ulalready>
                   <Ulalready>
                     <LiTitle>Рейтинг</LiTitle>
-                    <LiData width="25px">
+                    <LiData width="20px">
                       <Rate init={rating} read={true} />
                     </LiData>
                   </Ulalready>
                   <Ulalready>
                     <li>
-                      <Button onClick={() => navigate(_id)}>Resume</Button>
+                      <Button onClick={() => navigate(_id)}>Резюме</Button>
                     </li>
                   </Ulalready>
                 </Li>

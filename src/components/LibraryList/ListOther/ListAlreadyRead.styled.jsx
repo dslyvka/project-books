@@ -1,4 +1,7 @@
 import styled from '@emotion/styled';
+
+
+
 export const Button = styled.button`
 color: #FFFFFF;
 background: #6D7A8D;
@@ -63,6 +66,11 @@ box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
 margin-bottom: 16px;
 padding: 20px 10px 20px 20px;
 word-break: break-all;
+background-color: #ffffff;
+:hover {
+    
+        transform: scale(1.1);
+      }
     @media screen and (min-width: 768px) {
 justify-content: space-between;
 flex-direction:row;
@@ -91,13 +99,13 @@ display:none;
     @media screen and (min-width: 768px) {       
     display:flex;
     :nth-of-type(1){
-     width:210px;
+     width:180px;
 }
     :nth-of-type(2){
- width:130px;
+ width:100px;
 }
     :nth-of-type(5){
- width:155px;
+ width:175px;
 }}`
 
 export const LiTabletOther = styled.li`
@@ -105,16 +113,32 @@ display:none;
     @media screen and (min-width: 768px) {
     display:flex;
     :nth-of-type(1){
-        width:180px;
+        width:170px;
 }
     :nth-of-type(2){
- width:180px;
+ width:195px;
 }}`
 
 export const LiData = styled.li`
 margin-left: ${props => props.width};
 width: 50%;
     @media screen and (min-width: 768px) {
+        width: 100%;
+   margin-left: 0px; }
+`
+
+export const LiSvgMobile = styled.li`
+margin-left: ${props => props.width};
+   @media screen and (min-width: 768px) {
+   display:none;}
+`
+
+export const LiSvgTablet = styled.li`
+display:none;
+margin-left: ${props => props.width};
+width: 50%;
+    @media screen and (min-width: 768px) {
+        display: block;
         width: 100%;
    margin-left: 0px; }
 `
@@ -148,11 +172,16 @@ margin-bottom: 0px;
     margin-bottom:0px;
 }
 }`
+export const DivTitle = styled.div`
+ display:flex;
+`
+
 
 
 export const UlOther = styled.ul`
  margin-bottom:14px;
   display:flex;
+  justify-content: space-between;
 :last-child {
     margin-bottom:8px;
 
@@ -163,7 +192,7 @@ margin-bottom: 0px;
   justify-content: space-between;
   
           :nth-of-type(2){
-    width: 200px
+    width: 230px
 }
           :nth-of-type(3){
     width: 50px
@@ -175,5 +204,29 @@ margin-bottom: 0px;
     :last-child {
     margin-bottom:0px;
 }}`
+
+export const ButtonDel = styled.button`
+   display:flex;
+   padding:0;
+   margin:0;
+   border:0;
+   border-radius:50px;
+   background-color:#ffffff;
+   overflow:hidden;
+`
+
+
+export const SvgDel = styled.svg`
+   line-height:40px;
+   text-transform:uppercase;
+   fill:#6D7A8D;
+   margin:0 5px;
+   font-size:20px;
+   :hover{
+    fill: #FF6B08 ; 
+   }
+
+
+`
 
 
