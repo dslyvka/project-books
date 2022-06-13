@@ -1,8 +1,9 @@
 import Container from '../../components/Container/Container';
 import TrainingWrapper from '../../components/Training/TraningWrapper';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { trainingOperations } from '../../redux/training';
 
 import { PageAnimation } from '../../components/PageAnimation/PageAnimation';
 
@@ -10,6 +11,7 @@ import StartTrainingBtn from '../../components/StartTrainingBtn/StartTrainingBtn
 
 const TrainingPage = () => {
   const { isLoggedIn } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,16 +19,18 @@ const TrainingPage = () => {
   useEffect(() => {
     !isLoggedIn && navigate((location.pathname = '/login'));
   });
+  useEffect(() => {
+    dispatch(trainingOperations.getTrainingPageData());
+  }, [dispatch]);
 
   return (
     isLoggedIn && (
       <PageAnimation>
         <Container>
           <TrainingWrapper />
-              <StartTrainingBtn />
+          <StartTrainingBtn />
         </Container>
       </PageAnimation>
-
     )
   );
 };

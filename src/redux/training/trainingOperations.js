@@ -13,12 +13,12 @@ const token = {
     axios.defaults.headers.common.Authorization = '';
   },
 };
-const getCurrTrainingApi = async () => (await axios.get('/training')).data;
+const getCurrTrainingApi = async () => (await axios.get('/trainings')).data;
 
 const startTrainingApi = async details =>
-  (await axios.post('/training', details)).data;
+  (await axios.post('/trainings', details)).data;
 
-const addResultApi = async body => (await axios.patch('/training', body)).data;
+const addResultApi = async body => (await axios.patch('/trainings', body)).data;
 
 const formatErrorApi = ({ name, message, response }) => ({
   name,
