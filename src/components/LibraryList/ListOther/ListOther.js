@@ -12,7 +12,13 @@ import {
   Li,
 } from './ListAlreadyRead.styled';
 
+import { useDispatch } from 'react-redux';
+import { booksOperations } from '../../../redux/books/';
+
 function ListOther({ text, array = [] }) {
+  const { deleteBook } = booksOperations;
+
+  const dispatch = useDispatch();
   return (
     <DivContainer margin="32px">
       {array.length !== 0 && (
@@ -42,6 +48,14 @@ function ListOther({ text, array = [] }) {
                 <UlOther>
                   <LiTitle>Стор.</LiTitle>
                   <LiData width="45px"> {pages}</LiData>
+                </UlOther>
+                <UlOther>
+                  <LiTitle>Видалити.</LiTitle>
+                  <LiData width="45px">
+                    <button onClick={() => dispatch(deleteBook(_id))}>
+                      Del
+                    </button>
+                  </LiData>
                 </UlOther>
               </Li>
             ))}

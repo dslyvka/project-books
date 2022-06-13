@@ -15,20 +15,18 @@ import {
   SpanRed,
 } from './LibraryForm.styled.jsx';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { booksSelectors, booksOperations } from '../../redux/books';
+import { useDispatch } from 'react-redux';
+import { booksOperations } from '../../redux/books';
 import ButtonAdd from '../ButtonAdd/ButtonAdd';
 
 const LibraryForm = () => {
-  const { getBooks } = booksSelectors;
-
-  const valueForm = useSelector(getBooks);
   const dispatch = useDispatch();
   // const submit = text => dispatch(booksOperations.addBooks(text));
 
   const onSubmit = async (values, formikProps) => {
     await dispatch(booksOperations.addBooks(values));
     formikProps.resetForm('');
+    dispatch(booksOperations.fetchBooks());
     console.log('onSubmit -> values, formikProps', values);
   };
 
@@ -44,26 +42,6 @@ const LibraryForm = () => {
         validateOnBlur
         validationSchema={validationSchema}
         onSubmit={onSubmit}
-
-        // {values => {
-        //   const { title, author, date, pages } = values;
-
-        //   fetch('https://project-books-api.herokuapp.com/api/books', {
-        //     method: 'POST',
-        //     body: JSON.stringify({
-        //       title: values.title,
-        //       author: values.author,
-        //       year: values.year,
-        //       pages: values.pages,
-        //     }),
-        //     headers: {
-        //       'Content-Type': 'application/json',
-        //     },
-        //   });
-        //   // dispatch(booksOperations.addBooks({ title, author, date, pages }));
-
-        //   console.log(values);
-        // }}
       >
         {({
           values,

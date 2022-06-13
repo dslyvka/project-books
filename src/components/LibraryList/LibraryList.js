@@ -72,7 +72,7 @@ function LibraryList() {
 
   useEffect(() => {
     dispatch(fetchBooks());
-  }, [dispatch]);
+  }, []);
 
   const { reading = [], going = [], already = [] } = onContacts;
 
@@ -83,7 +83,7 @@ function LibraryList() {
       <ListOther text="Маю намір прочитати" array={going} />
       {going.length !== 0 && (
         <DivButton>
-          <Link to="/training" end className="button">
+          <Link to="/training" className="button">
             <Button type="button" color="#FFFFFF" backgroundColor="#FF6B08">
               Моє тренування
             </Button>
