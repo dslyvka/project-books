@@ -31,7 +31,10 @@ export const Button = styled.button`
   font-size: 16px;
   line-height: 1.25;
   /* identical to box height */
-
+:hover{
+  background-color:#242A37;
+  color:white;
+}
   background-color: #ff6b08;
   color: #ffffff;
 
@@ -71,11 +74,9 @@ justify-content:center;
   font-size: 16px;
   line-height: 1.25;
   /* identical to box height */
-:hover{
-  background-color:#242A37;
-  color:white;
-}
+
 text-decoration:none;
+
   background-color: #ff6b08;
   color: #ffffff;
 
@@ -85,7 +86,7 @@ text-decoration:none;
   @media screen and (min-width: 768px) {
     width: 200px;
   }
-
+}
 }
 
 `

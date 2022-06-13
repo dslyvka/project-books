@@ -12,7 +12,13 @@ import {
   Li,
 } from './ListAlreadyRead.styled';
 
+import { useDispatch } from 'react-redux';
+import { booksOperations } from '../../../redux/books/';
+
 function ListOther({ text, array = [] }) {
+  const { deleteBook } = booksOperations;
+
+  const dispatch = useDispatch();
   return (
     <DivContainer margin="32px">
       {array.length !== 0 && (
@@ -23,7 +29,8 @@ function ListOther({ text, array = [] }) {
               <LiTabletOther>Навза книги</LiTabletOther>
               <LiTabletOther>Автор</LiTabletOther>
               <LiTabletOther>Рік</LiTabletOther>
-              <LiTabletOther>Стор.</LiTabletOther>
+              <LiTabletOther>Стор</LiTabletOther>
+              <LiTabletOther>Видалити</LiTabletOther>
             </UlTablet>
             {array.map(({ _id, title, author, year, pages, status }) => (
               <Li key={_id}>
@@ -42,6 +49,19 @@ function ListOther({ text, array = [] }) {
                 <UlOther>
                   <LiTitle>Стор.</LiTitle>
                   <LiData width="45px"> {pages}</LiData>
+                </UlOther>
+                <UlOther>
+                  <LiTitle>Видалити.</LiTitle>
+                  <LiData width="45px">
+                    <button
+                      onClick={() => {
+                        console.log(_id);
+                        dispatch(deleteBook(_id));
+                      }}
+                    >
+                      Del
+                    </button>
+                  </LiData>
                 </UlOther>
               </Li>
             ))}

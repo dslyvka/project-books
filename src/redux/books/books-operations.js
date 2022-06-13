@@ -29,7 +29,7 @@ export const fetchBooks = createAsyncThunk(
 );
 
 export const addBooks = createAsyncThunk(
-  '/books/addBooks',
+  'books/addBooks',
   async (values, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
@@ -49,6 +49,22 @@ export const addBooks = createAsyncThunk(
     }
   },
 );
+
+export const deleteBook = createAsyncThunk(
+  'books/deleteBook',
+  async (bookId, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    token.set(persistedToken);
+    try {
+      axios.delete(`/books/${bookId}`);
+      return bookId;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);
+
 export const reviewBook = createAsyncThunk(
   'books/review',
   async (values, thunkAPI) => {
