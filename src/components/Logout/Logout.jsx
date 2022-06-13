@@ -17,6 +17,7 @@ function Logout({ onClose }) {
     dispatch(actions.logout());
     //       dispatch(tokenAct(''));
     //       toast.success('You are logged out.');
+    localStorage.clear();
     navigate('/login');
   };
   return (

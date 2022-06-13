@@ -43,11 +43,29 @@ export const Button = styled.button`
   border: none;
   background: #ff6b08;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  transition-duration: 400ms;
+  :hover,
+  :focus {
+    background-color: #ff6b08;
+    color: #ffffff;
+    border: none;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    transform: scale(1.05);
+  }
   &:first-child {
     color: #242a37;
     background: #ffffff;
     border: 1px solid #242a37;
     box-shadow: none;
+    transition-duration: 400ms;
+    :hover,
+    :focus {
+      background-color: #ff6b08;
+      color: #ffffff;
+      border: none;
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+      transform: scale(1.05);
+    }
   }
   margin: 8px;
   @media (min-width: 768px) {

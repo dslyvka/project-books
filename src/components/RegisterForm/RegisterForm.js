@@ -91,8 +91,8 @@ const RegisterForm = () => {
                 />
                 {touched.name && errors.name && (
                   <span className="input__error">{errors.name}</span>
-                  )}
-                  <br />
+                )}
+                <br />
               </li>
 
               <li>

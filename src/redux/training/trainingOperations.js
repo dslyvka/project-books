@@ -38,11 +38,11 @@ const {
   addResultError,
 } = trainingActions;
 
-const getCurrTraining = () => async dispatch => {
+const getCurrTraining = (startDate, endDate, books) => async dispatch => {
   dispatch(getCurrTrainingRequest());
 
   try {
-    const data = await getCurrTrainingApi();
+    const data = await getCurrTrainingApi(startDate, endDate, books);
     dispatch(getCurrTrainingSuccess(data));
   } catch (error) {
     dispatch(getCurrTrainingError(formatErrorApi(error)));
