@@ -1,30 +1,6 @@
-import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { trainingActions, trainingSelectors } from '.';
+import { api } from '../../services';
+import { trainingActions, trainingSelectors } from './index';
 import { fetchBooks } from '../books/books-operations';
-
-axios.defaults.baseURL = 'https://project-books-api.herokuapp.com/api';
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
-const getCurrTrainingApi = async () => (await axios.get('/trainings')).data;
-
-const startTrainingApi = async details =>
-  (await axios.post('/trainings', details)).data;
-
-const addResultApi = async body => (await axios.patch('/trainings', body)).data;
-
-const formatErrorApi = ({ name, message, response }) => ({
-  name,
-  message,
-  status: response?.status,
-});
 
 const {
   getCurrTrainingRequest,
@@ -42,15 +18,15 @@ const getCurrTraining = (startDate, endDate, books) => async dispatch => {
   dispatch(getCurrTrainingRequest());
 
   try {
-    const data = await getCurrTrainingApi(startDate, endDate, books);
+    const data = await api.getCurrTraining(startDate, endDate, books);
     dispatch(getCurrTrainingSuccess(data));
   } catch (error) {
-    dispatch(getCurrTrainingError(formatErrorApi(error)));
+    dispatch(getCurrTrainingError(api.formatError(error)));
   }
 };
 
 const getTrainingPageData = () => async (dispatch, getState) => {
-  await dispatch(getCurrTrainingApi());
+  await dispatch(api.getCurrTraining());
 
   const isTrainStarted = trainingSelectors.getIsStarted(getState());
 
@@ -60,20 +36,20 @@ const getTrainingPageData = () => async (dispatch, getState) => {
 const startTraining = details => async dispatch => {
   dispatch(startTrainingRequest());
   try {
-    const data = await startTrainingApi(details);
+    const data = await api.startTraining(details);
     dispatch(startTrainingSuccess(data));
   } catch (error) {
-    dispatch(startTrainingError(formatErrorApi(error)));
+    dispatch(startTrainingError(api.formatError(error)));
   }
 };
 
 const addResult = body => async dispatch => {
   dispatch(addResultRequest());
   try {
-    const data = addResultApi(body);
+    const data = api.addResult(body);
     dispatch(addResultSuccess(data));
   } catch (error) {
-    dispatch(addResultError(formatErrorApi(error)));
+    dispatch(addResultError(api.formatError(error)));
   }
 };
 
