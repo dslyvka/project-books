@@ -16,9 +16,14 @@ const items = createReducer(
       payload,
     }),
     [reviewBook.fulfilled]: (state, { payload }) => ({ ...state, payload }),
-    [deleteBook.fulfilled]: (state, { payload }) => console.log(state),
+    [deleteBook.fulfilled]: (state, { payload }) => ({
+      ...state,
+      going: [...state['going'].filter(({ _id }) => _id !== payload)],
+    }),
   },
 );
+
+// going: [...state['going'].filter(({ _id }) => _id !== payload)],
 
 const loading = createReducer(false, {
   [addBooks.pending]: () => true,
