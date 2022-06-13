@@ -53,7 +53,12 @@ function ListOther({ text, array = [] }) {
                 <UlOther>
                   <LiTitle>Видалити.</LiTitle>
                   <LiData width="45px">
-                    <button onClick={() => dispatch(deleteBook(_id))}>
+                    <button
+                      onClick={() => {
+                        console.log(_id);
+                        dispatch(deleteBook(_id));
+                      }}
+                    >
                       Del
                     </button>
                   </LiData>
