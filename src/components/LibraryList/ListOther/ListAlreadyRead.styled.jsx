@@ -63,6 +63,7 @@ box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
 margin-bottom: 16px;
 padding: 20px 10px 20px 20px;
 word-break: break-all;
+background-color: #ffffff;
     @media screen and (min-width: 768px) {
 justify-content: space-between;
 flex-direction:row;
@@ -175,5 +176,29 @@ margin-bottom: 0px;
     :last-child {
     margin-bottom:0px;
 }}`
+
+export const ButtonDel = styled.button`
+   display:flex;
+   padding:0;
+   margin:0;
+   border:0;
+   border-radius:50px;
+   background-color:#ffffff;
+   overflow:hidden;
+`
+
+
+export const SvgDel = styled.svg`
+   line-height:40px;
+   text-transform:uppercase;
+   fill:#A6ABB9;
+   margin:0 5px;
+   font-size:20px;
+   :hover{
+    fill: #FF6B08 ; 
+   }
+
+
+`
 
 

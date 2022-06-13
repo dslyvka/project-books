@@ -10,9 +10,9 @@ font-size: 14px;
 line-height: 17px;
   flex-direction: column;
     justify-content: center;
-    margin-top: 32px;
+    padding-top: 32px;
     @media screen and (min-width: 1280px) {
-         margin-top: 40px;
+         padding-top: 40px;
     }`;
 
 export const Form = styled.form`

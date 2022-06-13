@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 
 import validationSchema from '../../validation/books';
-// import { useState } from 'react';
+
 import {
   Form,
   Input,
@@ -14,16 +14,25 @@ import {
   SpanErr,
   SpanRed,
 } from './LibraryForm.styled.jsx';
-
-import { useDispatch } from 'react-redux';
+import { getBooks } from '../../redux/books/books-selector';
+import { useDispatch, useSelector } from 'react-redux';
 import { booksOperations } from '../../redux/books';
 import ButtonAdd from '../ButtonAdd/ButtonAdd';
 
 const LibraryForm = () => {
+  const books = useSelector(getBooks);
   const dispatch = useDispatch();
   // const submit = text => dispatch(booksOperations.addBooks(text));
-
+  console.log(books);
   const onSubmit = async (values, formikProps) => {
+    if (
+      books.going.find(
+        book => book.title.toLowerCase() === values.title.toLowerCase(),
+      )
+    ) {
+      alert('Така книга вже є');
+    }
+
     await dispatch(booksOperations.addBooks(values));
     formikProps.resetForm('');
     dispatch(booksOperations.fetchBooks());

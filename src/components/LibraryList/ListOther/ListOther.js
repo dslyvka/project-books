@@ -10,7 +10,11 @@ import {
   LiTabletOther,
   LiData,
   Li,
+  ButtonDel,
+  SvgDel,
 } from './ListAlreadyRead.styled';
+import { ReactComponent as DeleteIcon } from '../../../images/icons/training/deleteIcon.svg';
+import sprite from '../../../images/sprite/sprites.svg';
 
 import { useDispatch } from 'react-redux';
 import { booksOperations } from '../../../redux/books/';
@@ -53,14 +57,16 @@ function ListOther({ text, array = [] }) {
                 <UlOther>
                   <LiTitle>Видалити.</LiTitle>
                   <LiData width="45px">
-                    <button
+                    <ButtonDel
                       onClick={() => {
                         console.log(_id);
                         dispatch(deleteBook(_id));
                       }}
                     >
-                      Del
-                    </button>
+                      <SvgDel width="20" height="20">
+                        <use href={`${sprite}#icon-delete`}></use>
+                      </SvgDel>
+                    </ButtonDel>
                   </LiData>
                 </UlOther>
               </Li>
@@ -71,8 +77,5 @@ function ListOther({ text, array = [] }) {
     </DivContainer>
   );
 }
-
-// textTwo
-// going
 
 export default ListOther;
