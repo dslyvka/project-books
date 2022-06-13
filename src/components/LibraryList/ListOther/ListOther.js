@@ -29,7 +29,8 @@ function ListOther({ text, array = [] }) {
               <LiTabletOther>Навза книги</LiTabletOther>
               <LiTabletOther>Автор</LiTabletOther>
               <LiTabletOther>Рік</LiTabletOther>
-              <LiTabletOther>Стор.</LiTabletOther>
+              <LiTabletOther>Стор</LiTabletOther>
+              <LiTabletOther>Видалити</LiTabletOther>
             </UlTablet>
             {array.map(({ _id, title, author, year, pages, status }) => (
               <Li key={_id}>
