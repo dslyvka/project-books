@@ -1,6 +1,7 @@
 import LibraryIcon from '../LibraryIcon/LibraryIcon';
 import {
   DivContainer,
+  DivTitle,
   UlTablet,
   UlOther,
   Div,
@@ -41,8 +42,10 @@ function ListOther({ text, array = [] }) {
             {array.map(({ _id, title, author, year, pages, status }) => (
               <Li key={_id}>
                 <UlOther>
-                  <li> {<LibraryIcon book={status} />} </li>
-                  <LiNameBook>{title}</LiNameBook>
+                  <DivTitle>
+                    <li> {<LibraryIcon book={status} />} </li>
+                    <LiNameBook>{title}</LiNameBook>
+                  </DivTitle>
                   <LiSvgMobile width="35px">
                     <ButtonDel
                       onClick={() => {

@@ -172,11 +172,16 @@ margin-bottom: 0px;
     margin-bottom:0px;
 }
 }`
+export const DivTitle = styled.div`
+ display:flex;
+`
+
 
 
 export const UlOther = styled.ul`
  margin-bottom:14px;
   display:flex;
+  justify-content: space-between;
 :last-child {
     margin-bottom:8px;
 
