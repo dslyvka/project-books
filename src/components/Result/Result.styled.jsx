@@ -141,10 +141,15 @@ export const ButtonStyled = styled.button`
 export const Statistic = styled.div`
   display: flex;
   margin-top: 24px;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    width: 240px;
+  }
 `;
 export const TextStatistic = styled.span`
   margin: 0 auto;
   position: relative;
+  width: fit-content;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
@@ -185,4 +190,29 @@ export const TextStatistic = styled.span`
       width: 130px;
     }
   }
+`;
+
+export const StatisticList = styled.ul`
+  margin-top: 4px;
+  margin-bottom: -4px;
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-top: 6px;
+  }
+`;
+
+export const ListItem = styled.li`
+  display: flex;
+  margin-bottom: 4px;
+  justify-content: space-between;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #242a37;
+`;
+
+export const TimeStyled = styled.span`
+  color: #898f9f;
 `;
