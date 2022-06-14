@@ -32,7 +32,7 @@ export const Button = styled.button`
   line-height: 1.25;
   /* identical to box height */
 :hover{
-  background-color:#242A37;
+  background-color:#091E3F;
   color:white;
 }
   background-color: #ff6b08;
@@ -51,13 +51,15 @@ export const Button = styled.button`
 
 
 export const DivButton = styled.div`
-margin-top:28px;
+margin-top: ${props => props.margin};
 display:flex;
 justify-content:center;
+margin-bottom: 20px;
 
 
 @media screen and (min-width: 768px) { 
   margin-top:40px;  
+  margin-bottom: 40px;
 }
 .button {
     display: block;
@@ -90,3 +92,15 @@ text-decoration:none;
 }
 
 `
+
+export const DivAllButt = styled.div`
+display:flex;
+flex-direction:column;
+  @media screen and (min-width: 500px) {
+    flex-direction:row;
+
+   align-items: flex-end;
+    justify-content: space-evenly;
+  }
+
+;`

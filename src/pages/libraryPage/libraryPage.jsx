@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { PageAnimation } from '../../components/PageAnimation/PageAnimation';
 import { getBooks } from '../../redux/books/books-selector';
+import {Div} from './LibraryPage.styled'
 
 const LibraryPage = () => {
   const { isLoggedIn } = useSelector(state => state.auth);
@@ -23,13 +24,13 @@ const LibraryPage = () => {
   return (
     isLoggedIn && (
       <PageAnimation>
-        <div>
+        <Div>
           <LibraryForm />
           {!sessionStorage.getItem('firstVisit') && books.length === 0 && (
             <LibraryModal />
           )}
           <LibraryList />
-        </div>
+        </Div>
       </PageAnimation>
     )
   );
