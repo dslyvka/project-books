@@ -73,9 +73,8 @@ export const reviewBook = createAsyncThunk(
     token.set(persistedToken);
     const review = {
       review: values.resume,
-      rating: (values.rate / 20).toString(),
+      rating: values.rate.toString(),
     };
-    console.log('review', review);
 
     try {
       const { data } = await axios.patch(`/books/${values.id}/review`, review);
