@@ -76,16 +76,83 @@ ChartJS.register(
 
 
 // startDate, endDate, totalPages, readedPages, statistics - вхідні дані
-const LineChart = ({startDate, endDate, totalPages, readedPages, statistics}) =>{
+const LineChart = ({startDate, deadlineDate, totalPages, readedPages, statistics}) =>{
   const [chartData, setChartData] = useState({
     datasets: [],
   });
   const [chartOptions, setChartOptions] = useState({});
   const {width} = useWindowDimensions();
-  const allDays = Math.ceil((new Date(endDate) - new Date(startDate)) / 86400000);
-  const daysLeft = Math.ceil((new Date(endDate) - new Date()) / 86400000);
+  const allDays = Math.ceil((new Date(deadlineDate) - new Date(startDate)) / 86400000);
+  const daysLeft = Math.ceil((new Date(deadlineDate) - new Date()) / 86400000);
   const pagesLeft = totalPages - readedPages;
-  const readPages = statistics.map(item => item.statisticResult);
+  const readPages = statistics.map(item => item.pointResult); //
+
+  // const resultReadPages = () => {
+  //   let result = [...readPages];
+  //   for (let i = 0; i < allDays - readPages.length; i++) {
+  //     result.push(0);
+  //   }
+  //   return result;
+  // };
+
+  // Отримуємо масив всіх днів тренування
+  
+
+  const getDaysArray = function() {
+    for(var arr=[],dt=new Date(startDate); dt<=new Date(deadlineDate); dt.setDate(dt.getDate()+1)){
+        arr.push(new Date(dt));
+    }
+    return arr;
+  };
+  console.log(new Date(getDaysArray()[1]) === new Date(statistics[0].date));
+  // console.log(getDaysArray()[1] === new Date(statistics[0].date));
+  // console.log(new Date(statistics[0].date));
+
+  const getResultReadPagesArray = () => {
+    let res = [];
+    getDaysArray().forEach(el => {
+      let found = false;
+      for (let i = 0; i < statistics.length; i++) {
+        if (statistics[i].hasOwnProperty('date') && statistics[i].date === el) {
+          res.push(statistics[i]);
+          found = true;
+          break;
+        }
+        if (!found) {
+          res.push({
+            date: el,
+            pointResult: 0,
+          });
+        }
+      }
+    })
+    return res;
+  }
+
+  // console.log(getResultReadPagesArray());
+  // const getResultReadPagesArray = () => { 
+  //   const arr = [];
+  //   for (let i = 1; i <= getDaysArray().length; i++) {
+  //     for (let j = 1; j <= statistics.length; j++) {
+  //       if (getDaysArray()[i - 1] === new Date(statistics[j - 1].date)) {
+  //           arr.push(statistics[j - 1].pointResult);
+  //         } else {
+  //           arr.push(0);
+  //         }
+  //       }
+  //     }
+  //     return arr;
+  //   }
+
+  console.log();
+  
+  // --- Вираховуємо масив для графіка ПЛАН
+  // --- Необхідно розрахувати масив для графіка ПЛАН, довжина масиву повинна відповідати кількості днів тренування
+  // --- Вираховуємо план прочитання на день
+  // --- Елемент масиву для прочитання на конкретну дату
+  
+
+  const readPlanAtDay = Math.ceil(pagesLeft / daysLeft);
 
   // --- Для привязки анотації (підписи назв графіків) до останнього елемента масиву графіків ПЛАН і ФАКТ
   function point(ctx, value) {
@@ -96,39 +163,60 @@ const LineChart = ({startDate, endDate, totalPages, readedPages, statistics}) =>
   const x = dataset.data.lastIndexOf(y);
   return {x, y};
   };
-
-  // --- Вираховуємо масив для графіка ПЛАН
-  // --- Необхідно розрахувати масив для графіка ПЛАН, довжина масиву повинна відповідати кількості днів тренування
-  const getAveragePagesPerDay = () => {
-    const averagePagesPerDay = Math.ceil(pagesLeft / daysLeft);
+  
+  useEffect(() => {
+    const getAveragePagesPerDay = () => {
     const pagesArray = [];
     for (let i = 1; i <= allDays; i++) {
-        pagesArray.push(averagePagesPerDay);
+        pagesArray.push(readPlanAtDay);
       };
     return pagesArray;
-  };
-
+    };
+    // console.log("масив плану", getAveragePagesPerDay());
   // Отримуємо кінцевий масив для графіка ПЛАН з врахуванням днів які вже минули
-  const resultPlanArray = () => { 
+  const resultPlanArray = (value) => { 
     const averagePages = getAveragePagesPerDay().slice();
     const planArray = [];
-      for (let i = 1; i <= allDays - daysLeft; i++) {
+    if (width < 768) {
+        for (let i = 1; i <= 3; i++) {
         planArray.push(0);
         averagePages.pop();
       }
+    } else if (width < 1280) {
+      for (let i = 1; i <= 6; i++) {
+        planArray.push(0);
+        averagePages.pop();
+      }
+    } else if (width >= 1280) {
+      for (let i = 1; i <= readPages.length; i++) {
+        planArray.push(0);
+        averagePages.pop();
+      }
+    };
+   
+    // if (value === 7) { 
+    //   for (let i = 1; i <= value + (readPages.length / 2); i++) {
+    //     planArray.push(0);
+    //     averagePages.pop();
+    //   }
+    // } else if (value === 6) { 
+    //    for (let i = 1; i <= value + readPages.length; i++) {
+    //     planArray.push(0);
+    //     averagePages.pop();
+    //   }
+    // } else if (value === 3) { 
+    //    for (let i = 1; i <= value + readPages.length * 2; i++) {
+    //     planArray.push(0);
+    //     averagePages.pop();
+    //   }
+    // }
     return [...planArray, ...averagePages];
-  };
-
-  // --- Вираховуємо план прочитання на день
-  // --- Елемент масиву для прочитання на конкретну дату
-  
-
-  const readPlanAtDay = getAveragePagesPerDay().slice(-1)[0];
-  
-  useEffect(() => {
+    };
+    // console.log("масив плану кінцевий", resultPlanArray(6));
+    
   // Для відображення різних графіків на мобілці, таблет і десктопі отримуємо масиви відповідних довжин
   const chartReadData = (value) => {
-    const averagePagesPerDay = resultPlanArray().slice(-value);
+    const averagePagesPerDay = resultPlanArray(value).slice(-value);
     if (readPages.length < value) {
       return [averagePagesPerDay, readPages];
     } else {
@@ -193,14 +281,12 @@ const LineChart = ({startDate, endDate, totalPages, readedPages, statistics}) =>
 
     setChartData({
       labels: drawDepensScreenSize("days"),
-      // --- в параметр labels передаємо масив дат для побудови графіків
       datasets: [
         {
           label: 'ПЛАН',
           tension: 0.4,
           pointRadius: 5,
           data: readPlanAtDay ? drawDepensScreenSize("plan") : [30],
-          // --- В параметр data передаємо масив з планом прочитання
           borderWidth: 2,
           borderColor: '#FF6B08',
           backgroundColor: '#FF6B08',
@@ -210,7 +296,6 @@ const LineChart = ({startDate, endDate, totalPages, readedPages, statistics}) =>
           tension: 0.4,
           pointRadius: 5,
           data: readPlanAtDay ? drawDepensScreenSize("fact") : [10],
-          // --- В параметр data передаємо масив прочитаних сторінок по днях
           borderWidth: 2,
           borderColor: '#242A37',
           backgroundColor: '#242A37',
@@ -247,7 +332,6 @@ const LineChart = ({startDate, endDate, totalPages, readedPages, statistics}) =>
           display: false,
           min: 0,
           suggestedMax: getMaxHeight(),
-          // --- В параметр suggestedMax передаємо максимальне прогнозоване значення по осі У
         },
       },
       responsive: true,
@@ -275,10 +359,8 @@ const LineChart = ({startDate, endDate, totalPages, readedPages, statistics}) =>
               shadowOffsetX: 2,
               shadowOffsetY: 3,
               xAdjust: readPlanAtDay && allDays !== 1 ? -30 : 40,
-              // --- в параметр xAdjust передаємо зміщення анотації по осі Х
               xValue: (ctx) => point(ctx, 0).x,
               yAdjust: readPlanAtDay ? -30 : 0,
-              // --- в параметр yAdjust передаємо зміщення анотації по осі У
               yValue: (ctx) => point(ctx, 0).y,
             },
             fact: {
@@ -301,10 +383,8 @@ const LineChart = ({startDate, endDate, totalPages, readedPages, statistics}) =>
               shadowOffsetX: 2,
               shadowOffsetY: 3,
               xAdjust: readPlanAtDay && readPages.length !== 1 ? -30 : 40,
-              // --- в параметр xAdjust передаємо зміщення анотації по осі Х
               xValue: (ctx) => point(ctx, 1).x,
               yAdjust: readPlanAtDay ? setBetwenAnotationPositions() : 0,
-              // --- в параметр yAdjust передаємо зміщення анотації по осі У
               yValue: (ctx) => point(ctx, 1).y,
             },
           },
@@ -329,12 +409,11 @@ const LineChart = ({startDate, endDate, totalPages, readedPages, statistics}) =>
         },
       },
     });
-  }, [width, readPages, readPlanAtDay]);
+  }, [width]);
 
   return(
     <Wrapper>
       <PagesValue><p>{readPlanAtDay ? readPlanAtDay : 0}</p></PagesValue>
-      // --- В readPlanAtDay передається план прочитання на день
       <Line options={chartOptions} data={chartData} />
     </Wrapper>
   );
