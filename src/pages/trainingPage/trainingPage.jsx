@@ -3,7 +3,7 @@ import TrainingWrapper from '../../components/Training/TraningWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import trainingActions from '../../redux/training/trainingActions1';
+import trainingActions from '../../redux/training/trainingActions';
 
 import { PageAnimation } from '../../components/PageAnimation/PageAnimation';
 

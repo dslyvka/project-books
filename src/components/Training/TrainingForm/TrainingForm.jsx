@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import moment from 'moment';
-import trainingActions from '../../../redux/training/trainingActions1';
+import trainingActions from '../../../redux/training/trainingActions';
 // import trainingSelectors from '../../../redux/training/trainingSelectors';
 import trainingFormSchema from '../../../validation/training';
 import BookSelector from '../BookSelector/BookSelector';

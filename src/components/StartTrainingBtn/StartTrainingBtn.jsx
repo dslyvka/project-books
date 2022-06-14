@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import trainingOperations from '../../redux/training/trainingActions1';
+import trainingOperations from '../../redux/training/trainingActions';
 // import trainingSelectors from '../../redux/training/trainingSelectors';
 import ButtonStyled from './StartTrainingBtn.styled';
 
@@ -20,7 +20,6 @@ const StartTrainingBtn = () => {
         endDate,
         books,
       }),
-      
     );
   };
 

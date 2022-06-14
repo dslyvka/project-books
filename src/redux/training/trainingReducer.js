@@ -1,5 +1,5 @@
 import { createReducer, combineReducers } from '@reduxjs/toolkit';
-import trainingActions from './trainingActions1';
+import trainingActions from './trainingActions';
 import { fetchBooks } from '../books/books-operations';
 
 const { getCurrTraining, startTraining, addResult, addBook, addDate } =
