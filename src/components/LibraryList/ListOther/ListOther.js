@@ -51,17 +51,6 @@ function ListOther({ text, array = [] }) {
             {array.map(({ _id, title, author, year, pages, status }) => (
               <Li key={_id}>
                 <UlOther>
-                  <div>
-                    {showModal && (
-                      <Modal onClose={togleModal}>
-                        <DeleteButton
-                          onClose={togleModal}
-                          id={_id}
-                          book={title}
-                        />
-                      </Modal>
-                    )}
-                  </div>
                   <DivTitle>
                     <li> {<LibraryIcon book={status} />} </li>
                     <LiNameBook>{title}</LiNameBook>
@@ -98,6 +87,17 @@ function ListOther({ text, array = [] }) {
                         <use href={`${sprite}#icon-delete`}></use>
                       </SvgDel>
                     </ButtonDel>
+                    <div>
+                      {showModal && (
+                        <Modal onClose={togleModal}>
+                          <DeleteButton
+                            onClose={togleModal}
+                            id={_id}
+                            book={title}
+                          />
+                        </Modal>
+                      )}
+                    </div>
                   </LiSvgTablet>
                 </UlOther>
               </Li>

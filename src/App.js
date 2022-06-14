@@ -16,6 +16,7 @@ const StatisticsPage = lazy(() =>
   import('./pages/statisticsPage/statisticsPage'),
 );
 const LibraryPage = lazy(() => import('./pages/libraryPage/libraryPage'));
+const ResumePage = lazy(() => import('./pages/ResumePage/ResumePage'));
 const QuoteSection = lazy(() =>
   import('./components/QuoteSection/QuoteSection'),
 );
@@ -50,7 +51,7 @@ function App() {
           />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
-
+          <Route path="resume" element={<ResumePage />} />
           <Route path="library" element={<LibraryPage />}>
             <Route path=":id" element={<LibraryResumeModal />} />
           </Route>
