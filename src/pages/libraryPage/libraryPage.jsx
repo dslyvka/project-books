@@ -5,12 +5,16 @@ import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { PageAnimation } from '../../components/PageAnimation/PageAnimation';
+import { getBooks } from '../../redux/books/books-selector';
 
 const LibraryPage = () => {
   const { isLoggedIn } = useSelector(state => state.auth);
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { reading, going, already } = useSelector(getBooks);
+  const books = [reading, going, already].flat();
 
   useEffect(() => {
     !isLoggedIn && navigate((location.pathname = '/login'));
@@ -21,7 +25,9 @@ const LibraryPage = () => {
       <PageAnimation>
         <div>
           <LibraryForm />
-          {!sessionStorage.getItem('firstVisit') && <LibraryModal />}
+          {!sessionStorage.getItem('firstVisit') && books.length === 0 && (
+            <LibraryModal />
+          )}
           <LibraryList />
         </div>
       </PageAnimation>

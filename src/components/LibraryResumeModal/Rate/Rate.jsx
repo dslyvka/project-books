@@ -1,13 +1,13 @@
 import { Rating } from 'react-simple-star-rating';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import sprites from '../../../images/sprite/sprites.svg';
 
 const Rate = ({ update, init, read }) => {
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState();
 
   const handleRating = rate => {
-    setRating(rate);
-    update(rate);
+    setRating(rate / 20);
+    update(rate / 20);
   };
 
   return (

@@ -12,15 +12,10 @@ import { useWindowWidth } from '@react-hook/window-size';
 const LoginPage = lazy(() => import('./pages/loginPage/loginPage'));
 const RegisterPage = lazy(() => import('./pages/registerPage/registerPage'));
 const TrainingPage = lazy(() => import('./pages/trainingPage/trainingPage'));
-const StatisticsPage = lazy(() =>
-  import('./pages/statisticsPage/statisticsPage'),
-);
+
 const LibraryPage = lazy(() => import('./pages/libraryPage/libraryPage'));
 const QuoteSection = lazy(() =>
   import('./components/QuoteSection/QuoteSection'),
-);
-const LibraryResumeModal = lazy(() =>
-  import('./components/LibraryResumeModal/Resume/Resume'),
 );
 
 function App() {
@@ -50,13 +45,8 @@ function App() {
           />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
-
-          <Route path="library" element={<LibraryPage />}>
-            <Route path=":id" element={<LibraryResumeModal />} />
-          </Route>
-
+          <Route path="library" element={<LibraryPage />} />
           <Route path="training" element={<TrainingPage />} />
-          <Route path="statistics" element={<StatisticsPage />} />
           <Route path="*" element={<Navigate to="login" replace />} />
           <Route />
         </Route>
