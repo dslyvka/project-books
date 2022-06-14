@@ -3,7 +3,7 @@ import TrainingWrapper from '../../components/Training/TraningWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { trainingOperations } from '../../redux/training';
+import trainingActions from '../../redux/training/trainingActions1';
 
 import { PageAnimation } from '../../components/PageAnimation/PageAnimation';
 
@@ -20,7 +20,7 @@ const TrainingPage = () => {
     !isLoggedIn && navigate((location.pathname = '/login'));
   });
   useEffect(() => {
-    dispatch(trainingOperations.getTrainingPageData());
+    dispatch(trainingActions.getCurrTraining());
   }, [dispatch]);
 
   return (

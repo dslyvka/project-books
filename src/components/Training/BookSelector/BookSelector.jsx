@@ -1,7 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch, useStore } from 'react-redux';
 import Select from 'react-select';
-import { trainingSelectors } from '../../../redux/training';
+import { useEffect, useState } from 'react';
+import { fetchBooks } from '../../../redux/books/books-operations';
 
 const BookSelector = ({ onChange }) => {
   // const booksToRead = useSelector(trainingSelectors.getPlanNotSelectBooks);
@@ -11,6 +12,14 @@ const BookSelector = ({ onChange }) => {
   //   label: book.title,
   //   value: book.title,
   // }));
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchBooks());
+  }, [dispatch]);
+
+  const books = useSelector(state => state.training.isGoing);
 
   const customStyles = {
     input: (provided, state) => ({
@@ -33,11 +42,19 @@ const BookSelector = ({ onChange }) => {
     <Select
       defaultValue=""
       placeholder="Оберіть книжку"
-      // options={bookSelect}
-      onChange={value => onChange(value)}
+      options={books}
+      noOptionsMessage={() =>
+        'У вас відсутні книги, які ви плануєте прочитати.'
+      }
+      onChange={book => {
+        console.log(book);
+        onChange(book.value);
+      }}
       styles={customStyles}
     />
   );
 };
+
+// [{ label: 'Taras', value: 'Shevchenko' }]
 
 export default BookSelector;

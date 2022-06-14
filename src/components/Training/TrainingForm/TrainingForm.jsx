@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import moment from 'moment';
-import trainingActions from '../../../redux/training/trainingActions';
-import trainingSelectors from '../../../redux/training/trainingSelectors';
+import trainingActions from '../../../redux/training/trainingActions1';
+// import trainingSelectors from '../../../redux/training/trainingSelectors';
 import trainingFormSchema from '../../../validation/training';
 import BookSelector from '../BookSelector/BookSelector';
 import DatePickerInput from '../DatePicker/DatePicker';
@@ -19,9 +19,12 @@ import {
 } from './TrainingForm.styled';
 
 const TrainingForm = () => {
-  const start = useSelector(trainingSelectors.selectStartDate);
-  const end = useSelector(trainingSelectors.selectEndDate);
-  const selectedBooks = useSelector(trainingSelectors.getSelectBooks);
+  const start = useSelector(state => state.training.startDate);
+  const end = useSelector(state => state.training.endDate);
+  // const selectedBooks = useSelector(trainingSelectors.getSelectBooks);
+  const defaultValue = '';
+
+  const { addBook, addDate } = trainingActions;
 
   const dispatch = useDispatch();
 
@@ -29,27 +32,29 @@ const TrainingForm = () => {
     initialValues: {
       start: start ? start : '',
       end: end ? end : '',
-      book: '',
+      book: {},
     },
     validationSchema: trainingFormSchema,
     onSubmit: values => {
-      if (selectedBooks.some(book => book._id === values.book._id)) {
-        return;
-      }
-      dispatch(trainingActions.addSelectedId(values.book._id));
+      // if (selectedBooks.some(book => book._id === values.book._id)) {
+      //   return;
+      // }
+      // dispatch(trainingActions.addSelectedId(values.book._id));
+      dispatch(addBook(values.book));
+      console.log(values);
     },
   });
 
   const handleStartDate = date => {
     const start = moment(date).format('YYYY-MM-DD');
     formik.setFieldValue('start', start);
-    dispatch(trainingActions.trainingStartDate(start));
+    // dispatch(trainingActions.trainingStartDate(start));
   };
 
   const handleEndDate = date => {
     const end = moment(date).format('YYYY-MM-DD');
     formik.setFieldValue('end', end);
-    dispatch(trainingActions.trainingEndDate(end));
+    // dispatch(trainingActions.trainingEndDate(end));
   };
 
   const handleBook = value => {
@@ -79,16 +84,40 @@ const TrainingForm = () => {
           {/* {formik.touched.end && formik.errors.end ? (
             <ErrorMessage>{formik.errors.end}</ErrorMessage>
           ) : null} */}
+          <FormAddButton
+            type="button"
+            onClick={() => {
+              dispatch(
+                addDate({
+                  startDate: formik.values.start,
+                  endDate: formik.values.end,
+                }),
+              );
+            }}
+          >
+            Додати
+          </FormAddButton>
         </CalendarsContainer>
         <SelectAndButtonContainer>
           <SelectContainer>
             <BookSelector
               value={formik.values.book}
               onChange={handleBook}
-              selectedBooks={selectedBooks}
+              // selectedBooks={selectedBooks}
             />
           </SelectContainer>
-          <FormAddButton type="submit">Додати</FormAddButton>
+          <FormAddButton
+            type="button"
+            onClick={() => {
+              dispatch(
+                addBook({
+                  book: formik.values.book,
+                }),
+              );
+            }}
+          >
+            Додати
+          </FormAddButton>
         </SelectAndButtonContainer>
       </FormContainer>
       {/* <TrainingList /> */}

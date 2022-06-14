@@ -8,7 +8,11 @@ import {
   TrainingListHeaderBookPages,
   TrainingListStyled,
 } from './TrainingList.styled';
+
+import { useSelector } from 'react-redux';
+
 const TrainingList = () => {
+  const books = useSelector(state => state.training.books);
   return (
     <TrainingListContainer>
       <TrainingListHeader>
@@ -18,7 +22,16 @@ const TrainingList = () => {
         <TrainingListHeaderBookPages>Стор.</TrainingListHeaderBookPages>
       </TrainingListHeader>
       <TrainingListStyled>
-        <TrainingListItem />
+        {/* <TrainingListItem /> */}
+        {books.map(book => (
+          <TrainingListItem
+            author={book.author}
+            title={book.title}
+            year={book.year}
+            pages={book.pages}
+            key={book.id}
+          />
+        ))}
       </TrainingListStyled>
     </TrainingListContainer>
   );

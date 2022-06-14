@@ -10,14 +10,18 @@ import {
   DeleteButton,
 } from './TrainingListItem.styled';
 
-const TrainingListItem = () => {
+const TrainingListItem = ({ title, author, year, pages }) => {
   return (
     <TrainingListItemStyled>
       <BookIconStyled />
-      <TrainingListItemTitle>Заповіт</TrainingListItemTitle>
+      {/* <TrainingListItemTitle>Заповіт</TrainingListItemTitle>
       <TrainingListItemAuthor>Тарас Шевченко</TrainingListItemAuthor>
       <TrainingListItemYear>1859</TrainingListItemYear>
-      <TrainingListItemPages>320</TrainingListItemPages>
+      <TrainingListItemPages>320</TrainingListItemPages> */}
+      <TrainingListItemTitle>{title}</TrainingListItemTitle>
+      <TrainingListItemAuthor>{author}</TrainingListItemAuthor>
+      <TrainingListItemYear>{year}</TrainingListItemYear>
+      <TrainingListItemPages>{pages}</TrainingListItemPages>
 
       <DeleteButton type="button">
         <DeleteIcon />
