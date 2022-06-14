@@ -1,38 +1,81 @@
-import { createAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 
-const getCurrTrainingRequest = createAction('training/getCurrTraining/request');
-const getCurrTrainingSuccess = createAction('training/getCurrTraining/success');
-const getCurrTrainingError = createAction('training/getCurrTraining/error');
+axios.defaults.baseURL = 'https://project-books-api.herokuapp.com/api';
 
-const startTrainingRequest = createAction('training/startTraining/request');
-const startTrainingSuccess = createAction('training/startTraining/success');
-const startTrainingError = createAction('training/startTraining/error');
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = '';
+  },
+};
 
-const addResultRequest = createAction('training/addResult/request');
-const addResultSuccess = createAction('training/addResult/success');
-const addResultError = createAction('training/addResult/error');
+const getCurrTraining = createAsyncThunk(
+  'training/getCurrTraining',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/trainings');
+      // console.log(data);
+      return data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error);
+    }
+  },
+);
 
-const addSelectedId = createAction('training/addSelectedId');
+const startTraining = createAsyncThunk(
+  'training/startTraining',
+  async (details, thunkAPI) => {
+    try {
+      console.log(details);
+      const { startDate, endDate } = details;
+      const books  = details.books;
+      const { data } = await axios.post('/trainings', {
+        startDate,
+        endDate,
+        books,
+      });
+      // console.log(data);
+      return data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error);
+    }
+  },
+);
 
-const delSelectedId = createAction('training/delSelectedId');
+const addResult = createAsyncThunk(
+  'training/addResult',
+  async (body, thunkAPI) => {
+    try {
+      const { data } = await axios.patch('/trainings', body);
+      // console.log(data);
+      return data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error);
+    }
+  },
+);
 
-const trainingStartDate = createAction('training/trainingStartDate');
-const trainingEndDate = createAction('training/trainingEndDate');
+const addBook = createAction('training/addBook', ({ book }) => {
+  return {
+    payload: { book },
+  };
+});
+
+const addDate = createAction('training/addDate', ({ startDate, endDate }) => {
+  return {
+    payload: { startDate, endDate },
+  };
+});
 
 const trainingActions = {
-  getCurrTrainingRequest,
-  getCurrTrainingSuccess,
-  getCurrTrainingError,
-  startTrainingRequest,
-  startTrainingSuccess,
-  startTrainingError,
-  addResultRequest,
-  addResultSuccess,
-  addResultError,
-  addSelectedId,
-  delSelectedId,
-  trainingStartDate,
-  trainingEndDate,
+  getCurrTraining,
+  addResult,
+  startTraining,
+  addBook,
+  addDate,
 };
 
 export default trainingActions;

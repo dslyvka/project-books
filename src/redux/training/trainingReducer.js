@@ -1,148 +1,104 @@
 import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import trainingActions from './trainingActions';
+import { fetchBooks } from '../books/books-operations';
 
-const {
-  getCurrTrainingRequest,
-  getCurrTrainingSuccess,
-  getCurrTrainingError,
-  startTrainingRequest,
-  startTrainingSuccess,
-  startTrainingError,
-  addResultRequest,
-  addResultSuccess,
-  addResultError,
-  addSelectedId,
-  delSelectedId,
-  trainingStartDate,
-  trainingEndDate,
-} = trainingActions;
+const { getCurrTraining, startTraining, addResult, addBook, addDate } =
+  trainingActions;
 
-const setIsStartedOnSuccess = (_, { payload: { data } }) => !!data?.inProgress;
-
-const isStarted = createReducer(false, {
-  [getCurrTrainingRequest]: () => false,
-  [getCurrTrainingSuccess]: setIsStartedOnSuccess,
-
-  [startTrainingSuccess]: setIsStartedOnSuccess,
-
-  [addResultRequest]: setIsStartedOnSuccess,
-});
-
-const setBooksOnSuccess = (_, { payload: { data } }) => {
-  const books = data?.books;
-  return Array.isArray(books) ? books : [];
+const initialState = {
+  isStarted: false,
+  startDate: '',
+  endDate: '',
+  books: [],
+  booksRequest: [],
+  totalPages: null,
+  readedPages: null,
+  statistics: [],
+  isGoing: [],
 };
 
-const books = createReducer([], {
-  [getCurrTrainingRequest]: () => [],
-  [getCurrTrainingSuccess]: setBooksOnSuccess,
-
-  [startTrainingSuccess]: setBooksOnSuccess,
-
-  [addResultSuccess]: setBooksOnSuccess,
+const trainingReducer = createReducer(initialState, {
+  [fetchBooks.fulfilled]: (state, { payload }) => ({
+    ...state,
+    isGoing: [
+      ...payload.books.going.map(book => ({
+        label: book.title,
+        value: {
+          id: book._id,
+          pages: book.pages,
+          title: book.title,
+          author: book.author,
+          year: book.year,
+        },
+      })),
+    ],
+  }),
+  [addBook]: (state, { payload }) => ({
+    ...state,
+    booksRequest: state.books.some(book => book.id === payload.book.id)
+      ? [...state.books]
+      : [...state.books, { id: payload.book.id, pages: payload.book.pages }],
+    books: state.books.some(book => book.id === payload.book.id)
+      ? [...state.books]
+      : [...state.books, payload.book],
+    isGoing: [
+      ...state.isGoing.filter(book => book.value.id !== payload.book.id),
+    ],
+  }),
+  [addDate]: (state, { payload }) => ({
+    ...state,
+    startDate: payload.startDate,
+    endDate: payload.endDate,
+  }),
+  // [startTraining.fulfilled]: (state, { payload }) => ({
+  //   ...state,
+  //   isStarted: payload?.training.status === 'active' ? true : false,
+  //   startDate: payload.training.startDate,
+  //   endDate: payload.training.endDate,
+  //   books: [...payload.training.books],
+  //   totalPages: payload.training.totalPages,
+  //   readedlPages: payload.training.readedPages,
+  //   statistics: [...payload.training.statistics],
+  // }),
+  [startTraining.fulfilled]: (state, { payload }) =>
+    payload?.training?.status === 'active'
+      ? {
+          ...state,
+          isStarted: true,
+          startDate: payload.training.startDate,
+          endDate: payload.training.endDate,
+          books: [...payload.training.books],
+          totalPages: payload.training.totalPages,
+          readedPages: payload.training.readedPages,
+          statistics: [...payload.training.statistics],
+        }
+      : { ...state },
+  [getCurrTraining.fulfilled]: (state, { payload }) =>
+    payload?.training?.status === 'active'
+      ? {
+          ...state,
+          isStarted: true,
+          startDate: payload.training.startDate,
+          endDate: payload.training.endDate,
+          books: [...payload.training.books],
+          totalPages: payload.training.totalPages,
+          readedPages: payload.training.readedPages,
+          statistics: [...payload.training.statistics],
+        }
+      : { ...state },
+  [addResult.fulfilled]: (state, { payload }) =>
+    payload?.training?.status === 'active'
+      ? {
+          ...state,
+          isStarted: true,
+          startDate: payload.training.startDate,
+          endDate: payload.training.endDate,
+          books: [...payload.training.books],
+          totalPages: payload.training.totalPages,
+          readedPages: payload.training.readedPages,
+          statistics: [...payload.training.statistics],
+        }
+      : { ...state },
 });
 
-const setStartDateOnSuccess = (_, { payload: { data } }) =>
-  data?.startDate || '';
-
-const startDate = createReducer('', {
-  [getCurrTrainingRequest]: () => '',
-  [getCurrTrainingSuccess]: setStartDateOnSuccess,
-
-  [startTrainingSuccess]: setStartDateOnSuccess,
-
-  [addResultSuccess]: setStartDateOnSuccess,
-});
-
-const setEndDateOnSuccess = (_, { payload: { data } }) =>
-  data?.finishDate || '';
-
-const endDate = createReducer('', {
-  [getCurrTrainingRequest]: () => '',
-  [getCurrTrainingSuccess]: setEndDateOnSuccess,
-
-  [startTrainingSuccess]: setEndDateOnSuccess,
-
-  [addResultSuccess]: setEndDateOnSuccess,
-});
-
-const setResultsOnSuccess = (_, { payload: { data } }) => {
-  const results = data?.result;
-
-  return Array.isArray(results) ? results : [];
-};
-
-const results = createReducer([], {
-  [getCurrTrainingRequest]: () => [],
-  [getCurrTrainingSuccess]: setResultsOnSuccess,
-
-  [startTrainingSuccess]: setResultsOnSuccess,
-
-  [addResultSuccess]: setResultsOnSuccess,
-});
-
-const selectedIds = createReducer([], {
-  [getCurrTrainingRequest]: () => [],
-
-  [startTrainingSuccess]: () => [],
-
-  [addSelectedId]: (state, { payload }) => [...state, payload],
-
-  [delSelectedId]: (state, { payload }) => state.filter(id => id !== payload),
-});
-
-const selectStartDate = createReducer('', {
-  [getCurrTrainingRequest]: () => '',
-
-  [startTrainingSuccess]: () => '',
-
-  [trainingStartDate]: (_, { payload }) => payload,
-});
-
-const selectEndDate = createReducer('', {
-  [getCurrTrainingRequest]: () => '',
-
-  [startTrainingSuccess]: () => '',
-
-  [trainingEndDate]: (_, { payload }) => payload,
-});
-
-const loading = createReducer(false, {
-  [getCurrTrainingRequest]: () => true,
-  [getCurrTrainingSuccess]: () => false,
-  [getCurrTrainingError]: () => false,
-
-  [startTrainingRequest]: () => true,
-  [startTrainingSuccess]: () => false,
-  [startTrainingError]: () => false,
-
-  [addResultRequest]: () => true,
-  [addResultSuccess]: () => false,
-  [addResultError]: () => false,
-});
-
-const setError = (_, { payload }) => payload;
-
-const error = createReducer(null, {
-  [getCurrTrainingRequest]: () => null,
-  [getCurrTrainingError]: setError,
-
-  [startTrainingRequest]: () => null,
-  [startTrainingError]: setError,
-
-  [addResultRequest]: () => null,
-  [addResultError]: setError,
-});
-
-export default combineReducers({
-  isStarted,
-  books,
-  startDate,
-  endDate,
-  results,
-  selectedIds,
-  selectStartDate,
-  selectEndDate,
-  loading,
-  error,
-});
+export default trainingReducer;

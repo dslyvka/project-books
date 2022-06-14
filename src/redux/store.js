@@ -20,7 +20,7 @@ import logger from 'redux-logger';
 
 import authReducer from './auth/auth-reducer';
 import booksReducer from './books/books-reducer';
-import { trainingReducer } from './training';
+import trainingReducer from './training/trainingReducer';
 
 const middleware =
   process.env.NODE_ENV === 'development'

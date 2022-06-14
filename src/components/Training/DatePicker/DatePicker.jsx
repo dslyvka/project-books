@@ -13,7 +13,10 @@ const DatePickerInput = ({ pickedDate, placeholderText, onChange }) => {
   return (
     <DatePickerWrapper>
       <DatePickerStyled
-        onChange={date => onChange(date)}
+        onChange={date => {
+          console.log(date);
+          onChange(date);
+        }}
         selected={pickedDate}
         dateFormat="yyyy-MM-dd"
         placeholderText={placeholderText}
