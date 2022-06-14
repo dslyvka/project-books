@@ -1,12 +1,30 @@
 import styled from '@emotion/styled';
 
 
+export const divOver = styled.div`
+    position: fixed;
+    overflow: auto;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+`
+
 
 export const Button = styled.button`
+font-family: 'Montserrat';
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
 color: #FFFFFF;
 background: #6D7A8D;
 box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-
+border: 0px;
+   :hover{
+    cursor: pointer;
+    background: #FF6B08 ; 
+   }
 
 width: 130px;
 height: 40px;`
@@ -19,13 +37,7 @@ align-content:center;
 flex-wrap: wrap;
 flex-direction: column;`
 
-export const UlTablet = styled.ul`
-display:flex;
-color: #898F9F;
-juctify-content:end;
-padding-right:20px;
-justify-content: space-between;
-margin-bottom:8px;`
+
 
 export const DivContainer = styled.div`
 margin-top:${props => props.margin};
@@ -42,6 +54,21 @@ line-height: 23px;
 }`
 
 
+export const DivTitle = styled.div`
+ display:flex;
+`
+
+export const UlTablet = styled.ul`
+display:flex;
+color: #898F9F;
+juctify-content:end;
+padding-right:20px;
+justify-content: space-between;
+margin-bottom:8px;`
+
+
+
+
 
 
 export const UL = styled.ul`
@@ -56,6 +83,66 @@ max-width:1248px;
 }`
 
 
+export const Ulalready = styled.ul`
+:last-child{
+display: flex;
+justify-content:center;
+};
+ margin-bottom:14px;
+  display:flex;
+:last-child {
+    margin-bottom:8px;
+}
+    @media screen and (min-width: 768px) {
+margin-bottom: 0px; 
+  display:flex;
+  justify-content: space-between;
+          :nth-of-type(2){
+    width: 120px
+}
+          :nth-of-type(3){
+    width: 50px
+}
+          :nth-of-type(4){
+    width: 40px
+} 
+    }
+    :last-child {
+    margin-bottom:0px;
+}
+}`
+
+
+export const UlOther = styled.ul`
+ margin-bottom:14px;
+  display:flex;
+  justify-content: space-between;
+:last-child {
+    margin-bottom:8px;
+
+}
+    @media screen and (min-width: 768px) {
+margin-bottom: 0px; 
+  display:flex;
+  justify-content: space-between;
+  
+          :nth-of-type(2){
+    width: 230px
+}
+          :nth-of-type(3){
+    width: 50px
+}
+          :nth-of-type(4){
+    width: 40px
+}
+  }
+    :last-child {
+    margin-bottom:0px;
+}}`
+
+
+
+
 export const Li = styled.li`
 box-sizing:border-box;
 display: flex;
@@ -67,16 +154,15 @@ margin-bottom: 16px;
 padding: 20px 10px 20px 20px;
 word-break: break-all;
 background-color: #ffffff;
-:hover {
-    
-        transform: scale(1.1);
-      }
+
     @media screen and (min-width: 768px) {
 justify-content: space-between;
 flex-direction:row;
 min-height:62px;
 align-items:center;
 padding: 14px 20px 14px 20px;}`
+
+
 
 
 export const LiNameBook = styled.li`
@@ -144,66 +230,6 @@ width: 50%;
 `
 
 
-export const Ulalready = styled.ul`
-:last-child{
-display: flex;
-justify-content:center;
-};
- margin-bottom:14px;
-  display:flex;
-:last-child {
-    margin-bottom:8px;
-}
-    @media screen and (min-width: 768px) {
-margin-bottom: 0px; 
-  display:flex;
-  justify-content: space-between;
-          :nth-of-type(2){
-    width: 120px
-}
-          :nth-of-type(3){
-    width: 50px
-}
-          :nth-of-type(4){
-    width: 40px
-} 
-    }
-    :last-child {
-    margin-bottom:0px;
-}
-}`
-export const DivTitle = styled.div`
- display:flex;
-`
-
-
-
-export const UlOther = styled.ul`
- margin-bottom:14px;
-  display:flex;
-  justify-content: space-between;
-:last-child {
-    margin-bottom:8px;
-
-}
-    @media screen and (min-width: 768px) {
-margin-bottom: 0px; 
-  display:flex;
-  justify-content: space-between;
-  
-          :nth-of-type(2){
-    width: 230px
-}
-          :nth-of-type(3){
-    width: 50px
-}
-          :nth-of-type(4){
-    width: 40px
-}
-  }
-    :last-child {
-    margin-bottom:0px;
-}}`
 
 export const ButtonDel = styled.button`
    display:flex;
@@ -223,10 +249,16 @@ export const SvgDel = styled.svg`
    margin:0 5px;
    font-size:20px;
    :hover{
+    cursor: pointer;
     fill: #FF6B08 ; 
    }
-
-
 `
 
 
+
+export const ContainerNotCenter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;

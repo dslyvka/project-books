@@ -1,4 +1,6 @@
 import LibraryIcon from '../LibraryIcon/LibraryIcon';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   DivContainer,
   DivTitle,
@@ -16,14 +18,21 @@ import {
   ButtonDel,
   SvgDel,
 } from './ListAlreadyRead.styled';
-import { ReactComponent as DeleteIcon } from '../../../images/icons/training/deleteIcon.svg';
+import Modal from '../../Modal/Modal';
 import sprite from '../../../images/sprite/sprites.svg';
+import DeleteButton from '../DeleteButton/DeleteButton';
 
 import { useDispatch } from 'react-redux';
 import { booksOperations } from '../../../redux/books/';
 
 function ListOther({ text, array = [] }) {
+  const [showModal, setShowModal] = useState(false);
+  const { isLoggedIn } = useSelector(state => state.auth);
   const { deleteBook } = booksOperations;
+
+  const togleModal = () => {
+    setShowModal(showModal => !showModal);
+  };
 
   const dispatch = useDispatch();
   return (
@@ -42,6 +51,17 @@ function ListOther({ text, array = [] }) {
             {array.map(({ _id, title, author, year, pages, status }) => (
               <Li key={_id}>
                 <UlOther>
+                  <div>
+                    {showModal && (
+                      <Modal onClose={togleModal}>
+                        <DeleteButton
+                          onClose={togleModal}
+                          id={_id}
+                          book={title}
+                        />
+                      </Modal>
+                    )}
+                  </div>
                   <DivTitle>
                     <li> {<LibraryIcon book={status} />} </li>
                     <LiNameBook>{title}</LiNameBook>
@@ -73,12 +93,7 @@ function ListOther({ text, array = [] }) {
                 </UlOther>
                 <UlOther>
                   <LiSvgTablet width="5px">
-                    <ButtonDel
-                      onClick={() => {
-                        console.log(_id);
-                        dispatch(deleteBook(_id));
-                      }}
-                    >
+                    <ButtonDel onClick={() => togleModal()}>
                       <SvgDel width="20" height="20">
                         <use href={`${sprite}#icon-delete`}></use>
                       </SvgDel>

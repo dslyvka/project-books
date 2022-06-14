@@ -32,7 +32,7 @@ export const Button = styled.button`
   line-height: 1.25;
   /* identical to box height */
 :hover{
-  background-color:#6D7A8D;
+  background-color:#091E3F;
   color:white;
 }
   background-color: #ff6b08;
