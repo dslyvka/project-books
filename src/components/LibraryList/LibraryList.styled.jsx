@@ -51,10 +51,10 @@ export const Button = styled.button`
 
 
 export const DivButton = styled.div`
-margin-top:28px;
+margin-top: ${props => props.margin};
 display:flex;
 justify-content:center;
-margin-bottom: 30px;
+margin-bottom: 20px;
 
 
 @media screen and (min-width: 768px) { 
@@ -92,3 +92,15 @@ text-decoration:none;
 }
 
 `
+
+export const DivAllButt = styled.div`
+display:flex;
+flex-direction:column;
+  @media screen and (min-width: 500px) {
+    flex-direction:row;
+
+   align-items: flex-end;
+    justify-content: space-evenly;
+  }
+
+;`

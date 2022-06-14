@@ -4,7 +4,7 @@ import { fetchBooks } from '../../redux/books/books-operations';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import { ButtonStyled } from '../RegularButton/Button.styled';
-import { Div, DivButton, Button } from './LibraryList.styled';
+import { Div, DivButton, Button, DivAllButt } from './LibraryList.styled';
 import { getBooks } from '../../redux/books/books-selector';
 import { Link } from 'react-router-dom';
 
@@ -72,7 +72,7 @@ function LibraryList() {
 
   useEffect(() => {
     dispatch(fetchBooks());
-  }, []);
+  }, [dispatch]);
 
   const { reading = [], going = [], already = [] } = onBooks;
 
@@ -81,15 +81,26 @@ function LibraryList() {
       <ListAlreadyRead text="Прочитано" array={already} />
       <ListOther text="Читаю" array={reading} />
       <ListOther text="Маю намір прочитати" array={going} />
-      {going.length !== 0 && (
-        <DivButton>
-          <Link to="/training" className="button">
-            <Button type="button" color="#FFFFFF" backgroundColor="#FF6B08">
-              Моє тренування
-            </Button>
-          </Link>
-        </DivButton>
-      )}
+      <DivAllButt>
+        {going.length !== 0 && (
+          <DivButton margin="28px">
+            <Link to="/training" className="button">
+              <Button type="button" color="#FFFFFF" backgroundColor="#FF6B08">
+                Моє тренування
+              </Button>
+            </Link>
+          </DivButton>
+        )}
+        {already.length !== 0 && (
+          <DivButton margin="0px">
+            <Link to="/resume" className="button">
+              <Button type="button" color="#FFFFFF" backgroundColor="#FF6B08">
+                Мої Резюме
+              </Button>
+            </Link>
+          </DivButton>
+        )}
+      </DivAllButt>
     </Div>
   );
 }
