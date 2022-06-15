@@ -1,5 +1,5 @@
 import { Rating } from 'react-simple-star-rating';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import sprites from '../../../images/sprite/sprites.svg';
 
 const Rate = ({ update, init, read }) => {

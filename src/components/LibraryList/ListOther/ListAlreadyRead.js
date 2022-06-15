@@ -13,18 +13,24 @@ import {
   Button,
 } from './ListAlreadyRead.styled';
 // import ResumeButton from '../ResumeButton/ResumeButton';
-import { Outlet, useNavigate } from 'react-router-dom';
-// import LibraryResumeModal from '../../LibraryResumeModal/Resume/Resume';
-// import { useToggle } from '../../../hooks/useToggle';
+import { Outlet } from 'react-router-dom';
+import LibraryResumeModal from '../../LibraryResumeModal/LibraryResumeModal/LibraryResumeModal';
+import { useToggle } from '../../../hooks/useToggle';
 import Rate from '../../LibraryResumeModal/Rate/Rate';
+import { useState } from 'react';
 
-function ListAlreadyRead({ text = 'Text', array = [] }) {
-  const navigate = useNavigate();
-  // const { isOpen, open, close } = useToggle();
+function ListAlreadyRead({ text = 'Text', array = [], children }) {
+  const [id, setId] = useState();
+
+  const { isOpen, open, close } = useToggle();
+
+  const handleOpen = e => {
+    setId(e.target.id);
+    open();
+  };
 
   return (
     <DivContainer margin="80px">
-      {/* {isOpen && <LibraryResumeModal closer={{ close }} />} */}
       {array.length !== 0 && (
         <Div>
           <h2>{text}</h2>
@@ -41,6 +47,7 @@ function ListAlreadyRead({ text = 'Text', array = [] }) {
             {array.map(
               ({ _id, title, author, year, pages, rating = 0, status }) => (
                 <Li key={_id}>
+                  {isOpen && <LibraryResumeModal closer={close} id={id} />}
                   <Ulalready>
                     <li>{<LibraryIcon book={status} />}</li>
                     <LiNameBook>{title}</LiNameBook>
@@ -65,7 +72,9 @@ function ListAlreadyRead({ text = 'Text', array = [] }) {
                   </Ulalready>
                   <Ulalready>
                     <li>
-                      <Button onClick={() => navigate(_id)}>Резюме</Button>
+                      <Button onClick={e => handleOpen(e)} id={_id}>
+                        Резюме
+                      </Button>
                     </li>
                   </Ulalready>
                 </Li>
