@@ -9,10 +9,14 @@ import {
   ChevronDownIcon,
 } from './DatePicker.styled';
 
+import { useSelector } from 'react-redux';
+
 const DatePickerInput = ({ pickedDate, placeholderText, onChange }) => {
+  const isStarted = useSelector(state => state.training.isStarted);
   return (
     <DatePickerWrapper>
       <DatePickerStyled
+        disabled={isStarted ? true : false}
         onChange={date => {
           console.log(date);
           onChange(date);
