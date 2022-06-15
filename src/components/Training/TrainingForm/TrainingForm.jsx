@@ -21,6 +21,7 @@ import {
 const TrainingForm = () => {
   const start = useSelector(state => state.training.startDate);
   const end = useSelector(state => state.training.endDate);
+  const isStarted = useSelector(state => state.training.isStarted);
   // const selectedBooks = useSelector(trainingSelectors.getSelectBooks);
   const defaultValue = '';
 
@@ -47,12 +48,24 @@ const TrainingForm = () => {
 
   const handleStartDate = date => {
     const start = moment(date).format('YYYY-MM-DD');
+    dispatch(
+      addDate({
+        startDate: start,
+        endDate: end,
+      }),
+    );
     formik.setFieldValue('start', start);
     // dispatch(trainingActions.trainingStartDate(start));
   };
 
   const handleEndDate = date => {
     const end = moment(date).format('YYYY-MM-DD');
+    dispatch(
+      addDate({
+        startDate: formik.values.start,
+        endDate: end,
+      }),
+    );
     formik.setFieldValue('end', end);
     // dispatch(trainingActions.trainingEndDate(end));
   };
@@ -65,60 +78,72 @@ const TrainingForm = () => {
     <>
       <FormContainer onSubmit={formik.handleSubmit} autoComplete="off">
         <FormTitle>Моє тренування </FormTitle>
-        <CalendarsContainer>
-          <DatePickerInput
-            value={formik.values.start}
-            placeholderText="Початок"
-            onChange={handleStartDate}
-            pickedDate={start ? new Date(start) : ''}
-          />
-          {/* {formik.touched.start && formik.errors.start ? (
+        {!isStarted ? (
+          <CalendarsContainer>
+            <DatePickerInput
+              value={formik.values.start}
+              placeholderText="Початок"
+              onChange={handleStartDate}
+              pickedDate={start ? new Date(start) : ''}
+            />
+            {/* {formik.touched.start && formik.errors.start ? (
             <ErrorMessage>{formik.errors.start}</ErrorMessage>
           ) : null} */}
-          <DatePickerInput
-            value={formik.values.end}
-            placeholderText="Кінець"
-            onChange={handleEndDate}
-            pickedDate={end ? new Date(end) : ''}
-          />
-          {/* {formik.touched.end && formik.errors.end ? (
+            <DatePickerInput
+              value={formik.values.end}
+              placeholderText="Кінець"
+              onChange={handleEndDate}
+              pickedDate={end ? new Date(end) : ''}
+            />
+            {/* {formik.touched.end && formik.errors.end ? (
             <ErrorMessage>{formik.errors.end}</ErrorMessage>
           ) : null} */}
-          <FormAddButton
-            type="button"
-            onClick={() => {
-              dispatch(
-                addDate({
-                  startDate: formik.values.start,
-                  endDate: formik.values.end,
-                }),
-              );
-            }}
-          >
-            Додати
-          </FormAddButton>
-        </CalendarsContainer>
-        <SelectAndButtonContainer>
-          <SelectContainer>
-            <BookSelector
-              value={formik.values.book}
-              onChange={handleBook}
-              // selectedBooks={selectedBooks}
-            />
-          </SelectContainer>
-          <FormAddButton
-            type="button"
-            onClick={() => {
-              dispatch(
-                addBook({
-                  book: formik.values.book,
-                }),
-              );
-            }}
-          >
-            Додати
-          </FormAddButton>
-        </SelectAndButtonContainer>
+
+            <FormAddButton
+              type="button"
+              onClick={() => {
+                dispatch(
+                  addDate({
+                    startDate: formik.values.start,
+                    endDate: formik.values.end,
+                  }),
+                );
+              }}
+            >
+              Додати
+            </FormAddButton>
+          </CalendarsContainer>
+        ) : (
+          <></>
+        )}
+        {!isStarted ? (
+          <SelectAndButtonContainer>
+            <SelectContainer>
+              <BookSelector
+                value={''}
+                onChange={handleBook}
+                // selectedBooks={selectedBooks}
+              />
+            </SelectContainer>
+
+            <FormAddButton
+              type="button"
+              onClick={() => {
+                console.log(formik.values);
+                formik.values.book.author &&
+                  dispatch(
+                    addBook({
+                      book: formik.values.book,
+                    }),
+                  );
+              }}
+            >
+              Додати
+            </FormAddButton>
+          </SelectAndButtonContainer>
+        ) : (
+          <></>
+        )}
       </FormContainer>
       {/* <TrainingList /> */}
     </>

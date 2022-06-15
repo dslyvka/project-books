@@ -31,7 +31,7 @@ const startTraining = createAsyncThunk(
     try {
       console.log(details);
       const { startDate, endDate } = details;
-      const books  = details.books;
+      const books = details.books;
       const { data } = await axios.post('/trainings', {
         startDate,
         endDate,
@@ -70,12 +70,22 @@ const addDate = createAction('training/addDate', ({ startDate, endDate }) => {
   };
 });
 
+const deleteBook = createAction(
+  'training/deleteBook',
+  ({ author, pages, year, title, id }) => {
+    return {
+      payload: { book: { author, pages, year, title, id } },
+    };
+  },
+);
+
 const trainingActions = {
   getCurrTraining,
   addResult,
   startTraining,
   addBook,
   addDate,
+  deleteBook,
 };
 
 export default trainingActions;

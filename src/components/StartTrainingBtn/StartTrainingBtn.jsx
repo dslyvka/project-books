@@ -10,6 +10,7 @@ const StartTrainingBtn = () => {
   const books = useSelector(state => state.training.booksRequest);
   const startDate = useSelector(state => state.training.startDate);
   const endDate = useSelector(state => state.training.endDate);
+  const isStarted = useSelector(state => state.training.isStarted);
 
   const dispatch = useDispatch();
 
@@ -23,7 +24,7 @@ const StartTrainingBtn = () => {
     );
   };
 
-  return books.length ? (
+  return books.length && startDate && startDate && !isStarted ? (
     <ButtonStyled type="button" onClick={handleClick}>
       Почати тренування
     </ButtonStyled>

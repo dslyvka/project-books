@@ -2,8 +2,14 @@ import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import trainingActions from './trainingActions';
 import { fetchBooks } from '../books/books-operations';
 
-const { getCurrTraining, startTraining, addResult, addBook, addDate } =
-  trainingActions;
+const {
+  getCurrTraining,
+  startTraining,
+  addResult,
+  addBook,
+  addDate,
+  deleteBook,
+} = trainingActions;
 
 const initialState = {
   isStarted: false,
@@ -37,14 +43,28 @@ const trainingReducer = createReducer(initialState, {
     ...state,
     booksRequest: state.books.some(book => book.id === payload.book.id)
       ? [...state.books]
-      : [...state.books, { id: payload.book.id, pages: payload.book.pages }],
+      : [...state.books, { id: payload.book.id }],
     books: state.books.some(book => book.id === payload.book.id)
       ? [...state.books]
-      : [...state.books, payload.book],
+      : [...state.books, { ...payload.book }],
     isGoing: [
       ...state.isGoing.filter(book => book.value.id !== payload.book.id),
     ],
   }),
+  [deleteBook]: (state, { payload }) => ({
+    ...state,
+    books: [...state.books.filter(book => book.id !== payload.book.id)],
+    booksRequest: [
+      ...state.booksRequest.filter(book => book.id !== payload.book.id),
+    ],
+    isGoing: state.isGoing.some(book => book.id === payload.book.id)
+      ? [...state.isGoing]
+      : [
+          ...state.isGoing,
+          { label: payload.book.title, value: { ...payload.book } },
+        ],
+  }),
+
   [addDate]: (state, { payload }) => ({
     ...state,
     startDate: payload.startDate,
@@ -67,7 +87,9 @@ const trainingReducer = createReducer(initialState, {
           isStarted: true,
           startDate: payload.training.startDate,
           endDate: payload.training.endDate,
-          books: [...payload.training.books],
+          books: [
+            ...payload.training.books.map(book => ({ ...book, id: book._id })),
+          ],
           totalPages: payload.training.totalPages,
           readedPages: payload.training.readedPages,
           statistics: [...payload.training.statistics],
@@ -80,12 +102,15 @@ const trainingReducer = createReducer(initialState, {
           isStarted: true,
           startDate: payload.training.startDate,
           endDate: payload.training.endDate,
-          books: [...payload.training.books],
+          books: [
+            ...payload.training.books.map(book => ({ ...book, id: book._id })),
+          ],
           totalPages: payload.training.totalPages,
           readedPages: payload.training.readedPages,
           statistics: [...payload.training.statistics],
         }
       : { ...state },
+  // .map(book => ({ ...book, id: book._id }))
   [addResult.fulfilled]: (state, { payload }) =>
     payload?.training?.status === 'active'
       ? {

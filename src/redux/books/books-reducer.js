@@ -18,7 +18,8 @@ const items = createReducer(
     [reviewBook.fulfilled]: (state, { payload }) => ({ ...state, payload }),
     [deleteBook.fulfilled]: (state, { payload }) => ({
       ...state,
-      going: [...state['going'].filter(({ _id }) => _id !== payload)],
+      going: [...state.going.filter(({ _id }) => _id !== payload)],
+      // reading: [...state.reading.filter(({ _id }) => _id !== payload)],
     }),
   },
 );

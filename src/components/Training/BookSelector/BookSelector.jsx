@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch, useStore } from 'react-redux';
 import Select from 'react-select';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { fetchBooks } from '../../../redux/books/books-operations';
 
 const BookSelector = ({ onChange }) => {
@@ -20,6 +20,7 @@ const BookSelector = ({ onChange }) => {
   }, [dispatch]);
 
   const books = useSelector(state => state.training.isGoing);
+  const isStarted = useSelector(state => state.training.isStarted);
 
   const customStyles = {
     input: (provided, state) => ({
@@ -38,10 +39,12 @@ const BookSelector = ({ onChange }) => {
       color: '#a6abb9',
     }),
   };
+
   return (
     <Select
+      isDisabled={isStarted ? true : false}
       defaultValue=""
-      placeholder="Оберіть книжку"
+      placeholder={isStarted ? '' : 'Оберіть книжку'}
       options={books}
       noOptionsMessage={() =>
         'У вас відсутні книги, які ви плануєте прочитати.'

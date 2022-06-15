@@ -9,7 +9,17 @@ import {
   TrainingListStyled,
 } from './TrainingList.styled';
 
+import {
+  TrainingListItemStyled,
+  BookIconStyled,
+  TrainingListItemTitle,
+  TrainingListItemAuthor,
+  TrainingListItemYear,
+  TrainingListItemPages,
+} from '../TrainingListItem/TrainingListItem.styled';
+
 import { useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
 const TrainingList = () => {
   const books = useSelector(state => state.training.books);
@@ -23,15 +33,26 @@ const TrainingList = () => {
       </TrainingListHeader>
       <TrainingListStyled>
         {/* <TrainingListItem /> */}
-        {books.map(book => (
-          <TrainingListItem
-            author={book.author}
-            title={book.title}
-            year={book.year}
-            pages={book.pages}
-            key={book.id}
-          />
-        ))}
+        {books.length ? (
+          books.map(book => (
+            <TrainingListItem
+              author={book.author}
+              title={book.title}
+              year={book.year}
+              pages={book.pages}
+              key={uuidv4()}
+              id={book.id}
+            />
+          ))
+        ) : (
+          <TrainingListItemStyled>
+            <BookIconStyled />
+            <TrainingListItemTitle>...</TrainingListItemTitle>
+            <TrainingListItemAuthor />
+            <TrainingListItemYear />
+            <TrainingListItemPages />
+          </TrainingListItemStyled>
+        )}
       </TrainingListStyled>
     </TrainingListContainer>
   );

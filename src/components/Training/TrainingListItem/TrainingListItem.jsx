@@ -9,8 +9,15 @@ import {
   TrainingListItemPages,
   DeleteButton,
 } from './TrainingListItem.styled';
+import { useSelector, useDispatch } from 'react-redux';
+import trainingActions from '../../../redux/training/trainingActions';
 
-const TrainingListItem = ({ title, author, year, pages }) => {
+const { deleteBook } = trainingActions;
+
+const TrainingListItem = ({ title, author, year, pages, id }) => {
+  const dispatch = useDispatch();
+  const isStarted = useSelector(state => state.training.isStarted);
+  const isGoing = useSelector(state => state.training.isGoing);
   return (
     <TrainingListItemStyled>
       <BookIconStyled />
@@ -23,9 +30,18 @@ const TrainingListItem = ({ title, author, year, pages }) => {
       <TrainingListItemYear>{year}</TrainingListItemYear>
       <TrainingListItemPages>{pages}</TrainingListItemPages>
 
-      <DeleteButton type="button">
-        <DeleteIcon />
-      </DeleteButton>
+      {!isStarted ? (
+        <DeleteButton
+          type="button"
+          onClick={() =>
+            dispatch(deleteBook({ title, author, year, pages, id }))
+          }
+        >
+          <DeleteIcon />
+        </DeleteButton>
+      ) : (
+        <></>
+      )}
     </TrainingListItemStyled>
   );
 };
