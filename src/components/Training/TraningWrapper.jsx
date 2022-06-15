@@ -31,16 +31,6 @@ const TrainingWrapper = () => {
       <Mobile>
         <MyGoal />
         <TrainingList />
-        {/* <LineChart
-          startDate={'2022-06-08T00:00:00.000Z'}
-          endDate={'2022-06-13T00:00:00.000Z'}
-          totalPages={600}
-          readedPages={200}
-          statistics={[
-            { statisticDate: '2022-06-09T00:00:00.000Z', statisticResult: 100 },
-            { statisticDate: '2022-06-10T00:00:00.000Z', statisticResult: 100 },
-          ]}
-        /> */}
         <TrainingOpenModalButton openModal={openModal} />
         <TrainingModal
           isTrainingModalShown={isTrainingModalShown}
@@ -51,16 +41,6 @@ const TrainingWrapper = () => {
         <MyGoal />
         <TrainingForm />
         <TrainingList />
-        {/* <LineChart
-          startDate={'2022-06-08T00:00:00.000Z'}
-          endDate={'2022-06-13T00:00:00.000Z'}
-          totalPages={600}
-          readedPages={200}
-          statistics={[
-            { statisticDate: '2022-06-09T00:00:00.000Z', statisticResult: 100 },
-            { statisticDate: '2022-06-10T00:00:00.000Z', statisticResult: 100 },
-          ]}
-        /> */}
       </Tablet>
       <Desktop>
         <TrainingWrapperStyledUpperPart>
@@ -71,19 +51,23 @@ const TrainingWrapper = () => {
 
           <MyGoal />
         </TrainingWrapperStyledUpperPart>
-        {/* <LineChart
-          startDate={'2022-06-08T00:00:00.000Z'}
-          endDate={'2022-06-13T00:00:00.000Z'}
-          totalPages={600}
-          readedPages={200}
-          statistics={[
-            { statisticDate: '2022-06-09T00:00:00.000Z', statisticResult: 100 },
-            { statisticDate: '2022-06-10T00:00:00.000Z', statisticResult: 100 },
-          ]}
-        /> */}
       </Desktop>
+        <LineChart
+
+        />
     </TrainingWrapperStyled>
   );
 };
 
 export default TrainingWrapper;
+
+        // <LineChart
+        //   startDate={'2022-06-08T00:00:00.000Z'}
+        //   endDate={'2022-06-13T00:00:00.000Z'}
+        //   totalPages={600}
+        //   readedPages={200}
+        //   statistics={[
+        //     { statisticDate: '2022-06-09T00:00:00.000Z', statisticResult: 100 },
+        //     { statisticDate: '2022-06-10T00:00:00.000Z', statisticResult: 100 },
+        //   ]}
+        // />;
