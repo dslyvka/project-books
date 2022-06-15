@@ -98,7 +98,18 @@ const trainingReducer = createReducer(initialState, {
           statistics: [...payload.training.statistics],
           status: payload.training.status,
         }
-      : { ...state },
+      : {
+          isStarted: false,
+          startDate: '',
+          endDate: '',
+          books: [],
+          booksRequest: [],
+          totalPages: null,
+          readedPages: null,
+          statistics: [],
+          isGoing: [],
+          status: '',
+        },
   [getCurrTraining.fulfilled]: (state, { payload }) =>
     payload?.training?.status === 'active'
       ? {
@@ -114,7 +125,18 @@ const trainingReducer = createReducer(initialState, {
           statistics: [...payload.training.statistics],
           status: payload.training.status,
         }
-      : { ...state },
+      : {
+          isStarted: false,
+          startDate: '',
+          endDate: '',
+          books: [],
+          booksRequest: [],
+          totalPages: null,
+          readedPages: null,
+          statistics: [],
+          isGoing: [],
+          status: '',
+        },
   // .map(book => ({ ...book, id: book._id }))
   [addResult.fulfilled]: (state, { payload }) =>
     payload?.training?.status === 'active'
