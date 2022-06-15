@@ -16,36 +16,29 @@ import {
   TimeStyled,
 } from './Result.styled';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
+import Modal from '../Modal/Modal';
+import { v4 as uuidv4 } from 'uuid';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import sprite from '../../images/sprite/sprites.svg';
-import trainingOperations from '../../redux/training/trainingOperations';
+import trainingActions from '../../redux/training/trainingActions';
 
 const Result = () => {
-  // const statisticsArray = true;
+  // const [showModal, setShowModal] = useState(false);
+  const { statistics, status } = useSelector(state => state.training);
+  const statArray = [...statistics];
+  statArray.shift();
+
   const dispatch = useDispatch();
 
-  const onSubmit = async (values, formikProps) => {
-    // console.log(values);
-    await dispatch(trainingOperations.addResult(values));
+  const onSubmit = (values, formikProps) => {
     formikProps.resetForm('');
-    // console.log('onSubmit -> values, formikProps', values);
+    dispatch(trainingActions.addResult(values));
   };
 
-  const statisticsArray = [
-    // { statisticDate: '2022-06-14T00:00:00.000Z', statisticResult: 0 },
-    { statisticDate: '2022-06-14T18:44:15.398Z', statisticResult: 250 },
-    { statisticDate: '2022-06-14T22:04:19.437Z', statisticResult: 52 },
-    { statisticDate: '2022-06-14T20:30:01.093Z', statisticResult: 31 },
-    // { statisticDate: '2022-06-14T19:09:34.956Z', statisticResult: 2 },
-    // { statisticDate: '2022-06-14T19:13:36.850Z', statisticResult: 2 },
-    // { statisticDate: '2022-06-14T19:14:09.557Z', statisticResult: 2 },
-    // { statisticDate: '2022-06-14T19:16:27.508Z', statisticResult: 2 },
-    // { statisticDate: '2022-06-14T19:17:48.422Z', statisticResult: 5 },
-    // { statisticDate: '2022-06-14T19:19:52.228Z', statisticResult: 10 },
-    // { statisticDate: '2022-06-14T19:19:52.228Z', statisticResult: 45 },
-    // { statisticDate: '2022-06-14T19:33:26.748Z', statisticResult: 2 },
-  ];
+  // const togleModal = () => {
+  //   setShowModal(showModal => !showModal);
+  // };
 
   return (
     <Container>
@@ -79,6 +72,7 @@ const Result = () => {
                 <label htmlFor="title">
                   <LabelText>Дата</LabelText>
                   <DatePickerStyled
+                    // type="dateFormat"
                     name={'statisticDate'}
                     maxDate={new Date()}
                     selected={values.statisticDate}
@@ -121,12 +115,12 @@ const Result = () => {
           </Form>
         )}
       </Formik>
-      {statisticsArray && (
+      {statArray.length > 0 && (
         <Statistic>
           <TextStatistic>Статистика</TextStatistic>
           <StatisticList>
-            {statisticsArray.map(el => (
-              <ListItem key={el.statisticDate}>
+            {statArray.map(el => (
+              <ListItem key={uuidv4()}>
                 <span>{moment(el.statisticDate).format('L')}</span>
                 <TimeStyled>
                   {moment(el.statisticDate).format('HH:mm:ss')}
@@ -140,6 +134,7 @@ const Result = () => {
           </StatisticList>
         </Statistic>
       )}
+      {/* {status==="done"&&} */}
     </Container>
   );
 };
