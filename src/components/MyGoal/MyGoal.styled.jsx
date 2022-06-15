@@ -1,137 +1,120 @@
 import styled from '@emotion/styled';
 
 const MyGoalStyled = styled.div`
-  height: 320px;
-  margin: 0 auto 30px;
-  display: block;
-  /* flex-wrap: wrap; */
-  justify-content: center;
-  order: 2;
-  background: var(--secondary-background);
-  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-  .bookTitle {
-    height: 60px;
-    /* left: 25px;
-    top: 90px; */
-    background: #b1b5c2;
+  width: 270px;
+    height: 270px;
+    background-color: #ffffff;
     box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-    color: #fff;
-    padding-top: 15px;
-    text-align: center;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 1.9;
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
-  .booksCounterContainer {
-    height: 100px;
-    width: 100%;
-    padding: 55px 25px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    /* padding: 30px 10px 0 10px;
-  margin-bottom: 15px; */
-  }
-  .counterNumber {
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 45px;
-    line-height: 1.18;
-    padding: 25%;
-  }
-  .booksCounter {
-    width: 100px;
-    height: 100px;
-    background: var(--main-background);
-    box-shadow: 4px 4px 8px rgba(36, 42, 55, 0.15);
-    text-align: center;
-  }
-  .counterLabelContainer {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    margin-top: 14px;
-  }
-  .counterLabel {
-    width: 66px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 0.82;
-    text-align: center;
-    color: var(--secondary-text);
-  }
-  @media (min-width: 768px) {
-    width: 680px;
-    height: 105px;
     margin: 0 auto;
-    padding: 22px 0 23px 45px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: nowrap;
-    .bookTitle {
-      width: 270px;
+    margin-top: 30px;
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+        align-items: flex-start;
+        margin-top: 30px;
+        height: ${props => (props.startTraining ? '125px' : '105px')};
+        width: 678px;
+        padding: 23px 45px 11px 45px;
+        padding: ${props =>
+            props.startTraining ? '0' : '23px 45px 11px 45px'};
+        display: flex;
+        justify-content: ${props =>
+            props.startTraining ? 'space-around' : 'space-between'};
     }
-
-    .booksCounterContainer {
-      padding: 0;
-      width: auto;
-      align-items: center;
-      justify-content: space-evenly;
-      padding-top: 12px;
+    @media screen and (min-width: 1280px) {
+        margin-top: ${props => (props.startTraining ? '25px' : '0px')};
+        height: 318px;
+        width: 275px;
     }
-    .booksCounter {
-      height: 60px;
+    .statistic-title {
+        padding: 11px 0;
+        line-height: 1.9;
+        font-size: 20px;
+        font-family: 'Montserrat-SemiBold';
+        background-color: #b1b5c2;
+        color:#ffffff;
+        text-align: center;
+        @media screen and (min-width: 768px) and (max-width: 1279px) {
+            margin-top: ${props => (props.startTraining ? '23px' : '0px')};
+            padding: 11px 28px;
+        }
     }
-    .counterNumber {
-      padding: 0;
-      height: 100%;
+    .statistic {
+        display: flex;
+        justify-content: center;
+        @media screen and (min-width: 768px) and (max-width: 1279px) {
+            margin-top: ${props => (props.startTraining ? '20px' : '0')};
+        }
     }
-    .counterLabelContainer {
-      margin-top: -12px;
-      justify-content: space-evenly;
+    .statistic-book {
+        margin-right: 20px;
+        @media (min-width: 1280px) {
+            margin-bottom: 76px;
+        }
     }
-    .counterLabel {
-      width: 100px;
-      font-size: 11px;
+    .statistic-day {
+        @media (max-width: 767px) {
+            margin-bottom: 30px;
+        }
+        margin-right: ${props => (props.startTraining ? '20px' : '0px')};
     }
-  }
-  @media (min-width: 1280px) {
-    width: 275px;
-    height: 318px;
-    margin: 40px auto;
-    padding: 0;
-    flex-wrap: wrap;
-    box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-    .booksCounter {
-      height: 100px;
-      margin-bottom: 15px;
+    .statistic__cell {
+        @media (max-width: 767px) {
+            margin-top: 30px;
+        }
+        margin-top: ${props => (props.startTraining ? '72px' : '55px')};
+        margin-bottom: 15px;
+        width: ${props => (props.startTraining ? '66px' : '100px')};
+        height: ${props => (props.startTraining ? '66px' : '100px')};
+        padding-top: ${props => (props.startTraining ? '14px' : '24px')};
+        padding-bottom: ${props => (props.startTraining ? '14px' : '24px')};
+        font-family: 'OpenSans-Bold';
+        font-size: ${props => (props.startTraining ? '36px' : '45px')};
+        line-height: ${props => (props.startTraining ? '1.08' : '0.84')};
+        background-color: #f5f7fa;
+        box-shadow: 4px 4px 8px rgba(36, 42, 55, 0.15);
+        @media screen and (min-width: 768px) and (max-width: 1279px) {
+            width: 100px;
+            height: 60px;
+            padding: 11px 0;
+            margin: 0;
+        }
     }
-    .bookTitle {
-      margin-bottom: auto;
+    .statistic-reading .statistic__number {
+        color: #ff6b08;
     }
-    .booksCounterContainer {
-      padding: 0 0 0 0;
-      margin-bottom: 80px;
+    .statistic__number {
+        display: block;
+        font-family: 'OpenSans-Bold';
+        text-align: center;
+        @media screen and (min-width: 768px) and (max-width: 1279px) {
+            font-size: 40px;
+            line-height: 0.95;
+        }
     }
-    .counterNumber {
-      padding: 25%;
+    .statistic__text {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-family: 'Montserrat-Medium';
+        font-size: ${props => (props.startTraining ? '12px' : '14px')};
+        color: #898f9f;
+        @media screen and (min-width: 768px) and (max-width: 1279px) {
+            display: flex;
+            flex-direction: row;
+            font-size: 11px;
+            margin-top: 2px;
+        }
     }
-    .counterLabel {
-      width: 66px;
-      font-size: 14px;
-      line-height: 0.9;
+    .statistic-reading .statistic__text {
+        @media screen and (min-width: 768px) and (max-width: 1279px) {
+            display: flex;
+            flex-direction: column;
+        }
     }
-    .counterLabelContainer {
-      margin: 0;
+    .statistic__text span {
+        @media screen and (min-width: 768px) and (max-width: 1279px) {
+            margin-left: 5px;
+        }
     }
-  }
 `;
+
 export default MyGoalStyled;
