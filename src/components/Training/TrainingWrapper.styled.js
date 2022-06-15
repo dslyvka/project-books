@@ -27,3 +27,14 @@ export const TrainingWrapperTrainingInfo = styled.div`
   flex-grow: 1;
   padding-right: 40px;
 `;
+
+export const ResultBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media screen and (min-width: 1280px) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+`;

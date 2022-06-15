@@ -21,6 +21,9 @@ const initialState = {
   readedPages: null,
   statistics: [],
   isGoing: [],
+  status: '',
+  // alreadyRead: [],
+  // bookNumber: 0,
 };
 
 const trainingReducer = createReducer(initialState, {
@@ -93,6 +96,7 @@ const trainingReducer = createReducer(initialState, {
           totalPages: payload.training.totalPages,
           readedPages: payload.training.readedPages,
           statistics: [...payload.training.statistics],
+          status: payload.training.status,
         }
       : { ...state },
   [getCurrTraining.fulfilled]: (state, { payload }) =>
@@ -108,6 +112,7 @@ const trainingReducer = createReducer(initialState, {
           totalPages: payload.training.totalPages,
           readedPages: payload.training.readedPages,
           statistics: [...payload.training.statistics],
+          status: payload.training.status,
         }
       : { ...state },
   // .map(book => ({ ...book, id: book._id }))
@@ -122,8 +127,29 @@ const trainingReducer = createReducer(initialState, {
           totalPages: payload.training.totalPages,
           readedPages: payload.training.readedPages,
           statistics: [...payload.training.statistics],
+          // alreadyRead:
+          //   payload.training.readedPages >= state.books[state.bookNumber].pages
+          //     ? [...payload.training.books[state.bookNumber]]
+          //     : [...state.alreadyRead],
+          // bookNumber:
+          //   payload.training.readedPages >= state.books[state.bookNumber].pages
+          //     ? state.bookNumber + 1
+          //     : state.bookNumber,
         }
-      : { ...state },
+      : {
+          // ...state,
+          isStarted: false,
+          startDate: '',
+          endDate: '',
+          books: [],
+          booksRequest: [],
+          totalPages: null,
+          readedPages: null,
+          statistics: [],
+          isGoing: [],
+          status: '',
+          // status: payload.training.status,
+        },
 });
 
 export default trainingReducer;

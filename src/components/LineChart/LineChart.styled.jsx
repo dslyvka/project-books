@@ -1,16 +1,14 @@
 import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
-position: relative;
-width: 280px;
-height: 290px;
-padding-left: 20px;
-padding-top: 0;
-padding-right: 20px;
-padding-bottom: 20px;
-margin-left: auto;
-margin-right: auto;
-background-color: #FFFFFF;
+  position: relative;
+  width: 280px;
+  height: 290px;
+  padding-left: 20px;
+  padding-top: 0;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  background-color: #ffffff;
 
   @media screen and (min-width: 768px) {
     width: 700px;
@@ -32,7 +30,7 @@ background-color: #FFFFFF;
 `;
 
 export const PagesValue = styled.div`
-  background-color: #F5F7FA;
+  background-color: #f5f7fa;
   padding-left: 3.5px;
   padding-right: 3.5px;
   padding-top: 2.5px;
@@ -53,32 +51,31 @@ export const PagesValue = styled.div`
   @media screen and (min-width: 1280px) {
     right: 670px;
   }
-
 `;
 
 export const PlanAnotation = styled(PagesValue)`
-   background-color: #F5F7FA;
-   color: #FF6B08;
-   border-radius: 3px;
-   padding-left: 5px;
-   padding-right: 6px;
-   padding-top: 7px;
-   padding-bottom: 5px;
-   top: 40px;
-   right: 158px;
-   font-size: 12px;
-   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-   @media screen and (min-width: 768px) {
-     right: 365px;
-     top: 50px;
-   }
+  background-color: #f5f7fa;
+  color: #ff6b08;
+  border-radius: 3px;
+  padding-left: 5px;
+  padding-right: 6px;
+  padding-top: 7px;
+  padding-bottom: 5px;
+  top: 40px;
+  right: 158px;
+  font-size: 12px;
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+  @media screen and (min-width: 768px) {
+    right: 365px;
+    top: 50px;
+  }
 
-   @media screen and (min-width: 1280px) {
-     right: 505px;
-   }
-`
+  @media screen and (min-width: 1280px) {
+    right: 505px;
+  }
+`;
 export const FactAnotation = styled(PlanAnotation)`
-  color: #242A37;
+  color: #242a37;
   right: 75px;
   @media screen and (min-width: 768px) {
     right: 290px;
