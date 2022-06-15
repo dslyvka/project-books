@@ -81,15 +81,6 @@ const LineChart = () => {
 
   // Вираховуємо план прочитання на сьогоднішній день
   const readPlanAtDay = isStarted ? Math.ceil((totalPages - readedPages) / daysLeft) : 0;
-
-  // --- Для привязки анотації (підписи назв графіків) до останнього елемента масиву графіків ПЛАН і ФАКТ
-  // function point(ctx, value) {
-  // const dataset = ctx.chart.data.datasets[value];
-  // const values = dataset.data.filter((value, i) => i > dataset.data.length - 2);
-  // const y = Math.max(...values);
-  // const x = dataset.data.lastIndexOf(y);
-  // return {x, y};
-  // };
   
   useEffect(() => {
     // Отримуємо масив всіх днів тренування
@@ -169,79 +160,8 @@ const LineChart = () => {
   }
   const planArray = getResultPlanArray();
   
-  // Отримуємо кінцеві масиви для графіків з відображенням необхідної кількості елементів під різні розміри екранів
-    // const getArraysForMobile = (el) => {
-    //   if (el === "days") {
-    //     return daysArray.slice(daysPassed - 1, daysPassed + 2)
-    //   } else if (el === "fact") {
-    //     return factArray.slice(daysPassed - 1, daysPassed + 2);
-    //   } else if (el === "plan") { 
-    //     return planArray.slice(daysPassed - 1, daysPassed + 2);
-    //   }
-    // }
-    
-    // const getArraysForTablet = (el) => {
-    //   if (el === "days") {
-    //     return daysArray.slice(daysPassed - 4, daysPassed + 2)
-    //   } else if (el === "fact") {
-    //     return factArray.slice(daysPassed - 4, daysPassed + 2);
-    //   } else if (el === "plan") { 
-    //     return planArray.slice(daysPassed - 4, daysPassed + 2);
-    //   }
-    // }
-
-    // const getArraysForDecktop = (el) => {
-    //   if (el === "days") {
-    //     return daysArray.slice(daysPassed - 5, daysPassed + 2)
-    //   } else if (el === "fact") {
-    //     return factArray.slice(daysPassed - 5, daysPassed + 2);
-    //   } else if (el === "plan") { 
-    //     return planArray.slice(daysPassed - 5, daysPassed + 2);
-    //   }
-    // }
-    
-
-  // Передаємо дані для побудови графіків відповідно до ширини екрана
-  // const drawDepensScreenSize = (el) => {
-  //   if (width < 768) {
-  //     return chartReadDataDatasets(3, el);
-  //   } else if (width < 1280) {
-  //     return chartReadDataDatasets(6, el);
-  //   } else if (width >= 1280) {
-  //     return chartReadDataDatasets(7, el);
-  //   };
-  // };
-  
-  // Вираховуємо прогнозовану максимальну висоту графіка
-  const maxReadPages = Math.max(...factArray);
-  const getBiggersValue = () => { 
-    if (maxReadPages > readPlanAtDay) {
-      return maxReadPages;
-    } else {
-      return readPlanAtDay;
-    }
-  };
-
-  const getMaxHeight = () => {
-    if (readPlanAtDay && maxReadPages !== -Infinity) {
-      return getBiggersValue() * 1.3;
-    } else {
-      return isStarted ? readPlanAtDay * 1.3 : 100;
-    }
-  };
-  
-  // Для запобігання накладання анотацій (підписи назв графіків) при близьких значеннях по осі У
-  // const setBetwenAnotationPositions = () => {
-  //   const differense = readPlanAtDay - factArray.slice(-1)[0];
-  //   if (planArray.length === factArray.length + 1 && differense < 15 * (getMaxHeight() / 100)) {
-  //     return 0;
-  //   } else {
-  //     return -30;
-  // }
-  // };
-
     setChartData({
-      labels: isStarted && pagesLeft !==0 ? daysArray : [1, 2, 3, 4, 5, 6, 7],
+      labels: isStarted && pagesLeft !==0 ? daysArray : [1, 2],
       datasets: [
         {
           label: 'ПЛАН',
@@ -292,64 +212,11 @@ const LineChart = () => {
         y: {
           display: false,
           min: 0,
-          suggestedMax: getMaxHeight(),
+          suggestedMax: 100,
         },
       },
       responsive: true,
       plugins: {
-        // annotation: {
-        //   annotations: {
-        //     plan: {
-        //       type: 'label',
-        //       content: 'ПЛАН',
-        //       callout: {
-        //         display: true,
-        //         position: 'bottom',
-        //         margin: 0,
-        //       },
-        //       font: {
-        //         family: "'Montserrat', sans-serif",
-        //         weight: 600,
-        //         size: 12,
-        //         lineHeight: 1.22,
-        //       },
-        //       color: '#FF6B08',
-        //       backgroundColor: '#F5F7FA',
-        //       backgroundShadowColor: 'rgba(9, 30, 63, 0.1)',
-        //       shadowBlur: 10,
-        //       shadowOffsetX: 2,
-        //       shadowOffsetY: 3,
-        //       xAdjust: isStarted && allDays !== 1 ? -30 : 40,
-        //       xValue: (ctx) => point(ctx, 0).x,
-        //       yAdjust: isStarted ? -30 : 0,
-        //       yValue: (ctx) => point(ctx, 0).y,
-        //     },
-        //     fact: {
-        //       type: 'label',
-        //       content: 'ФАКТ',
-        //       callout: {
-        //         display: true,
-        //         position: 'bottom',
-        //         margin: 0,
-        //       },
-        //       font: {
-        //         family: "'Montserrat', sans-serif",
-        //         weight: 600,
-        //         size: 12,
-        //         lineHeight: 1.22,
-        //       },
-        //       backgroundColor: '#F5F7FA',
-        //       backgroundShadowColor: 'rgba(9, 30, 63, 0.1)',
-        //       shadowBlur: 10,
-        //       shadowOffsetX: 2,
-        //       shadowOffsetY: 3,
-        //       xAdjust: isStarted && factArray.length !== 1 ? -30 : 40,
-        //       xValue: (ctx) => point(ctx, 1).x,
-        //       yAdjust: isStarted ? setBetwenAnotationPositions() : 0,
-        //       yValue: (ctx) => point(ctx, 1).y,
-        //     },
-        //   },
-        // },
         legend: {
           display: false,
         },
