@@ -6,13 +6,15 @@ import getCurrTraining from '../../redux/training/trainingActions';
 
 const MyGoal = ({ startTraining }) => {
   const isTraining = useSelector(state => state.training.isStarted);
+    const books = useSelector(state => state.training.books)
+    const wasRead = useSelector (state => state.training.readedPages)
   let readBook = 0;
   let leftToRead;
-  for (let i = 0; i < isTraining.books?.length; i++) {
-    if (isTraining.books[i].numberOfPages === isTraining.books[i].readPages) {
+  for (let i = 0; i < books.length; i++) {
+    if (books[i].pages <= wasRead) {
       readBook += 1;
     }
-    leftToRead = isTraining.books.length - readBook;
+    leftToRead = books.length - readBook;
   }
 
   return (
@@ -24,7 +26,7 @@ const MyGoal = ({ startTraining }) => {
         <div className="statistic-book">
           <div className="statistic__cell">
             <span className="statistic__number">
-              {isTraining.books?.length}
+              {books.length}
             </span>
           </div>
           <p className="statistic__text">
