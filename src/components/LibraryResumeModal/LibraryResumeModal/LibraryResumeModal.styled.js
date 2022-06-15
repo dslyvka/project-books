@@ -44,6 +44,16 @@ export const Button = styled.button`
   background: #ff6b08;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   transition-duration: 400ms;
+  :disabled {
+    background: #6d7a8d;
+    :hover,
+    :focus {
+      background-color: #6d7a8d;
+      color: #ffffff;
+      border: none;
+      transform: none;
+    }
+  }
   :hover,
   :focus {
     background-color: #ff6b08;

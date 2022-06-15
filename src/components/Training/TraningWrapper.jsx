@@ -7,10 +7,12 @@ import MyGoal from '../MyGoal/MyGoal';
 import LineChart from '../LineChart/LineChart';
 import TrainingOpenModalButton from './TrainingOpenModalButton/TrainingOpenModalButton';
 import TrainingModal from './TrainingModal/TrainingModal';
+import Result from '../Result/Result';
 import {
   TrainingWrapperStyled,
   TrainingWrapperStyledUpperPart,
   TrainingWrapperTrainingInfo,
+  ResultBlock,
 } from './TrainingWrapper.styled';
 
 const TrainingWrapper = () => {
@@ -52,7 +54,12 @@ const TrainingWrapper = () => {
           <MyGoal />
         </TrainingWrapperStyledUpperPart>
       </Desktop>
-      <LineChart />
+
+      <ResultBlock>
+        <LineChart />
+        <Result />
+      </ResultBlock>
+
     </TrainingWrapperStyled>
   );
 };
