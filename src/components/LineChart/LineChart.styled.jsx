@@ -56,49 +56,30 @@ export const PagesValue = styled.div`
 
 `;
 
-export const PlanAnotation = styled.div`
-background-color: #F5F7FA;
-  color: #FF6B08;
-  border-radius: 3px;
-  padding-left: 5px;
-  padding-right: 6px;
-  padding-top: 7px;
-  padding-bottom: 5px;
-  position: absolute;
-  top: 40px;
-  right: 158px;
-  z-index: 1;
-  font-family: "'Montserrat', sans-serif";
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 1.25;
-  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-  @media screen and (min-width: 768px) {
-    right: 365px;
-  }
+export const PlanAnotation = styled(PagesValue)`
+   background-color: #F5F7FA;
+   color: #FF6B08;
+   border-radius: 3px;
+   padding-left: 5px;
+   padding-right: 6px;
+   padding-top: 7px;
+   padding-bottom: 5px;
+   top: 40px;
+   right: 158px;
+   font-size: 12px;
+   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+   @media screen and (min-width: 768px) {
+     right: 365px;
+     top: 50px;
+   }
 
-  @media screen and (min-width: 1280px) {
-    right: 505px;
-  }
-`;
-
-export const FactAnotation = styled.div`
-background-color: #F5F7FA;
+   @media screen and (min-width: 1280px) {
+     right: 505px;
+   }
+`
+export const FactAnotation = styled(PlanAnotation)`
   color: #242A37;
-  border-radius: 3px;
-  padding-left: 5px;
-  padding-right: 6px;
-  padding-top: 7px;
-  padding-bottom: 5px;
-  position: absolute;
-  top: 40px;
   right: 75px;
-  z-index: 1;
-  font-family: "'Montserrat', sans-serif";
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 1.25;
-  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
   @media screen and (min-width: 768px) {
     right: 290px;
   }
@@ -107,3 +88,54 @@ background-color: #F5F7FA;
     right: 420px;
   }
 `;
+// export const PlanAnotation = styled.div`
+// /* background-color: #F5F7FA; */
+//   color: #FF6B08;
+//   border-radius: 3px;
+//   padding-left: 5px;
+//   padding-right: 6px;
+//   padding-top: 7px;
+//   padding-bottom: 5px;
+//   /* position: absolute; */
+//   top: 40px;
+//   right: 158px;
+//   /* z-index: 1; */
+//   /* font-family: "'Montserrat', sans-serif"; */
+//   /* font-weight: 600; */
+//   font-size: 12px;
+//   /* line-height: 1.25; */
+//   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+//   @media screen and (min-width: 768px) {
+//     right: 365px;
+//   }
+
+//   @media screen and (min-width: 1280px) {
+//     right: 505px;
+//   }
+// `;
+
+// export const FactAnotation = styled.div`
+// background-color: #F5F7FA;
+//   color: #242A37;
+//   border-radius: 3px;
+//   padding-left: 5px;
+//   padding-right: 6px;
+//   padding-top: 7px;
+//   padding-bottom: 5px;
+//   position: absolute;
+//   top: 40px;
+//   right: 75px;
+//   z-index: 1;
+//   font-family: "'Montserrat', sans-serif";
+//   font-weight: 600;
+//   font-size: 12px;
+//   line-height: 1.25;
+//   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+//   @media screen and (min-width: 768px) {
+//     right: 290px;
+//   }
+
+//   @media screen and (min-width: 1280px) {
+//     right: 420px;
+//   }
+// `;
