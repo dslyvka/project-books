@@ -128,8 +128,11 @@ const trainingReducer = createReducer(initialState, {
           readedPages: payload.training.readedPages,
           statistics: [...payload.training.statistics],
           // alreadyRead:
-          //   payload.training.readedPages >= state.books[state.bookNumber].pages
-          //     ? [...payload.training.books[state.bookNumber]]
+          //   payload.training.readedPages >= state.books[payload.bookNumber].pages
+          //     ? [
+          //         ...state.alreadyRead,
+          //         ...payload.training.books[state.bookNumber],
+          //       ]
           //     : [...state.alreadyRead],
           // bookNumber:
           //   payload.training.readedPages >= state.books[state.bookNumber].pages

@@ -15,9 +15,10 @@ const MyGoal = ({ startTraining }) => {
     useSelector(state => state.training.endDate),
   ).getDate();
   const countOfDays =
-    endDate - startDate > 0 ? endDate - startDate : (endDate - startDate) * -1;
+        endDate - startDate > 0 ? endDate - startDate : (endDate - startDate) * -1;
+    
   let readBook = 0;
-  let leftToRead;
+  let leftToRead = 0;
   for (let i = 0; i < books.length; i++) {
     if (books[i].pages <= wasRead) {
       readBook += 1;
