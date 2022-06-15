@@ -98,20 +98,6 @@ const TrainingForm = () => {
             {/* {formik.touched.end && formik.errors.end ? (
             <ErrorMessage>{formik.errors.end}</ErrorMessage>
           ) : null} */}
-
-            <FormAddButton
-              type="button"
-              onClick={() => {
-                dispatch(
-                  addDate({
-                    startDate: formik.values.start,
-                    endDate: formik.values.end,
-                  }),
-                );
-              }}
-            >
-              Додати
-            </FormAddButton>
           </CalendarsContainer>
         ) : (
           <></>

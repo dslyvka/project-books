@@ -52,22 +52,20 @@ const TrainingWrapper = () => {
           <MyGoal />
         </TrainingWrapperStyledUpperPart>
       </Desktop>
-        <LineChart
-
-        />
+      <LineChart />
     </TrainingWrapperStyled>
   );
 };
 
 export default TrainingWrapper;
 
-        // <LineChart
-        //   startDate={'2022-06-08T00:00:00.000Z'}
-        //   endDate={'2022-06-13T00:00:00.000Z'}
-        //   totalPages={600}
-        //   readedPages={200}
-        //   statistics={[
-        //     { statisticDate: '2022-06-09T00:00:00.000Z', statisticResult: 100 },
-        //     { statisticDate: '2022-06-10T00:00:00.000Z', statisticResult: 100 },
-        //   ]}
-        // />;
+// <LineChart
+//   startDate={'2022-06-08T00:00:00.000Z'}
+//   endDate={'2022-06-13T00:00:00.000Z'}
+//   totalPages={600}
+//   readedPages={200}
+//   statistics={[
+//     { statisticDate: '2022-06-09T00:00:00.000Z', statisticResult: 100 },
+//     { statisticDate: '2022-06-10T00:00:00.000Z', statisticResult: 100 },
+//   ]}
+// />;
