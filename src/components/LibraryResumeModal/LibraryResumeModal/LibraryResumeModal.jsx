@@ -10,57 +10,56 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { booksOperations } from '../../../redux/books';
 import { getBooks } from '../../../redux/books/books-selector';
-import { fetchBooks } from '../../../redux/books/books-operations';
-import { useRef } from 'react';
 import { Input, Label } from './LibraryResumeModal.styled';
 
-// const initialValue = {
-//   id: '',
-//   review: '',
-// };
 export const LibraryResumeModal = ({ closer, id }) => {
   const [rate, setRate] = useState(0);
-  const [resume, setResume] = useState('');
+  const [book, setBook] = useState('');
+  const [disabled, setDisabled] = useState(true);
+
   const dispatch = useDispatch();
+  const { already } = useSelector(getBooks);
 
   useEffect(() => {
-    dispatch(fetchBooks());
-  }, [dispatch]);
-
-  const closeModal = () => {
-    // dispatch(modalActions.offModal());
-    // dispatch(modalActions.clearModalContent());
-    closer();
-  };
-
-  const handleClick = e => {
-    if (rate === null || resume === '') {
-      return null;
+    if (id) {
+      const { review, rating } = already.find(item => item._id === id);
+      setBook(review);
+      setRate(rating);
     }
+    setBook('');
+    setRate(0);
+  }, []);
 
-    dispatch(booksOperations.reviewBook({ rate, resume, id }));
-    setRate(prev => rate);
-    setResume(resume);
-
-    // togleModal();
+  const handleClick = () => {
+    dispatch(
+      booksOperations.reviewBook({
+        resume: book.review,
+        rate: rate,
+        id: id,
+      }),
+    );
+    setRate(0);
+    setBook('');
     closer();
   };
 
   const reviewChng = e => {
-    setResume(prev => e.target.value);
+    setBook(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setDisabled(false);
+    if (e.target.value.length < 2) setDisabled(true);
   };
 
   return (
     <Modal onClose={closer}>
       <ModalContainer>
         <Title>Обрати рейтинг книги</Title>
-        <Rate update={setRate} init={rate} read={false} />
+        <Rate update={setRate} read={false} />
         <Title>Резюме</Title>
         <Label>
           <Input
             type="text"
             placeholder="..."
-            value={resume || ''}
+            value={book.review}
             name="review"
             minLength={1}
             maxLength={200}
@@ -68,8 +67,8 @@ export const LibraryResumeModal = ({ closer, id }) => {
           />
         </Label>
         <ButtonWrapper>
-          <Button onClick={closeModal}>Назад</Button>
-          <Button type="submit" onClick={handleClick}>
+          <Button onClick={closer}>Назад</Button>
+          <Button type="submit" disabled={disabled} onClick={handleClick}>
             Зберегти
           </Button>
         </ButtonWrapper>
