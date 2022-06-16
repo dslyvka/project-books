@@ -175,6 +175,8 @@ const trainingReducer = createReducer(initialState, {
           statistics: [],
           isGoing: [],
           status: '',
+          readBookPages: 0,
+          bookNumber: null,
           // status: payload.training.status,
         },
 });

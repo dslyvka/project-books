@@ -28,6 +28,7 @@ const TrainingWrapper = () => {
   const openModal = () => {
     setTrainingModalShown(!isTrainingModalShown);
   };
+  const isStarted = useSelector(state => state.training.isStarted);
   return (
     <TrainingWrapperStyled>
       <Mobile>
@@ -57,9 +58,8 @@ const TrainingWrapper = () => {
 
       <ResultBlock>
         <LineChart />
-        <Result />
+        {isStarted ? <Result /> : <></>}
       </ResultBlock>
-
     </TrainingWrapperStyled>
   );
 };
