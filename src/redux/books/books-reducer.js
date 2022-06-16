@@ -9,7 +9,7 @@ import {
 
 const items = createReducer(
   {
-    aready: [],
+    already: [],
     going: [],
     reading: [],
   },
