@@ -81,24 +81,26 @@ function ListOther({ text, array = [] }) {
                   <LiData width="50px"> {pages}</LiData>
                 </UlOther>
                 <UlOther>
-                  <LiSvgTablet width="5px">
-                    <ButtonDel onClick={() => togleModal()}>
-                      <SvgDel width="20" height="20">
-                        <use href={`${sprite}#icon-delete`}></use>
-                      </SvgDel>
-                    </ButtonDel>
-                    <div>
-                      {showModal && (
-                        <Modal onClose={togleModal}>
-                          <DeleteButton
-                            onClose={togleModal}
-                            id={_id}
-                            book={title}
-                          />
-                        </Modal>
-                      )}
-                    </div>
-                  </LiSvgTablet>
+                  {status === 'going' && (
+                    <LiSvgTablet width="5px">
+                      <ButtonDel onClick={() => togleModal()}>
+                        <SvgDel width="20" height="20">
+                          <use href={`${sprite}#icon-delete`}></use>
+                        </SvgDel>
+                      </ButtonDel>
+                      <div>
+                        {showModal && (
+                          <Modal onClose={togleModal}>
+                            <DeleteButton
+                              onClose={togleModal}
+                              id={_id}
+                              book={title}
+                            />
+                          </Modal>
+                        )}
+                      </div>
+                    </LiSvgTablet>
+                  )}
                 </UlOther>
               </Li>
             ))}
