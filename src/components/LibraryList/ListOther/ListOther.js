@@ -1,6 +1,5 @@
 import LibraryIcon from '../LibraryIcon/LibraryIcon';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import {
   DivContainer,
   DivTitle,
@@ -21,20 +20,22 @@ import {
 import Modal from '../../Modal/Modal';
 import sprite from '../../../images/sprite/sprites.svg';
 import DeleteButton from '../DeleteButton/DeleteButton';
-
-import { useDispatch } from 'react-redux';
-import { booksOperations } from '../../../redux/books/';
+import { useToggle } from '../../../hooks/useToggle';
 
 function ListOther({ text, array = [] }) {
-  const [showModal, setShowModal] = useState(false);
-  const { isLoggedIn } = useSelector(state => state.auth);
-  const { deleteBook } = booksOperations;
+  const [id, setId] = useState();
+  const [book, setBook] = useState();
 
-  const togleModal = () => {
-    setShowModal(showModal => !showModal);
+  const { isOpen, open, close } = useToggle();
+
+  const togleModal = e => {
+    const { text } = e.currentTarget.dataset;
+    const { id } = e.currentTarget;
+    setId(id);
+    setBook(text);
+    open();
   };
 
-  const dispatch = useDispatch();
   return (
     <DivContainer margin="32px">
       {array.length !== 0 && (
@@ -55,17 +56,24 @@ function ListOther({ text, array = [] }) {
                     <li> {<LibraryIcon book={status} />} </li>
                     <LiNameBook>{title}</LiNameBook>
                   </DivTitle>
+
                   <LiSvgMobile width="35px">
                     <ButtonDel
-                      onClick={() => {
-                        console.log(_id);
-                        dispatch(deleteBook(_id));
-                      }}
+                      onClick={e => togleModal(e)}
+                      id={_id}
+                      data-text={title}
                     >
                       <SvgDel width="20" height="20">
                         <use href={`${sprite}#icon-delete`}></use>
                       </SvgDel>
                     </ButtonDel>
+                    <div>
+                      {isOpen && (
+                        <Modal onClose={close}>
+                          <DeleteButton onClose={close} _id={id} book={book} />
+                        </Modal>
+                      )}
+                    </div>
                   </LiSvgMobile>
                 </UlOther>
                 <UlOther>
@@ -83,18 +91,22 @@ function ListOther({ text, array = [] }) {
                 <UlOther>
                   {status === 'going' && (
                     <LiSvgTablet width="5px">
-                      <ButtonDel onClick={() => togleModal()}>
+                      <ButtonDel
+                        onClick={e => togleModal(e)}
+                        id={_id}
+                        data-text={title}
+                      >
                         <SvgDel width="20" height="20">
                           <use href={`${sprite}#icon-delete`}></use>
                         </SvgDel>
                       </ButtonDel>
                       <div>
-                        {showModal && (
-                          <Modal onClose={togleModal}>
+                        {isOpen && (
+                          <Modal onClose={close}>
                             <DeleteButton
-                              onClose={togleModal}
-                              id={_id}
-                              book={title}
+                              onClose={close}
+                              _id={id}
+                              book={book}
                             />
                           </Modal>
                         )}

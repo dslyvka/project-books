@@ -7,12 +7,14 @@ import {
   ContainerButton,
 } from './DeleteButton.styled';
 
-function DeleteButton({ onClose, id, book }) {
+function DeleteButton({ onClose, _id, book }) {
   const dispatch = useDispatch();
+  console.log(_id);
 
   const delBook = () => {
     onClose();
-    dispatch(booksOperations.deleteBook(id));
+    dispatch(booksOperations.deleteBook(_id));
+
     //       dispatch(tokenAct(''));
     //       toast.success('You are logged out.');
   };
