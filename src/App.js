@@ -42,7 +42,9 @@ function App() {
         <Route path="/" element={<Outlet />}>
           <Route
             index
-            element={onlyWidth < 768 ? <QuoteSection /> : <LoginPage />}
+            element={
+              onlyWidth < 768 && !isLoggedIn ? <QuoteSection /> : <LoginPage />
+            }
           />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
