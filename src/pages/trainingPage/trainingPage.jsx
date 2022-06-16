@@ -28,7 +28,7 @@ const TrainingPage = () => {
       <PageAnimation>
         <Container>
           <TrainingWrapper />
-          <StartTrainingBtn />
+          {/* <StartTrainingBtn /> */}
         </Container>
       </PageAnimation>
     )

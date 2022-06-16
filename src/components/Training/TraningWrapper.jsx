@@ -8,6 +8,7 @@ import LineChart from '../LineChart/LineChart';
 import TrainingOpenModalButton from './TrainingOpenModalButton/TrainingOpenModalButton';
 import TrainingModal from './TrainingModal/TrainingModal';
 import Result from '../Result/Result';
+import StartTrainingBtn from '../StartTrainingBtn/StartTrainingBtn';
 import {
   TrainingWrapperStyled,
   TrainingWrapperStyledUpperPart,
@@ -57,6 +58,7 @@ const TrainingWrapper = () => {
       </Desktop>
 
       <ResultBlock>
+        <StartTrainingBtn />
         <LineChart />
         {isStarted ? <Result /> : <></>}
       </ResultBlock>
