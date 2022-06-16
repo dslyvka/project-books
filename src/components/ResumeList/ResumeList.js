@@ -38,7 +38,7 @@ function ResumeList() {
             </div>
             <DivResult>
               <Li>{title}</Li>
-              {rating > 1 ? <Li>{rating}</Li> : <Li>0</Li>}
+              {rating > 0.9 ? <Li>{rating}</Li> : <Li>0</Li>}
               <LiResume>{review}</LiResume>
             </DivResult>
           </Ul>
