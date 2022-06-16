@@ -79,14 +79,15 @@ const TrainingForm = () => {
     <>
       <FormContainer onSubmit={formik.handleSubmit} autoComplete="off">
         {!isStarted ? (
-          <FormTitle>Моє тренування </FormTitle> && (
+          <>
+            <FormTitle>Моє тренування </FormTitle>
             <CalendarsContainer>
               <DatePickerInput
                 value={formik.values.start}
                 placeholderText="Початок"
                 onChange={handleStartDate}
                 pickedDate={start ? new Date(start) : ''}
-                minDate={false}
+                minDate={new Date()}
                 maxDate={new Date()}
               />
               {/* {formik.touched.start && formik.errors.start ? (
@@ -104,7 +105,7 @@ const TrainingForm = () => {
             <ErrorMessage>{formik.errors.end}</ErrorMessage>
           ) : null} */}
             </CalendarsContainer>
-          )
+          </>
         ) : (
           <Timers />
         )}
