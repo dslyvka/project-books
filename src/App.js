@@ -40,12 +40,11 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Outlet />}>
-          <Route
-            index
-            element={
-              onlyWidth < 768 && !isLoggedIn ? <QuoteSection /> : <LoginPage />
-            }
-          />
+          {!isLoggedIn && onlyWidth < 768 ? (
+            <Route index element={<QuoteSection />} />
+          ) : (
+            <Route index element={<LoginPage />} />
+          )}
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
 
