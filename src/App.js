@@ -9,11 +9,11 @@ import GoogleAuth from './components/GoogleAuth/GoogleAuth';
 import actions from './redux/auth/auth-actions';
 import { useWindowWidth } from '@react-hook/window-size';
 
-const LoginPage = lazy(() => import('./pages/loginPage/loginPage'));
-const RegisterPage = lazy(() => import('./pages/registerPage/registerPage'));
-const TrainingPage = lazy(() => import('./pages/trainingPage/trainingPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
+const TrainingPage = lazy(() => import('./pages/TrainingPage/TrainingPage'));
 
-const LibraryPage = lazy(() => import('./pages/libraryPage/libraryPage'));
+const LibraryPage = lazy(() => import('./pages/LibraryPage/LibraryPage'));
 const ResumePage = lazy(() => import('./pages/ResumePage/ResumePage'));
 const QuoteSection = lazy(() =>
   import('./components/QuoteSection/QuoteSection'),
