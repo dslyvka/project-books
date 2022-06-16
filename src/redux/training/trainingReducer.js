@@ -97,9 +97,11 @@ const trainingReducer = createReducer(initialState, {
           readedPages: payload.training.readedPages,
           statistics: [...payload.training.statistics],
           status: payload.training.status,
+          isGoing: [...state.isGoing],
         }
       : {
           ...state,
+          isGoing: [...state.isGoing],
           // isStarted: false,
           // startDate: '',
           // endDate: '',
@@ -154,7 +156,7 @@ const trainingReducer = createReducer(initialState, {
           //     : state.bookNumber,
         }
       : {
-          // ...state,
+          ...state,
           isStarted: false,
           startDate: '',
           endDate: '',
