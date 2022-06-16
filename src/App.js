@@ -15,9 +15,7 @@ const TrainingPage = lazy(() => import('./pages/TrainingPage/TrainingPage'));
 
 const LibraryPage = lazy(() => import('./pages/LibraryPage/LibraryPage'));
 const ResumePage = lazy(() => import('./pages/ResumePage/ResumePage'));
-const QuoteSection = lazy(() =>
-  import('./components/QuoteSection/QuoteSection'),
-);
+const QuotePage = lazy(() => import('./pages/QuotePage/QuotePage'));
 
 function App() {
   const onlyWidth = useWindowWidth();
@@ -41,7 +39,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Outlet />}>
           {!isLoggedIn && onlyWidth < 768 ? (
-            <Route index element={<QuoteSection />} />
+            <Route index element={<QuotePage />} />
           ) : (
             <Route index element={<LoginPage />} />
           )}
