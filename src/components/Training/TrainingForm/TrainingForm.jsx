@@ -7,6 +7,7 @@ import trainingActions from '../../../redux/training/trainingActions';
 import trainingFormSchema from '../../../validation/training';
 import BookSelector from '../BookSelector/BookSelector';
 import DatePickerInput from '../DatePicker/DatePicker';
+import Timers from '../../Timers/Timers';
 // import TrainingList from '../TrainingList/TrainingList';
 import {
   FormContainer,
@@ -33,7 +34,7 @@ const TrainingForm = () => {
     initialValues: {
       start: start ? start : '',
       end: end ? end : '',
-      book: {},
+      book: null,
     },
     validationSchema: trainingFormSchema,
     onSubmit: values => {
@@ -77,30 +78,35 @@ const TrainingForm = () => {
   return (
     <>
       <FormContainer onSubmit={formik.handleSubmit} autoComplete="off">
-        <FormTitle>Моє тренування </FormTitle>
         {!isStarted ? (
-          <CalendarsContainer>
-            <DatePickerInput
-              value={formik.values.start}
-              placeholderText="Початок"
-              onChange={handleStartDate}
-              pickedDate={start ? new Date(start) : ''}
-            />
-            {/* {formik.touched.start && formik.errors.start ? (
+          <FormTitle>Моє тренування </FormTitle> && (
+            <CalendarsContainer>
+              <DatePickerInput
+                value={formik.values.start}
+                placeholderText="Початок"
+                onChange={handleStartDate}
+                pickedDate={start ? new Date(start) : ''}
+                minDate={false}
+                maxDate={new Date()}
+              />
+              {/* {formik.touched.start && formik.errors.start ? (
             <ErrorMessage>{formik.errors.start}</ErrorMessage>
           ) : null} */}
-            <DatePickerInput
-              value={formik.values.end}
-              placeholderText="Кінець"
-              onChange={handleEndDate}
-              pickedDate={end ? new Date(end) : ''}
-            />
-            {/* {formik.touched.end && formik.errors.end ? (
+              <DatePickerInput
+                value={formik.values.end}
+                placeholderText="Кінець"
+                onChange={handleEndDate}
+                pickedDate={end ? new Date(end) : ''}
+                minDate={new Date().setDate(new Date().getDate() + 1)}
+                maxDate={false}
+              />
+              {/* {formik.touched.end && formik.errors.end ? (
             <ErrorMessage>{formik.errors.end}</ErrorMessage>
           ) : null} */}
-          </CalendarsContainer>
+            </CalendarsContainer>
+          )
         ) : (
-          <></>
+          <Timers />
         )}
         {!isStarted ? (
           <SelectAndButtonContainer>
@@ -116,7 +122,7 @@ const TrainingForm = () => {
               type="button"
               onClick={() => {
                 console.log(formik.values);
-                formik.values.book.author &&
+                formik.values?.book?.author &&
                   dispatch(
                     addBook({
                       book: formik.values.book,

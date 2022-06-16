@@ -11,7 +11,13 @@ import {
 
 import { useSelector } from 'react-redux';
 
-const DatePickerInput = ({ pickedDate, placeholderText, onChange }) => {
+const DatePickerInput = ({
+  pickedDate,
+  placeholderText,
+  onChange,
+  minDate,
+  maxDate
+}) => {
   const isStarted = useSelector(state => state.training.isStarted);
   return (
     <DatePickerWrapper>
@@ -24,7 +30,8 @@ const DatePickerInput = ({ pickedDate, placeholderText, onChange }) => {
         selected={pickedDate}
         dateFormat="yyyy-MM-dd"
         placeholderText={placeholderText}
-        minDate={new Date()}
+        minDate={minDate}
+        maxDate={maxDate}
         name="date"
       />
       <CalendarIcon />

@@ -22,6 +22,8 @@ const initialState = {
   statistics: [],
   isGoing: [],
   status: '',
+  readBookPages: 0,
+  bookNumber: null,
   // alreadyRead: [],
   // bookNumber: 0,
 };
@@ -95,6 +97,8 @@ const trainingReducer = createReducer(initialState, {
           ],
           totalPages: payload.training.totalPages,
           readedPages: payload.training.readedPages,
+          readBookPages: payload.training.readBookPages,
+          bookNumber: payload.training.bookNumber,
           statistics: [...payload.training.statistics],
           status: payload.training.status,
           isGoing: [...state.isGoing],
@@ -125,6 +129,8 @@ const trainingReducer = createReducer(initialState, {
           ],
           totalPages: payload.training.totalPages,
           readedPages: payload.training.readedPages,
+          readBookPages: payload.training.readBookPages,
+          bookNumber: payload.training.bookNumber,
           statistics: [...payload.training.statistics],
           status: payload.training.status,
         }
@@ -142,6 +148,8 @@ const trainingReducer = createReducer(initialState, {
           books: [...payload.training.books],
           totalPages: payload.training.totalPages,
           readedPages: payload.training.readedPages,
+          readBookPages: payload.training.readBookPages,
+          bookNumber: payload.training.bookNumber,
           statistics: [...payload.training.statistics],
           // alreadyRead:
           //   payload.training.readedPages >= state.books[payload.bookNumber].pages

@@ -34,7 +34,7 @@ const TrainingList = () => {
       <TrainingListStyled>
         {/* <TrainingListItem /> */}
         {books.length ? (
-          books.map(book => (
+          books.map((book, index) => (
             <TrainingListItem
               author={book.author}
               title={book.title}
@@ -42,11 +42,12 @@ const TrainingList = () => {
               pages={book.pages}
               key={uuidv4()}
               id={book.id}
+              index={index}
             />
           ))
         ) : (
           <TrainingListItemStyled>
-            <BookIconStyled />
+            <BookIconStyled fill="#B1B5C2" />
             <TrainingListItemTitle>...</TrainingListItemTitle>
             <TrainingListItemAuthor />
             <TrainingListItemYear />

@@ -24,7 +24,7 @@ export const TrainingListItemStyled = styled.li`
 export const BookIconStyled = styled(BookIcon)`
   width: 22px;
   height: 17px;
-  fill: #b1b5c2;
+  fill: ${props => props.fill};
   @media (max-width: 320px) {
     position: absolute;
     top: 25px;

@@ -22,7 +22,7 @@ const items = createReducer(
     }),
     [addBooks.fulfilled]: (state, { payload }) => ({
       ...state,
-      payload,
+      going: [...state.going, payload.book],
     }),
     [reviewBook.fulfilled]: (state, { payload }) => ({
       ...state,

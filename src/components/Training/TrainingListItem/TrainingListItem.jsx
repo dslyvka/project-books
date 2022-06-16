@@ -14,13 +14,14 @@ import trainingActions from '../../../redux/training/trainingActions';
 
 const { deleteBook } = trainingActions;
 
-const TrainingListItem = ({ title, author, year, pages, id }) => {
+const TrainingListItem = ({ title, author, year, pages, id, index }) => {
   const dispatch = useDispatch();
   const isStarted = useSelector(state => state.training.isStarted);
+  const bookNumber = useSelector(state => state.training.bookNumber);
   const isGoing = useSelector(state => state.training.isGoing);
   return (
     <TrainingListItemStyled>
-      <BookIconStyled />
+      <BookIconStyled fill={index === bookNumber ? '#FF6B08' : '#B1B5C2'} />
       {/* <TrainingListItemTitle>Заповіт</TrainingListItemTitle>
       <TrainingListItemAuthor>Тарас Шевченко</TrainingListItemAuthor>
       <TrainingListItemYear>1859</TrainingListItemYear>
