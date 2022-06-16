@@ -12,17 +12,18 @@ const Rate = ({ update, init, read }) => {
 
   return (
     <Rating
+      transition
       readonly={read}
       initialValue={init}
       onClick={handleRating}
       ratingValue={rating}
       emptyIcon={
-        <svg pointerEvents="none" width="17" height="17">
+        <svg width="17" height="17">
           <use href={`${sprites}#icon-Star`} />
         </svg>
       }
       fullIcon={
-        <svg pointerEvents="none" width="17" height="17">
+        <svg width="17" height="17">
           <use href={`${sprites}#icon-Star-full`} />
         </svg>
       }
