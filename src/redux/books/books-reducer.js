@@ -8,14 +8,33 @@ import {
 } from './books-operations';
 
 const items = createReducer(
-  {},
   {
-    [fetchBooks.fulfilled]: (_, { payload = '' }) => payload.books,
+    aready: [],
+    going: [],
+    reading: [],
+  },
+  {
+    [fetchBooks.fulfilled]: (state, { payload = '' }) => ({
+      ...state,
+      already: [...payload.books.already],
+      going: [...payload.books.going],
+      reading: [...payload.books.reading],
+    }),
     [addBooks.fulfilled]: (state, { payload }) => ({
       ...state,
       payload,
     }),
-    [reviewBook.fulfilled]: (state, { payload }) => ({ ...state, payload }),
+    [reviewBook.fulfilled]: (state, { payload }) => ({
+      ...state,
+      already: [
+        ...state.already.map(book => {
+          if (book._id === payload.book._id) {
+            return payload.book;
+          }
+          return book;
+        }),
+      ],
+    }),
     [deleteBook.fulfilled]: (state, { payload }) => ({
       ...state,
       going: [...state.going.filter(({ _id }) => _id !== payload)],
