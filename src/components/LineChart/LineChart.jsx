@@ -75,8 +75,11 @@ const LineChart = () => {
   const [chartOptions, setChartOptions] = useState({});
   const {width} = useWindowDimensions();
   const allDays = Math.ceil((new Date(endDate) - new Date(startDate)) / 86400000);
+  console.log('Усіх днів' , allDays);
   const daysLeft = Math.ceil((new Date(endDate) - new Date()) / 86400000);
+  console.log('Завлишилось днів' , daysLeft);
   const daysPassed = allDays - daysLeft;
+  console.log('Пройшло днів' , daysPassed);
   const pagesLeft = totalPages - readedPages;
 
   // Вираховуємо план прочитання на сьогоднішній день
@@ -92,9 +95,23 @@ const LineChart = () => {
     return arr;
   };
   const daysArray = getDaysArray();
+  console.log('Масив днів', daysArray);
+  
+  // Приводимо масив обєктів статистики до коректного виду дат
+    const getStatisticsArray = () => {
+      const arr = [];
+      for (let i = 0; i < statistics.length; i++) { 
+        arr.push({
+          statisticDate: new Date(statistics[i].statisticDate).toLocaleDateString(),
+          statisticResult: statistics[i].statisticResult,
+        });
+      }
+      return arr
+    }
+    const statisticsArray = getStatisticsArray();
 
   // Отримуємо сумований масив прочитаних сторінок по днях
-  const sumStatistics = (aggregate(statistics, ['statisticDate'], {
+  const sumStatistics = (aggregate(statisticsArray, ['statisticDate'], {
   key: 'statisticResult',
   fn: (total, value) => total + value
   }));
@@ -112,6 +129,7 @@ const LineChart = () => {
     return Object.assign(result, { [key] : val });
   }, {}));
   };
+  console.log('Сумований масив прочитаних сторінок по днях', sumStatistics);
 
   // Отримуємо масив обєктів з датою і сторінками для графіку факт
   const getResultreadedPagesArray = () => {
@@ -119,9 +137,9 @@ const LineChart = () => {
     daysArray.forEach(el => {
       let found = false;
       sumStatistics.forEach(item => {
-        if (item.hasOwnProperty('statisticDate') && new Date(item.statisticDate).toLocaleDateString() === el) {
+        if (item.hasOwnProperty('statisticDate') && item.statisticDate === el) {
           res.push({
-            statisticDate: new Date(item.statisticDate).toLocaleDateString(),
+            statisticDate: item.statisticDate,
             statisticResult: item.statisticResult,
           });
           found = true;
@@ -136,13 +154,15 @@ const LineChart = () => {
     })
     return res;
   };
+  console.log('Масив обєктів з датою і сторінками для графіку факт', getResultreadedPagesArray());
 
   // Отримуємо масив прочитаних сторінок для графіку факт
   const getFactreadedPagesArray = () => {
     const result = getResultreadedPagesArray();
     return result.map(item => item.statisticResult);
   };
-  const factArray = getFactreadedPagesArray();
+    const factArray = getFactreadedPagesArray();
+    console.log('Масив фактичних даних', factArray);
 
   // Розраховуємо масив для графіку план
   const getResultPlanArray = () => {
