@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const CommonContainer = styled.div`
+  min-height: 100vh;
   background-color: #f6f7fb;
   margin: 0 auto;
   padding: 0 20px;

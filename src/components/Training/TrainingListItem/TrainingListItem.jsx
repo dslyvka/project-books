@@ -14,7 +14,15 @@ import trainingActions from '../../../redux/training/trainingActions';
 
 const { deleteBook } = trainingActions;
 
-const TrainingListItem = ({ title, author, year, pages, id, index }) => {
+const TrainingListItem = ({
+  title,
+  author,
+  year,
+  pages,
+  id,
+  index,
+  placeholder,
+}) => {
   const dispatch = useDispatch();
   const isStarted = useSelector(state => state.training.isStarted);
   const bookNumber = useSelector(state => state.training.bookNumber);
@@ -31,7 +39,7 @@ const TrainingListItem = ({ title, author, year, pages, id, index }) => {
       <TrainingListItemYear>{year}</TrainingListItemYear>
       <TrainingListItemPages>{pages}</TrainingListItemPages>
 
-      {!isStarted ? (
+      {!isStarted && !placeholder && (
         <DeleteButton
           type="button"
           onClick={() =>
@@ -40,8 +48,6 @@ const TrainingListItem = ({ title, author, year, pages, id, index }) => {
         >
           <DeleteIcon />
         </DeleteButton>
-      ) : (
-        <></>
       )}
     </TrainingListItemStyled>
   );

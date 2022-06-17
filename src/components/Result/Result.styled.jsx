@@ -37,6 +37,7 @@ export const Container = styled.div`
     width: 288px;
     padding: 20px 24px;
     margin-top: 0px;
+    height: 340px;
   }
 `;
 
