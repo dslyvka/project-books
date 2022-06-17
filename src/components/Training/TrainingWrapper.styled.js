@@ -36,5 +36,6 @@ export const ResultBlock = styled.div`
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
+    margin-top: 40px;
   }
 `;

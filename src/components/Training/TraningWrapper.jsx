@@ -13,6 +13,7 @@ import {
   TrainingWrapperStyled,
   TrainingWrapperStyledUpperPart,
   TrainingWrapperTrainingInfo,
+  TrainingWrapperStyledLowerPart,
   ResultBlock,
 } from './TrainingWrapper.styled';
 import Timers from '../Timers/Timers';
@@ -88,7 +89,21 @@ const TrainingWrapper = () => {
       </Tablet>
       <Desktop>
         {isStarted ? (
-          <></>
+          <>
+            <TrainingWrapperStyledUpperPart>
+              <TrainingWrapperTrainingInfo>
+                <TrainingForm />
+                <TrainingList />
+                <StartTrainingBtn />
+              </TrainingWrapperTrainingInfo>
+              <MyGoal />
+            </TrainingWrapperStyledUpperPart>
+            {/* <MyGoal />   */}
+            <ResultBlock>
+              <LineChart />
+              <Result />
+            </ResultBlock>
+          </>
         ) : (
           <>
             <TrainingWrapperStyledUpperPart>
