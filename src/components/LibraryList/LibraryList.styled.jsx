@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 
 export const Div = styled.div`
 display:flex;
+
 flex-direction:column;
 justify-content:center;
 margin-left:20px;
@@ -90,17 +91,21 @@ text-decoration:none;
   }
 }
 }
-
 `
 
 export const DivAllButt = styled.div`
 display:flex;
 flex-direction:column;
+margin-bottom:100px;
   @media screen and (min-width: 500px) {
     flex-direction:row;
 
    align-items: flex-end;
     justify-content: space-evenly;
   }
+    @media screen and (min-width: 768px) {
+      margin-bottom:0px;
+
+
 
 ;`
