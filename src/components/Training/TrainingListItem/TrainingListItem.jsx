@@ -22,14 +22,13 @@ const TrainingListItem = ({
   id,
   index,
   placeholder,
+  status,
 }) => {
   const dispatch = useDispatch();
   const isStarted = useSelector(state => state.training.isStarted);
-  const bookNumber = useSelector(state => state.training.bookNumber);
-  const isGoing = useSelector(state => state.training.isGoing);
   return (
     <TrainingListItemStyled>
-      <BookIconStyled fill={index === bookNumber ? '#FF6B08' : '#B1B5C2'} />
+      <BookIconStyled fill={status === 'already' ? '#FF6B08' : '#B1B5C2'} />
       {/* <TrainingListItemTitle>Заповіт</TrainingListItemTitle>
       <TrainingListItemAuthor>Тарас Шевченко</TrainingListItemAuthor>
       <TrainingListItemYear>1859</TrainingListItemYear>
