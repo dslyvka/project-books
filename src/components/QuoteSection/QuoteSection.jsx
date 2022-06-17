@@ -5,8 +5,7 @@ import {
   Container,
   Title,
   ButtonWrapper,
-  LoginButton,
-  RegisterButton,
+  Button,
 } from './QuoteSection.styled';
 
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -64,19 +63,19 @@ const QuoteSection = () => {
       </Container>
       {onlyWidth < 768 && (
         <ButtonWrapper>
-          <LoginButton
+          <Button
             type="button"
             onClick={() => navigate((location.pathname = '/login'))}
           >
             Увійти
-          </LoginButton>
+          </Button>
 
-          <RegisterButton
+          <Button
             type="button"
             onClick={() => navigate((location.pathname = '/register'))}
           >
             Реєстрація
-          </RegisterButton>
+          </Button>
         </ButtonWrapper>
       )}
     </Section>

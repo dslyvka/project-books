@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { ButtonStyled } from '../RegularButton/Button.styled';
 
 const bp = [320, 768, 1280];
 
@@ -58,30 +57,56 @@ export const ButtonWrapper = styled.div`
   justify-content: center;
 `;
 
-export const LoginButton = styled(ButtonStyled)`
-  // display: inline-block;
-
+export const Button = styled.button`
+  font-family: 'Montserrat';
+  font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 1.21;
-
+  line-height: 17px;
+  color: #fff;
+  box-sizing: border-box;
+  border: none;
+  background: #ff6b08;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  transition-duration: 400ms;
+  :disabled {
+    background: #6d7a8d;
+    :hover,
+    :focus {
+      background-color: #6d7a8d;
+      color: #ffffff;
+      border: none;
+      transform: none;
+    }
+  }
+  :hover,
+  :focus {
+    background-color: #ff6b08;
+    color: #ffffff;
+    border: none;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    transform: scale(1.05);
+  }
+  &:first-of-type {
+    color: #242a37;
+    background: #ffffff;
+    border: 1px solid #242a37;
+    box-shadow: none;
+    transition-duration: 400ms;
+    :hover,
+    :focus {
+      background-color: #ff6b08;
+      color: #ffffff;
+      border: none;
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+      transform: scale(1.05);
+    }
+  }
+  margin: 8px;
+  @media (min-width: 768px) {
+    width: 130px;
+    margin: 16px;
+  }
   width: 130px;
   height: 40px;
-  margin: 0;
-  margin-right: 20px;
-  padding: 12px 24px;
-
-  color: #242a37;
-  background-color: transparent;
-  border: 2px solid #242a37;
-`;
-
-export const RegisterButton = styled(LoginButton)`
-  margin-right: 0;
-
-  color: #ffffff;
-  background-color: #ff6b08;
-
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  border: 0;
 `;
