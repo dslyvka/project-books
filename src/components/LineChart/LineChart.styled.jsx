@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
+  margin: 0 auto;
   position: relative;
   width: 280px;
   height: 290px;
@@ -20,7 +21,6 @@ export const Wrapper = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    margin: 0 auto;
     width: 930px;
     height: 340px;
     padding-left: 35px;

@@ -22,7 +22,7 @@ export const DatePickerStyled = styled(DatePicker)`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  // margin: 0 auto;
+  margin: 0 auto;
   margin-top: 32px;
   padding: 20px;
   width: 280px;
