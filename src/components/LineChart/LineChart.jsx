@@ -174,7 +174,7 @@ const LineChart = () => {
   const planArray = getResultPlanArray();
   
     setChartData({
-      labels: isStarted && pagesLeft !==0 ? daysArray : [1, 2],
+      labels: isStarted && pagesLeft !==0 && daysLeft > 1 ? daysArray : [1, 2],
       datasets: [
         {
           label: 'ПЛАН',
