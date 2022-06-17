@@ -56,6 +56,7 @@ const TrainingList = () => {
                 key={uuidv4()}
                 id={book.id}
                 index={index}
+                status={book.status}
               />
             ))
           : placeholder}
