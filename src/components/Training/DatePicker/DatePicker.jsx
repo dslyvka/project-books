@@ -16,12 +16,15 @@ const DatePickerInput = ({
   placeholderText,
   onChange,
   minDate,
-  maxDate
+  maxDate,
 }) => {
   const isStarted = useSelector(state => state.training.isStarted);
   return (
     <DatePickerWrapper>
       <DatePickerStyled
+        onKeyDown={e => {
+          e.preventDefault();
+        }}
         disabled={isStarted ? true : false}
         onChange={date => {
           console.log(date);

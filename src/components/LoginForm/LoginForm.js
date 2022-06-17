@@ -98,9 +98,9 @@ const LoginForm = () => {
                   value={values.email}
                 />
                 <br />
-                {touched.email && errors.email && (
-                  <span className="input__error">{errors.email}</span>
-                )}
+                <span className="input__error">
+                  {touched.email && errors.email ? errors.email : ''}
+                </span>
               </li>
 
               <li>
@@ -124,9 +124,10 @@ const LoginForm = () => {
                   value={values.password}
                 />
                 <br />
-                {touched.password && errors.password && (
-                  <span className="input__error">{errors.password}</span>
-                )}
+
+                <span className="input__error">
+                  {touched.password && errors.password ? errors.password : ''}
+                </span>
               </li>
 
               <ButtonStyled
