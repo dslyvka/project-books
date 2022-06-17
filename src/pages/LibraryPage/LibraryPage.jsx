@@ -18,8 +18,6 @@ const LibraryPage = () => {
 
   const width = useWindowWidth();
   const [isLibraryFormShow, setIsLibraryFormShow] = useState(false)
-  console.log(width)
-
 
   const openModal = () => {
     setIsLibraryFormShow(!isLibraryFormShow)
