@@ -9,9 +9,10 @@ import GoogleAuth from './components/GoogleAuth/GoogleAuth';
 import actions from './redux/auth/auth-actions';
 import { useWindowWidth } from '@react-hook/window-size';
 
+import TrainingPage from './pages/TrainingPage/TrainingPage';
+
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
-const TrainingPage = lazy(() => import('./pages/TrainingPage/TrainingPage'));
 
 const LibraryPage = lazy(() => import('./pages/LibraryPage/LibraryPage'));
 const ResumePage = lazy(() => import('./pages/ResumePage/ResumePage'));
