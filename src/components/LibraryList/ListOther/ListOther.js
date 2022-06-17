@@ -56,25 +56,30 @@ function ListOther({ text, array = [] }) {
                     <li> {<LibraryIcon book={status} />} </li>
                     <LiNameBook>{title}</LiNameBook>
                   </DivTitle>
-
-                  <LiSvgMobile width="35px">
-                    <ButtonDel
-                      onClick={e => togleModal(e)}
-                      id={_id}
-                      data-text={title}
-                    >
-                      <SvgDel width="20" height="20">
-                        <use href={`${sprite}#icon-delete`}></use>
-                      </SvgDel>
-                    </ButtonDel>
-                    <div>
-                      {isOpen && (
-                        <Modal onClose={close}>
-                          <DeleteButton onClose={close} _id={id} book={book} />
-                        </Modal>
-                      )}
-                    </div>
-                  </LiSvgMobile>
+                  {status === 'going' && (
+                    <LiSvgMobile width="35px">
+                      <ButtonDel
+                        onClick={e => togleModal(e)}
+                        id={_id}
+                        data-text={title}
+                      >
+                        <SvgDel width="20" height="20">
+                          <use href={`${sprite}#icon-delete`}></use>
+                        </SvgDel>
+                      </ButtonDel>
+                      <div>
+                        {isOpen && (
+                          <Modal onClose={close}>
+                            <DeleteButton
+                              onClose={close}
+                              _id={id}
+                              book={book}
+                            />
+                          </Modal>
+                        )}
+                      </div>
+                    </LiSvgMobile>
+                  )}
                 </UlOther>
                 <UlOther>
                   <LiTitle>Автор</LiTitle>
