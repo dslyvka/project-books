@@ -34,6 +34,7 @@ export const Container = styled.div`
     margin-top: 40px;
   }
   @media screen and (min-width: 1280px) {
+    margin: 0;
     width: 288px;
     padding: 20px 24px;
     margin-top: 0px;
