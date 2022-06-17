@@ -46,6 +46,7 @@ const TrainingWrapper = () => {
           <>
             <MyGoal />
             <TrainingList />
+            <StartTrainingBtn />
             <LineChart />
             <TrainingOpenModalButton openModal={openModal} />
             <TrainingModal
