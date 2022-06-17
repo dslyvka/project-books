@@ -89,9 +89,11 @@ const RegisterForm = () => {
                   onBlur={handleBlur}
                   value={values.name}
                 />
-                {touched.name && errors.name && (
-                  <span className="input__error">{errors.name}</span>
-                )}
+
+                <span className="input__error">
+                  {touched.name && errors.name ? errors.name : ''}
+                </span>
+
                 <br />
               </li>
 
@@ -115,9 +117,10 @@ const RegisterForm = () => {
                   value={values.email}
                 />
                 <br />
-                {touched.email && errors.email && (
-                  <span className="input__error">{errors.email}</span>
-                )}
+
+                <span className="input__error">
+                  {touched.email && errors.email ? errors.email : ''}
+                </span>
               </li>
 
               <li>
@@ -141,9 +144,9 @@ const RegisterForm = () => {
                   value={values.password}
                 />
                 <br />
-                {touched.password && errors.password && (
-                  <span className="input__error">{errors.password}</span>
-                )}
+                <span className="input__error">
+                  {touched.password && errors.password ? errors.password : ''}
+                </span>
               </li>
 
               <li>
@@ -169,9 +172,12 @@ const RegisterForm = () => {
                   }}
                 />
                 <br />
-                {touched.confirmPassword && errors.confirmPassword && (
-                  <span className="input__error">{errors.confirmPassword}</span>
-                )}
+
+                <span className="input__error">
+                  {touched.confirmPassword && errors.confirmPassword
+                    ? errors.confirmPassword
+                    : ''}
+                </span>
               </li>
               <ButtonStyled
                 // disabled={

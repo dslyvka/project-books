@@ -129,6 +129,8 @@ export const StyledForm = styled.form`
       padding-top: 7px;
       display: block;
 
+      height: 27px;
+
       font-family: 'Montserrat';
       font-style: normal;
       font-weight: 500;

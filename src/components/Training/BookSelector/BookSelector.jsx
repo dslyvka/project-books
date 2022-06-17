@@ -42,6 +42,7 @@ const BookSelector = ({ onChange }) => {
 
   return (
     <Select
+      isSearchable={false}
       isDisabled={isStarted ? true : false}
       defaultValue=""
       placeholder={isStarted ? '' : 'Оберіть книжку'}
