@@ -49,9 +49,9 @@ const TrainingList = () => {
           <TrainingListItemStyled>
             <BookIconStyled fill="#B1B5C2" />
             <TrainingListItemTitle>...</TrainingListItemTitle>
-            <TrainingListItemAuthor />
-            <TrainingListItemYear />
-            <TrainingListItemPages />
+            <TrainingListItemAuthor> </TrainingListItemAuthor>
+            <TrainingListItemYear> </TrainingListItemYear>
+            <TrainingListItemPages> </TrainingListItemPages>
           </TrainingListItemStyled>
         )}
       </TrainingListStyled>

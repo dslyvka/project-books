@@ -15,6 +15,7 @@ import {
   TrainingWrapperTrainingInfo,
   ResultBlock,
 } from './TrainingWrapper.styled';
+import Timers from '../Timers/Timers';
 
 const TrainingWrapper = () => {
   const Mobile = props => <Responsive {...props} maxWidth={767} />;
@@ -33,35 +34,90 @@ const TrainingWrapper = () => {
   return (
     <TrainingWrapperStyled>
       <Mobile>
-        <MyGoal />
+        {isStarted ? (
+          <>
+            <Timers />
+            <MyGoal />
+            <TrainingList />
+            <LineChart />
+            <Result />
+          </>
+        ) : (
+          <>
+            <MyGoal />
+            <TrainingList />
+            <LineChart />
+            <TrainingOpenModalButton openModal={openModal} />
+            <TrainingModal
+              isTrainingModalShown={isTrainingModalShown}
+              setTrainingModalShown={setTrainingModalShown}
+            />
+          </>
+        )}
+        {/* <MyGoal />
         <TrainingList />
         <TrainingOpenModalButton openModal={openModal} />
         <TrainingModal
           isTrainingModalShown={isTrainingModalShown}
           setTrainingModalShown={setTrainingModalShown}
-        />
+        /> */}
       </Mobile>
       <Tablet>
-        <MyGoal />
+        {isStarted ? (
+          <>
+            <Timers />
+            <MyGoal />
+            <TrainingList />
+            <StartTrainingBtn />
+            <LineChart />
+            <Result />
+          </>
+        ) : (
+          <>
+            <MyGoal />
+            <TrainingForm />
+            <TrainingList />
+            <StartTrainingBtn />
+            <LineChart />
+          </>
+        )}
+        {/* <MyGoal />
         <TrainingForm />
-        <TrainingList />
+        <TrainingList /> */}
       </Tablet>
       <Desktop>
-        <TrainingWrapperStyledUpperPart>
+        {isStarted ? (
+          <></>
+        ) : (
+          <>
+            <TrainingWrapperStyledUpperPart>
+              <TrainingWrapperTrainingInfo>
+                <TrainingForm />
+                <TrainingList />
+                <StartTrainingBtn />
+              </TrainingWrapperTrainingInfo>
+              <MyGoal />
+            </TrainingWrapperStyledUpperPart>
+            {/* <MyGoal />   */}
+
+            <LineChart />
+          </>
+        )}
+        {/* <TrainingWrapperStyledUpperPart>
           <TrainingWrapperTrainingInfo>
             <TrainingForm />
             <TrainingList />
           </TrainingWrapperTrainingInfo>
 
           <MyGoal />
-        </TrainingWrapperStyledUpperPart>
+        </TrainingWrapperStyledUpperPart> */}
       </Desktop>
-
+      {/* 
       <ResultBlock>
         <StartTrainingBtn />
         <LineChart />
         {isStarted ? <Result /> : <></>}
-      </ResultBlock>
+      </ResultBlock> */}
     </TrainingWrapperStyled>
   );
 };

@@ -119,7 +119,7 @@ export const DeleteButton = styled.button`
     right: 0;
   }
   @media (min-width: 768px) {
-    margin-left: 48px;
+    margin-left: 80px;
   }
   @media (min-width: 1280px) {
     margin-left: 121px;
