@@ -31,7 +31,7 @@ const MyGoal = ({ startTraining }) => {
             <span className="statistic__number">{books.length}</span>
           </div>
           <p className="statistic__text">
-            Кількість<br></br> книжок
+            Кількість <span> книжок</span>
           </p>
         </div>
         <div className="statistic-day">
@@ -40,9 +40,8 @@ const MyGoal = ({ startTraining }) => {
               {!isNaN(countOfDays) ? countOfDays : 0}
             </span>
           </div>
-          
           <p className="statistic__text">
-            Кількість<br></br> днів
+            Кількість <span> днів</span>
           </p>
         </div>
         {isTraining && (
