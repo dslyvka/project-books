@@ -27,21 +27,20 @@ import trainingActions from '../../redux/training/trainingActions';
 
 const Result = () => {
   const [showModal, setShowModal] = useState(false);
-  const [readBook, setReadBook] = useState(1);
-  const { statistics, totalPages, readedPages, startDate, books } = useSelector(
-    state => state.training,
-  );
+  const { statistics, totalPages, readedPages, startDate, bookNumber } =
+    useSelector(state => state.training);
+  const [readBook, setReadBook] = useState(bookNumber);
 
   const togleModal = () => {
     setShowModal(showModal => !showModal);
   };
 
   useEffect(() => {
-    if (books[readBook - 1].status === 'already') {
+    if (bookNumber !== readBook) {
       togleModal();
       setReadBook(readBook + 1);
     }
-  });
+  }, [bookNumber]);
 
   const statArray = [...statistics];
   statArray.shift();
