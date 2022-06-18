@@ -18,25 +18,20 @@ const MyGoal = ({ startTraining }) => {
     endDate - startDate > 0 ? (endDate - startDate) / 86400000 : ((endDate - startDate) * -1) / 86400000;
 
   let leftToRead = books.length - bookNumber;
-  // for (let i = 0; i < books.length; i++) {
-  //   if (books[i].pages <= wasRead) {
-  //     readBook += 1;
-  //   }
-  //   leftToRead = books.length - readBook;
-  // }
+
 
   return (
     <MyGoalStyled className="myGoalStyled" startTraining={startTraining}>
-      <div className="statistic-title">
-        <p>Моя мета прочитати</p>
-      </div>
+      <h2 className="statistic-title">
+        Моя мета прочитати
+      </h2>
       <div className="statistic">
         <div className="statistic-book">
           <div className="statistic__cell">
             <span className="statistic__number">{books.length}</span>
           </div>
           <p className="statistic__text">
-            Кількість <span> книжок</span>
+            Кількість<br></br> книжок
           </p>
         </div>
         <div className="statistic-day">
@@ -45,8 +40,9 @@ const MyGoal = ({ startTraining }) => {
               {!isNaN(countOfDays) ? countOfDays : 0}
             </span>
           </div>
+          
           <p className="statistic__text">
-            Кількість <span> днів</span>
+            Кількість<br></br> днів
           </p>
         </div>
         {isTraining && (

@@ -24,13 +24,19 @@ const MyGoalStyled = styled.div`
     width: 275px;
   }
   .statistic-title {
-    padding: 11px 0;
-    line-height: 1.9;
-    font-size: 20px;
-    font-family: 'Montserrat-SemiBold';
+       box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+    color: #fff;
     background-color: #b1b5c2;
-    color: #ffffff;
+    padding-top: 15px;
     text-align: center;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.9;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
     @media screen and (min-width: 768px) and (max-width: 1279px) {
       margin-top: ${props => (props.startTraining ? '23px' : '0px')};
       padding: 11px 28px;
@@ -65,7 +71,8 @@ const MyGoalStyled = styled.div`
     height: ${props => (props.startTraining ? '66px' : '100px')};
     padding-top: ${props => (props.startTraining ? '14px' : '24px')};
     padding-bottom: ${props => (props.startTraining ? '14px' : '24px')};
-    font-family: 'OpenSans-Bold';
+    font-family: 'Open Sans';
+    font-weight: 700;
     font-size: ${props => (props.startTraining ? '36px' : '45px')};
     line-height: ${props => (props.startTraining ? '1.08' : '0.84')};
     background-color: #f5f7fa;
@@ -82,7 +89,9 @@ const MyGoalStyled = styled.div`
   }
   .statistic__number {
     display: block;
-    font-family: 'OpenSans-Bold';
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-style: normal;
     text-align: center;
     @media screen and (min-width: 768px) and (max-width: 1279px) {
       font-size: 40px;
@@ -90,17 +99,24 @@ const MyGoalStyled = styled.div`
     }
   }
   .statistic__text {
-    display: flex;
-    flex-direction: column;
+    width: 66px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    
     text-align: center;
-    font-family: 'Montserrat-Medium';
+    margin-top:4px;
+    line-height: 0.90;
+      margin-left:12px;
+    
     font-size: ${props => (props.startTraining ? '12px' : '14px')};
     color: #898f9f;
     @media screen and (min-width: 768px) and (max-width: 1279px) {
-      display: flex;
-      flex-direction: row;
+      width: 100px;
       font-size: 11px;
-      margin-top: 2px;
+      line-height: 0.84;
+      margin-left:1px;
+      
     }
   }
   .statistic-reading .statistic__text {
