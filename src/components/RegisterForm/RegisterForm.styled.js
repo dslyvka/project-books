@@ -129,7 +129,11 @@ export const StyledForm = styled.form`
       padding-top: 7px;
       display: block;
 
-      height: 27px;
+      height: 35px;
+
+      @media screen and (min-width: ${breakpoints[1]}px) {
+        height: 27px;
+      }
 
       font-family: 'Montserrat';
       font-style: normal;
