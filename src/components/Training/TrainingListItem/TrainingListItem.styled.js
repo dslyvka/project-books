@@ -19,6 +19,17 @@ export const TrainingListItemStyled = styled.li`
   @media (min-width: 1280px) {
     padding: 7px 0px;
   }
+
+  animation: 1000ms show ease;
+
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 export const BookIconStyled = styled(BookIcon)`
