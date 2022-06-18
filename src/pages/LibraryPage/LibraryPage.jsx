@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { PageAnimation } from '../../components/PageAnimation/PageAnimation';
 import { getBooks } from '../../redux/books/books-selector';
-import { Div } from './LibraryPage.styled';
+import { Div} from './LibraryPage.styled';
 import LibraryOpenModalButton from '../../components/LibraryList/LibraryButtonModal/LibraryButtonModal'
 import LibraryModalForm from '../../components/LibraryList/LibraryModalForm/LibraryModalForm';
 import { useState } from 'react';
@@ -20,7 +20,7 @@ const LibraryPage = () => {
   const [isLibraryFormShow, setIsLibraryFormShow] = useState(false)
 
   const openModal = () => {
-    setIsLibraryFormShow(!isLibraryFormShow)
+    setIsLibraryFormShow(!isLibraryFormShow) 
   }
 
   const navigate = useNavigate();

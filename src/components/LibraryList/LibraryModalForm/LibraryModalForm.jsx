@@ -1,8 +1,15 @@
 import React from 'react';
 import LibraryForm from '../../LibraryForm/LibraryForm';
-import { ModalBackdrop, ModalWrapper, GoBack } from './LibraryModalForm.styled';
+import { ModalBackdrop, ModalWrapper, GoBack , } from './LibraryModalForm.styled';
 
 const LibraryModalForm = ({ isTrainingModalShown, setTrainingModalShown }) => {
+  if (isTrainingModalShown) {
+    document.body.style.overflow = "hidden"
+  } else {
+      document.body.style.overflow = "";
+  }
+
+  
   return (
     <>
       {isTrainingModalShown && (

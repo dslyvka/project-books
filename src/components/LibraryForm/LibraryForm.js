@@ -23,7 +23,6 @@ const LibraryForm = () => {
   const books = useSelector(getBooks);
   const dispatch = useDispatch();
   // const submit = text => dispatch(booksOperations.addBooks(text));
-  console.log(books);
   const onSubmit = async (values, formikProps) => {
     if (
       books.going.find(
