@@ -11,6 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f6f7fb;
 }
 
 html,
@@ -22,7 +23,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
 
 html,
 body,
@@ -55,8 +55,7 @@ footer,
 header,
 nav,
 output,
-section
- {
+section {
   margin: 0;
   padding: 0;
   border: 0;
@@ -87,10 +86,9 @@ body {
 ol,
 ul {
   list-style: none;
-  
 }
 
-li{
+li {
   list-style-type: none;
 }
 blockquote,

@@ -80,6 +80,8 @@ export const FormAddButton = styled.button`
   width: 171px;
   height: 42px;
   align-self: center;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   &:hover,
   &:focus {
     background-color: #ff6b08;

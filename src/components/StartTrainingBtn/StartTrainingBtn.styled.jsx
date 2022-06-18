@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
 const ButtonStyled = styled.button`
+  font-family: 'Montserrat';
+
   width: 171px;
   height: 40px;
   display: flex;
@@ -16,8 +18,8 @@ const ButtonStyled = styled.button`
   color: #ffffff;
   outline: none;
   cursor: pointer;
-  background-color: #FF6B08;
-  border: 1px solid #FF6B08;
+  background-color: #ff6b08;
+  border: 1px solid #ff6b08;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   @media (min-width: 768px) {
     width: 200px;
@@ -28,8 +30,8 @@ const ButtonStyled = styled.button`
   &:focus,
   &:hover {
     border-color: #d15807;
-    background: #F25137;
+    background: #f25137;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   }
-`
-export default ButtonStyled
+`;
+export default ButtonStyled;
