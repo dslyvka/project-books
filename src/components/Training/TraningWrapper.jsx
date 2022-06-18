@@ -116,7 +116,9 @@ const TrainingWrapper = () => {
             </TrainingWrapperStyledUpperPart>
             {/* <MyGoal />   */}
 
-            <LineChart />
+            <ResultBlock>
+              <LineChart />
+            </ResultBlock>
           </>
         )}
         {/* <TrainingWrapperStyledUpperPart>
