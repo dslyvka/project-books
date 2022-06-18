@@ -229,6 +229,8 @@ width: 50%;
    margin-left: 0px; }
 `
 
+export const Span = styled.p`
+width:33px;`
 
 
 export const ButtonDel = styled.button`

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 
-
+export const DivRate = styled.div`
+margin-top:8px;`
 
 export const Div = styled.div`
 display:flex;
@@ -91,7 +92,7 @@ word-break: break-all;
 
 
 
-margin-top: 8px;
+margin-top: 4px;
 `
 
 export const Li = styled.li`
