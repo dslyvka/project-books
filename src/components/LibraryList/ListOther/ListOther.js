@@ -16,6 +16,7 @@ import {
   LiSvgMobile,
   ButtonDel,
   SvgDel,
+  Span,
 } from './ListAlreadyRead.styled';
 import Modal from '../../Modal/Modal';
 import sprite from '../../../images/sprite/sprites.svg';
@@ -94,7 +95,7 @@ function ListOther({ text, array = [] }) {
                   <LiData width="50px"> {pages}</LiData>
                 </UlOther>
                 <UlOther>
-                  {status === 'going' && (
+                  {status === 'going' ? (
                     <LiSvgTablet width="5px">
                       <ButtonDel
                         onClick={e => togleModal(e)}
@@ -116,6 +117,10 @@ function ListOther({ text, array = [] }) {
                           </Modal>
                         )}
                       </div>
+                    </LiSvgTablet>
+                  ) : (
+                    <LiSvgTablet width="5px">
+                      <Span></Span>
                     </LiSvgTablet>
                   )}
                 </UlOther>

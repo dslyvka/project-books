@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getBooks } from '../../redux/books/books-selector';
 import { Link } from 'react-router-dom';
+import Rate from '../LibraryResumeModal/Rate/Rate';
 import {
   Div,
   Ul,
@@ -14,6 +15,7 @@ import {
   DivUl,
   DivButton,
   Button,
+  DivRate,
 } from './ResumeList.styled';
 
 function ResumeList() {
@@ -38,7 +40,13 @@ function ResumeList() {
             </div>
             <DivResult>
               <Li>{title}</Li>
-              {rating > 0.9 ? <Li>{rating}</Li> : <Li>0</Li>}
+              {rating > 0.9 ? (
+                <DivRate>
+                  <Rate init={rating} read={true} />
+                </DivRate>
+              ) : (
+                <Li>0</Li>
+              )}
               <LiResume>{review}</LiResume>
             </DivResult>
           </Ul>
