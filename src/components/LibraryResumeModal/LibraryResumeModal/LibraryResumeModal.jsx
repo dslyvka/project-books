@@ -23,11 +23,11 @@ export const LibraryResumeModal = ({ closer, id }) => {
   useEffect(() => {
     if (id) {
       const { review, rating } = already.find(item => item._id === id);
-      setBook(review);
+      review === null ? setBook('...') : setBook(review);
       setRate(rating);
     }
-    setBook('');
-    setRate(0);
+    // setBook('');
+    // setRate(0);
   }, []);
 
   const handleClick = () => {
@@ -38,8 +38,8 @@ export const LibraryResumeModal = ({ closer, id }) => {
         id: id,
       }),
     );
-    setRate(0);
-    setBook('');
+    // setRate(0);
+    // setBook('');
     closer();
   };
 
@@ -53,12 +53,12 @@ export const LibraryResumeModal = ({ closer, id }) => {
     <Modal onClose={closer}>
       <ModalContainer>
         <Title>Обрати рейтинг книги</Title>
-        <Rate update={setRate} read={false} />
+        <Rate update={setRate} init={rate} read={false} />
         <Title>Резюме</Title>
         <Label>
           <Input
             type="text"
-            placeholder="..."
+            placeholder={book}
             value={book.review}
             name="review"
             minLength={1}
