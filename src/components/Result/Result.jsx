@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   Container,
   TextStyled,
@@ -17,6 +18,7 @@ import {
 } from './Result.styled';
 import moment from 'moment';
 import Modal from '../Modal/Modal';
+import CongratulationsText from '../СongratulationsText/СongratulationsText';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
@@ -24,8 +26,23 @@ import sprite from '../../images/sprite/sprites.svg';
 import trainingActions from '../../redux/training/trainingActions';
 
 const Result = () => {
-  // const [showModal, setShowModal] = useState(false);
-  const { statistics, status } = useSelector(state => state.training);
+  const [showModal, setShowModal] = useState(false);
+  const [readBook, setReadBook] = useState(1);
+  const { statistics, totalPages, readedPages, startDate, books } = useSelector(
+    state => state.training,
+  );
+
+  const togleModal = () => {
+    setShowModal(showModal => !showModal);
+  };
+
+  useEffect(() => {
+    if (books[readBook - 1].status === 'already') {
+      togleModal();
+      setReadBook(readBook + 1);
+    }
+  });
+
   const statArray = [...statistics];
   statArray.shift();
 
@@ -35,10 +52,6 @@ const Result = () => {
     formikProps.resetForm('');
     dispatch(trainingActions.addResult(values));
   };
-
-  // const togleModal = () => {
-  //   setShowModal(showModal => !showModal);
-  // };
 
   return (
     <Container>
@@ -74,6 +87,7 @@ const Result = () => {
                   <DatePickerStyled
                     // type="dateFormat"
                     name={'statisticDate'}
+                    minDate={new Date(startDate)}
                     maxDate={new Date()}
                     selected={values.statisticDate}
                     value={values.statisticDate}
@@ -94,6 +108,7 @@ const Result = () => {
                     type="number"
                     name="statisticResult"
                     min="0"
+                    max={totalPages - readedPages}
                     placeholder="..."
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -134,7 +149,11 @@ const Result = () => {
           </StatisticList>
         </Statistic>
       )}
-      {/* {status==="done"&&} */}
+      {showModal && (
+        <Modal onClose={togleModal}>
+          <CongratulationsText onClose={togleModal} />
+        </Modal>
+      )}
     </Container>
   );
 };
