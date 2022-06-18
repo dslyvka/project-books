@@ -1,9 +1,10 @@
 import { fetchBooks } from '../../redux/books/books-operations';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBooks } from '../../redux/books/books-selector';
+import { findBook, getLoading } from '../../redux/books/books-selector';
 import { Link } from 'react-router-dom';
 import Rate from '../LibraryResumeModal/Rate/Rate';
+import Filter from './Filter/Filter';
 import {
   Div,
   Ul,
@@ -11,17 +12,19 @@ import {
   LiResume,
   DivResult,
   H2,
-  DivTitle,
   DivUl,
   DivButton,
   Button,
   DivRate,
+  P,
 } from './ResumeList.styled';
 
 function ResumeList() {
-  const { reading = [], going = [], already = [] } = useSelector(getBooks);
+  // const { reading = [], going = [], already = [] } = useSelector(getBooks);
+  const filterBook = useSelector(findBook);
+  const loading = useSelector(getLoading);
   const dispatch = useDispatch();
-  const resume = already.filter(book => book.review !== null);
+  const resume = filterBook.filter(book => book.review !== null);
 
   useEffect(() => {
     dispatch(fetchBooks());
@@ -30,7 +33,9 @@ function ResumeList() {
   return (
     <Div>
       <H2>Мої Резюме</H2>
+      <Filter />
       <DivUl>
+        {loading === false && resume.length === 0 && <P>Нема такої книжки</P>}
         {resume.map(({ _id, review, title, rating }) => (
           <Ul key={_id}>
             <div>

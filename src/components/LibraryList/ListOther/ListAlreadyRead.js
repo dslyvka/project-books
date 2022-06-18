@@ -29,6 +29,8 @@ function ListAlreadyRead({ text = 'Text', array = [], children }) {
     open();
   };
 
+  // const arrayAlready = array.slice(-5);
+
   return (
     <DivContainer margin="80px">
       {array.length !== 0 && (

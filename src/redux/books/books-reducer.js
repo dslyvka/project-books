@@ -6,6 +6,7 @@ import {
   fetchBooks,
   reviewBook,
 } from './books-operations';
+import { changeFilterTitle, changeFilterRating } from './books-actions';
 
 const items = createReducer(
   {
@@ -35,15 +36,36 @@ const items = createReducer(
         }),
       ],
     }),
+
     [deleteBook.fulfilled]: (state, { payload }) => ({
       ...state,
       going: [...state.going.filter(({ _id }) => _id !== payload)],
       // reading: [...state.reading.filter(({ _id }) => _id !== payload)],
+      // going: [...state['going'].filter(({ _id }) => _id !== payload)],
     }),
   },
 );
 
-// going: [...state['going'].filter(({ _id }) => _id !== payload)],
+const filter = createReducer(
+  {
+    filterRating: '',
+    filterTitle: '',
+  },
+  {
+    [changeFilterTitle]: (state, { payload }) => ({
+      ...state,
+      filterTitle: payload,
+    }),
+    [changeFilterRating]: (state, { payload }) => ({
+      ...state,
+      filterRating: payload,
+    }),
+  },
+);
+
+// const filterRating = createReducer('', {
+//   [changeFilterTitle]: (state, { payload }) => payload,
+// });
 
 const loading = createReducer(false, {
   [addBooks.pending]: () => true,
@@ -73,6 +95,7 @@ const error = createReducer(null, {
 
 export default combineReducers({
   items,
+  filter,
   loading,
   error,
 });
