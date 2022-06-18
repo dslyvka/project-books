@@ -135,6 +135,12 @@ export const Button = styled.button`
 
 
 `;
+export const P = styled.p`
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;`
 
 export const DivButton = styled.div`
 margin-top:28px;
