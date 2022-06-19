@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { ReactComponent as BookIcon } from '../../../images/icons/training/bookIcon.svg';
 
 export const TrainingListContainer = styled.div`
   margin-bottom: 30px;
@@ -50,5 +51,42 @@ export const TrainingListStyled = styled.ul`
     overflow-y: scroll;
     padding-top: 12px;
     padding-bottom: 12px;
+  }
+`;
+export const TrainingListEmpty = styled.div`
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    display: none;
+  } ;
+`;
+export const TrainingListEmptyItem = styled.span`
+  margin-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #898f9f;
+  padding-left: 40px;
+`;
+export const TrainingListEmptyItemTitle = styled.div`
+  margin-top: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #898f9f;
+`;
+export const BookIconEmptyStyled = styled(BookIcon)`
+  width: 22px;
+  height: 17px;
+  fill: ${props => props.fill};
+  margin-right: 18px;
+  @media (max-width: 319px) {
+    position: absolute;
+    top: 25px;
+    left: 0;
+  }
+  @media (min-width: 768px) {
+    margin-right: 18px;
   }
 `;

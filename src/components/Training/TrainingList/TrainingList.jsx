@@ -9,6 +9,10 @@ import {
   TrainingListHeaderBookYear,
   TrainingListHeaderBookPages,
   TrainingListStyled,
+  TrainingListEmpty,
+  TrainingListEmptyItem,
+  TrainingListEmptyItemTitle,
+  BookIconEmptyStyled,
 } from './TrainingList.styled';
 
 import {
@@ -23,13 +27,24 @@ import {
 import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 const placeholder = (
-  <TrainingListItem
-    title="..."
-    author="..."
-    year="..."
-    pages="..."
-    placeholder
-  />
+  // <TrainingListItem
+  //   title="..."
+  //   author="..."
+  //   year="..."
+  //   pages="..."
+  //   placeholder
+  // />
+  <>
+    <TrainingListEmptyItemTitle>
+      <BookIconEmptyStyled fill="#B1B5C2" />
+      ...
+    </TrainingListEmptyItemTitle>
+    <TrainingListEmpty>
+      <TrainingListEmptyItem>Автор:</TrainingListEmptyItem>
+      <TrainingListEmptyItem>Рік:</TrainingListEmptyItem>
+      <TrainingListEmptyItem>Стор.:</TrainingListEmptyItem>
+    </TrainingListEmpty>
+  </>
 );
 
 const TrainingList = () => {

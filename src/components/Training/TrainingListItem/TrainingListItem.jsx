@@ -8,6 +8,7 @@ import {
   TrainingListItemYear,
   TrainingListItemPages,
   DeleteButton,
+  TrainingListItemHead,
 } from './TrainingListItem.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import trainingActions from '../../../redux/training/trainingActions';
@@ -34,9 +35,18 @@ const TrainingListItem = ({
       <TrainingListItemYear>1859</TrainingListItemYear>
       <TrainingListItemPages>320</TrainingListItemPages> */}
       <TrainingListItemTitle>{title}</TrainingListItemTitle>
-      <TrainingListItemAuthor>{author}</TrainingListItemAuthor>
-      <TrainingListItemYear>{year}</TrainingListItemYear>
-      <TrainingListItemPages>{pages}</TrainingListItemPages>
+      <TrainingListItemAuthor>
+        <TrainingListItemHead>Автор:</TrainingListItemHead>
+        {author}
+      </TrainingListItemAuthor>
+      <TrainingListItemYear>
+        <TrainingListItemHead>Рік:</TrainingListItemHead>
+        {year}
+      </TrainingListItemYear>
+      <TrainingListItemPages>
+        <TrainingListItemHead>Стор.:</TrainingListItemHead>
+        {pages}
+      </TrainingListItemPages>
 
       {!isStarted && !placeholder && (
         <DeleteButton

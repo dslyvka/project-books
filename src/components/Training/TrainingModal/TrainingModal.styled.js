@@ -3,14 +3,14 @@ import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 
 export const ModalBackdrop = styled.div`
   position: fixed;
-  top: 60px;
+  top: 0;
   left: 0;
   right: 0;
   height: 100vh;
   padding-right: 25px;
   padding-left: 25px;
   background-color: #f6f7fb;
-  z-index: 20;
+  z-index: 2000;
 `;
 
 export const ModalWrapper = styled.div`
