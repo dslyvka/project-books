@@ -12,7 +12,10 @@ export const Button = styled.button`
   width: 171px;
   height: 42px;
   align-self: center;
+  transition: 500ms;
   &:hover {
+    transform: scale(1.03);
+    transition: 500ms;
     background-color: #ff6b08;
     color: #ffffff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
