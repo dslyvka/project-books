@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { formatTime } from '../utils/formatTime';
+import { useSelector } from 'react-redux';
 
 const useStopwatch = action => {
   const [countUp, setCountUp] = useState(action);
+  const endDate = useSelector(state => state.training.endDate);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -11,14 +13,14 @@ const useStopwatch = action => {
           setCountUp(prevCountUp => prevCountUp === 0);
           break;
         case 1:
-          setCountUp(prevCountUp => prevCountUp + 1000);
+          setCountUp(Math.abs(new Date() - new Date(endDate)));
           break;
         default:
           break;
       }
     }, 1000);
     return () => clearInterval(interval);
-  }, [action]);
+  }, [action, endDate]);
 
   return formatTime(countUp);
 };
