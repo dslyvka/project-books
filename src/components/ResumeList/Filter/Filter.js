@@ -1,4 +1,12 @@
-import { Div, DivInput, Input, Label, InputCheckbox } from './Filter.styled';
+import {
+  Div,
+  DivInput,
+  Input,
+  Label,
+  InputCheckbox,
+  DivInputCheck,
+  LabelCheck,
+} from './Filter.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { booksSelectors } from '../../../redux/books/';
 import { useState } from 'react';
@@ -32,16 +40,7 @@ function Filter() {
           placeholder="Ім'я книги"
         ></Input>
       </DivInput>
-      <DivInput>
-        <Label>Резюме</Label>
-        <InputCheckbox
-          id="check"
-          value={valueCheckbox}
-          type="checkbox"
-          checked={x}
-          onChange={soldCheckbox}
-        ></InputCheckbox>
-      </DivInput>
+
       <DivInput>
         <Label>Рейтинг</Label>
         <Input
@@ -52,6 +51,16 @@ function Filter() {
           pattern="/^[^-\s=]([0-9])/"
         ></Input>
       </DivInput>
+      <DivInputCheck>
+        <LabelCheck>Резюме</LabelCheck>
+        <InputCheckbox
+          id="check"
+          value={valueCheckbox}
+          type="checkbox"
+          checked={x}
+          onChange={soldCheckbox}
+        ></InputCheckbox>
+      </DivInputCheck>
     </Div>
   );
 }
