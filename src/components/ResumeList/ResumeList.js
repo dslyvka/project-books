@@ -67,13 +67,11 @@ function ResumeList() {
             </div>
             <DivResult>
               <Li>{title}</Li>
-              {rating > 0.9 ? (
-                <DivRate>
-                  <Rate init={rating} read={true} />
-                </DivRate>
-              ) : (
-                <Li>0</Li>
-              )}
+
+              <DivRate>
+                <Rate init={rating} read={true} />
+              </DivRate>
+
               <LiResume>{review}</LiResume>
             </DivResult>
           </Ul>
