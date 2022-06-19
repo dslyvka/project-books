@@ -51,3 +51,10 @@ background-color: #F6F7FB;
   padding: 10px 15px 10px 15px;  
 }
 `
+
+export const InputCheckbox =  styled.input`
+width: 42px;
+height: 42px;
+сolor: black;
+border-radius: 100px;
+`

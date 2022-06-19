@@ -36,7 +36,7 @@ function ResumeList() {
   const filterBook = useSelector(findBook);
   const loading = useSelector(getLoading);
   const dispatch = useDispatch();
-  const resume = filterBook.filter(book => book.review !== null);
+  // const resume = filterBook.filter(book => book.review !== null);
 
   useEffect(() => {
     dispatch(fetchBooks());
@@ -47,8 +47,10 @@ function ResumeList() {
       <H2>Мої Резюме</H2>
       <Filter />
       <DivUl>
-        {loading === false && resume.length === 0 && <P>Нема такої книжки</P>}
-        {resume.map(({ _id, review, title, rating }) => (
+        {loading === false && filterBook.length === 0 && (
+          <P>Нема такої книжки</P>
+        )}
+        {filterBook.map(({ _id, review, title, rating }) => (
           <Ul key={_id}>
             {isOpen && <LibraryResumeModal closer={close} id={id} />}
             <div>

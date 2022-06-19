@@ -29,11 +29,11 @@ function ListAlreadyRead({ text = 'Text', array = [], children }) {
     open();
   };
 
-  // const arrayAlready = array.slice(-5);
+  const arrayAlready = array.slice(-5);
 
   return (
     <DivContainer margin="80px">
-      {array.length !== 0 && (
+      {arrayAlready.length !== 0 && (
         <Div>
           <h2>{text}</h2>
           <UL>
@@ -46,7 +46,7 @@ function ListAlreadyRead({ text = 'Text', array = [], children }) {
               <LiTablet></LiTablet>
             </UlTablet>
 
-            {array.map(
+            {arrayAlready.map(
               ({ _id, title, author, year, pages, rating = 0, status }) => (
                 <Li key={_id}>
                   {isOpen && <LibraryResumeModal closer={close} id={id} />}
