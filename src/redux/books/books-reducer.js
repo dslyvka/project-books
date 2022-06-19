@@ -6,7 +6,11 @@ import {
   fetchBooks,
   reviewBook,
 } from './books-operations';
-import { changeFilterTitle, changeFilterRating } from './books-actions';
+import {
+  changeFilterTitle,
+  changeFilterRating,
+  chackboxRaview,
+} from './books-actions';
 
 const items = createReducer(
   {
@@ -48,17 +52,24 @@ const items = createReducer(
 
 const filter = createReducer(
   {
-    filterRating: '',
     filterTitle: '',
+    filterRating: '',
+    chackboxRaview: true,
   },
   {
     [changeFilterTitle]: (state, { payload }) => ({
       ...state,
       filterTitle: payload,
     }),
+
     [changeFilterRating]: (state, { payload }) => ({
       ...state,
       filterRating: payload,
+    }),
+
+    [chackboxRaview]: (state, { payload }) => ({
+      ...state,
+      chackboxRaview: payload,
     }),
   },
 );
