@@ -15,6 +15,8 @@ export const Container = styled.div`
   height: 60px;
   padding: 0 20px;
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+  background-color: #fff;
+
   @media (min-width: 768px) {
     padding: 0 32px;
   }
