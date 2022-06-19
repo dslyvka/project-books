@@ -118,8 +118,11 @@ export const Button = styled.button`
   font-weight: 600;
   font-size: 16px;
   line-height: 1.25;
+  transition: 500ms;
   /* identical to box height */
 :hover{
+  transform: scale(1.03);
+  transition: 500ms;
   background-color:#091E3F;
   color:white;
 }
@@ -183,6 +186,36 @@ text-decoration:none;
 }
 }
 `
+
+export const Svg = styled.svg`
+
+height:100%;
+fill:#6D7A8D;
+cursor: pointer;
+width: 100%;
+   :focus,
+   :hover{
+        transition: 500ms;
+     transform: scale(1.1) ;
+    cursor: pointer;
+    fill: #FF6B08 ; 
+   }
+
+`
+
+export const ButtonSvg = styled.button`
+   display:flex;
+   padding:0;
+   margin:0;
+   border:0;
+   border-radius:20px;
+   width:40px;
+   background-color: transparent;
+`
+
+
+
+
 
 // export const LiTitle = styled.li`
 // white-space: nowrap;

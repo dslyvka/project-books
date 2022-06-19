@@ -21,6 +21,9 @@ export const GoBack = styled(HiOutlineArrowNarrowLeft)`
   margin-bottom: 25px;
   color: #ff6b08;
   cursor: pointer;
+  hover: {
+    background: #091e3f;
+  }
   @media (min-width: 768px) {
     display: none;
   }

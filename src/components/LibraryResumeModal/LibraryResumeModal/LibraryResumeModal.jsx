@@ -14,7 +14,7 @@ import { Input, Label } from './LibraryResumeModal.styled';
 
 export const LibraryResumeModal = ({ closer, id }) => {
   const [rate, setRate] = useState(0);
-  const [book, setBook] = useState('');
+  const [book, setBook] = useState('...');
   const [disabled, setDisabled] = useState(true);
 
   const dispatch = useDispatch();
@@ -46,7 +46,7 @@ export const LibraryResumeModal = ({ closer, id }) => {
   const reviewChng = e => {
     setBook(prev => ({ ...prev, [e.target.name]: e.target.value }));
     setDisabled(false);
-    if (e.target.value.length < 2) setDisabled(true);
+    if (e.target.value.length < 2 || rate === null) setDisabled(true);
   };
 
   return (
@@ -58,7 +58,7 @@ export const LibraryResumeModal = ({ closer, id }) => {
         <Label>
           <Input
             type="text"
-            placeholder={book}
+            placeholder={book.review !== '' ? book : '...'}
             value={book.review}
             name="review"
             minLength={1}

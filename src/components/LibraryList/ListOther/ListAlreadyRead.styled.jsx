@@ -240,7 +240,7 @@ export const ButtonDel = styled.button`
    border:0;
    border-radius:50px;
    background-color:#ffffff;
-   overflow:hidden;
+
 `
 
 
@@ -250,7 +250,11 @@ export const SvgDel = styled.svg`
    fill:#6D7A8D;
    margin:0 5px;
    font-size:20px;
+       transition: 1000ms;
+   :focus,
    :hover{
+        transition: 500ms;
+     transform: rotate(45deg) ;
     cursor: pointer;
     fill: #FF6B08 ; 
    }
