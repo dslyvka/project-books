@@ -38,7 +38,7 @@ export const BookIconStyled = styled(BookIcon)`
   fill: ${props => props.fill};
   @media (max-width: 320px) {
     position: absolute;
-    top: 25px;
+    top: 20px;
     left: 0;
   }
   @media (min-width: 768px) {
@@ -134,6 +134,16 @@ export const DeleteButton = styled.button`
   }
   @media (min-width: 1280px) {
     margin-left: 180px;
+  }
+`;
+export const TrainingListItemHead = styled.span`
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #898f9f;
+  margin-right: 20px;
+  @media (min-width: 768px) {
+    display: none;
   }
 `;
 
