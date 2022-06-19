@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+export const DIV = styled.div`
+height:40px;
+width:100px;`
+
 
 export const  Container = styled.div`
 display:flex;
