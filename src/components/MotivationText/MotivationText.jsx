@@ -5,10 +5,21 @@ import {
   ButtonStyled,
   ContainerButton,
 } from './MotivationText.styled';
-
+import trainingActions from '../../redux/training/trainingActions';
 import sprite from '../../images/sprite/sprites.svg';
+import { useDispatch } from 'react-redux';
 
 function MotivationText({ onClose }) {
+  const dispatch = useDispatch();
+
+  const onSubmit = () => {
+    dispatch(
+      trainingActions.addResult({
+        statisticDate: new Date(),
+        statisticResult: 1,
+      }),
+    );
+  };
   //   const navigate = useNavigate();
   //     const [logout] = useLogoutMutation(token);
 
@@ -36,7 +47,7 @@ function MotivationText({ onClose }) {
       </Title>
       <ContainerButton>
         <li>
-          <ButtonStyled type="button" autoFocus={true}>
+          <ButtonStyled type="button" autoFocus={true} onClick={onSubmit}>
             Нове тренування
           </ButtonStyled>
         </li>
