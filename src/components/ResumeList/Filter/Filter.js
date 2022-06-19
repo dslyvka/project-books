@@ -1,17 +1,34 @@
-import { Div, DivInput, Input, Label } from './Filter.styled';
+import {
+  Div,
+  DivInput,
+  Input,
+  Label,
+  InputCheckbox,
+  DivInputCheck,
+  LabelCheck,
+} from './Filter.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { booksSelectors } from '../../../redux/books/';
+import { useState } from 'react';
 import {
   changeFilterTitle,
   changeFilterRating,
+  chackboxRaview,
 } from '../../../redux/books/books-actions';
 
 function Filter() {
-  const { getFilterRating } = booksSelectors;
+  const { getFilterRating, getFilterTitle, getchackboxRaview } = booksSelectors;
   const valueFilterRating = useSelector(getFilterRating);
-  const { getFilterTitle } = booksSelectors;
   const valueFilterTitle = useSelector(getFilterTitle);
+  const valueCheckbox = useSelector(getchackboxRaview);
+
   const dispatch = useDispatch();
+  const [x, setX] = useState(true);
+  const soldCheckbox = ({ target: { checked } }) => {
+    console.log(checked);
+    setX(checked);
+    dispatch(chackboxRaview(checked));
+  };
   return (
     <Div>
       <DivInput>
@@ -23,6 +40,7 @@ function Filter() {
           placeholder="Ім'я книги"
         ></Input>
       </DivInput>
+
       <DivInput>
         <Label>Рейтинг</Label>
         <Input
@@ -33,6 +51,16 @@ function Filter() {
           pattern="/^[^-\s=]([0-9])/"
         ></Input>
       </DivInput>
+      <DivInputCheck>
+        <LabelCheck>Резюме</LabelCheck>
+        <InputCheckbox
+          id="check"
+          value={valueCheckbox}
+          type="checkbox"
+          checked={x}
+          onChange={soldCheckbox}
+        ></InputCheckbox>
+      </DivInputCheck>
     </Div>
   );
 }

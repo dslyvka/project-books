@@ -3,12 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import moment from 'moment';
 import trainingActions from '../../../redux/training/trainingActions';
-// import trainingSelectors from '../../../redux/training/trainingSelectors';
 import trainingFormSchema from '../../../validation/training';
 import BookSelector from '../BookSelector/BookSelector';
 import DatePickerInput from '../DatePicker/DatePicker';
 import Timers from '../../Timers/Timers';
-// import TrainingList from '../TrainingList/TrainingList';
 import {
   FormContainer,
   FormTitle,
@@ -23,7 +21,6 @@ const TrainingForm = () => {
   const start = useSelector(state => state.training.startDate);
   const end = useSelector(state => state.training.endDate);
   const isStarted = useSelector(state => state.training.isStarted);
-  // const selectedBooks = useSelector(trainingSelectors.getSelectBooks);
   const defaultValue = '';
 
   const { addBook, addDate } = trainingActions;

@@ -5,22 +5,28 @@ export const getLoading = state => state.books.loading;
 export const getError = state => state.books.error;
 export const getFilterRating = state => state.books.filter.filterRating;
 export const getFilterTitle = state => state.books.filter.filterTitle;
+export const getchackboxRaview = state => state.books.filter.chackboxRaview;
 
 export const findBook = createSelector(
-  [getBooks, getFilterRating, getFilterTitle],
-  (items, filterRating, filterTitle) => {
-    const normalizedFilterTitle = filterTitle.toLowerCase();
+  [getBooks, getFilterRating, getFilterTitle, getchackboxRaview],
+  (items, filterRating, filterTitle, chackboxRaview) => {
     const normalizedFilterRating = filterRating.toLowerCase();
+    const normalizedFilterTitle = filterTitle.toLowerCase();
 
-    const fileBooks = items.already.filter(({ title }) =>
-      title.toLowerCase().includes(normalizedFilterTitle),
+    console.log(normalizedFilterRating);
+    const fileBooks = items.already.filter(({ title, review }) =>
+      chackboxRaview === true
+        ? review !== null && title.toLowerCase().includes(normalizedFilterTitle)
+        : title.toLowerCase().includes(normalizedFilterTitle),
     );
 
+    console.log(fileBooks);
+
     if (normalizedFilterRating !== '') {
-      const RatingBooks = fileBooks.filter(
+      const ratingBooks = fileBooks.filter(
         ({ rating }) => rating === Number(normalizedFilterRating),
       );
-      const sortedContacts = [...RatingBooks].sort((a, b) =>
+      const sortedContacts = [...ratingBooks].sort((a, b) =>
         a.title.localeCompare(b.title),
       );
       return sortedContacts;

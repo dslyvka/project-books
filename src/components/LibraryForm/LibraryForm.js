@@ -47,8 +47,6 @@ const LibraryForm = () => {
     if (width < 768) {
       notifySuccess(values);
     }
-
-    console.log('onSubmit -> values, formikProps', values);
   };
 
   return (
