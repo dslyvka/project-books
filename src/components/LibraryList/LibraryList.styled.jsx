@@ -31,8 +31,11 @@ export const Button = styled.button`
   font-weight: 600;
   font-size: 16px;
   line-height: 1.25;
+   transition: 500ms;
   /* identical to box height */
 :hover{
+      transform: scale(1.03);
+    transition: 500ms;
   background-color:#091E3F;
   color:white;
 }
@@ -77,6 +80,7 @@ margin-bottom: 20px;
   font-size: 16px;
   line-height: 1.25;
   /* identical to box height */
+  
 
 text-decoration:none;
 

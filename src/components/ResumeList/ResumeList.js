@@ -1,10 +1,13 @@
 import { fetchBooks } from '../../redux/books/books-operations';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { findBook, getLoading } from '../../redux/books/books-selector';
 import { Link } from 'react-router-dom';
 import Rate from '../LibraryResumeModal/Rate/Rate';
 import Filter from './Filter/Filter';
+import { useToggle } from '../../hooks/useToggle';
+import sprite from '../../images/sprite/sprites.svg';
+import LibraryResumeModal from '../LibraryResumeModal/LibraryResumeModal/LibraryResumeModal';
 import {
   Div,
   Ul,
@@ -17,9 +20,18 @@ import {
   Button,
   DivRate,
   P,
+  Svg,
+  ButtonSvg,
 } from './ResumeList.styled';
 
 function ResumeList() {
+  const [id, setId] = useState();
+  const { isOpen, open, close } = useToggle();
+  const handleOpen = e => {
+    setId(e.currentTarget.id);
+    open();
+  };
+
   // const { reading = [], going = [], already = [] } = useSelector(getBooks);
   const filterBook = useSelector(findBook);
   const loading = useSelector(getLoading);
@@ -38,10 +50,18 @@ function ResumeList() {
         {loading === false && resume.length === 0 && <P>Нема такої книжки</P>}
         {resume.map(({ _id, review, title, rating }) => (
           <Ul key={_id}>
+            {isOpen && <LibraryResumeModal closer={close} id={id} />}
             <div>
               <Li color="#898F9F">Назва книги</Li>
               <Li color="#898F9F">Рейтинг</Li>
               <Li color="#898F9F">Резюме</Li>
+              <Li>
+                <ButtonSvg onClick={e => handleOpen(e)} id={_id}>
+                  <Svg width="20" height="20">
+                    <use href={`${sprite}#redactor`}></use>
+                  </Svg>
+                </ButtonSvg>
+              </Li>
             </div>
             <DivResult>
               <Li>{title}</Li>

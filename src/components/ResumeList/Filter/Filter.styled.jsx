@@ -37,6 +37,14 @@ margin-bottom: 8px;
 border: 1px solid #A6ABB9;
 padding: 10px 10px 10px 10px;
 height:42px;
+background-color: #F6F7FB;
+:focus{
+            background-color: #FFFFFF;
+        box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
+       outline:none;
+
+}
+
 @media screen and (min-width: 768px){
     margin-bottom: 0px;
     max-width:400px;
