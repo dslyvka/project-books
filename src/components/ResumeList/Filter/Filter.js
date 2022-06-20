@@ -44,11 +44,11 @@ function Filter() {
       <DivInput>
         <Label>Рейтинг</Label>
         <Input
-          type="text"
+          type="number"
           value={valueFilterRating}
           onChange={e => dispatch(changeFilterRating(e.target.value))}
-          placeholder="рейтинг"
-          pattern="/^[^-\s=]([0-9])/"
+          placeholder="від 1 до 5"
+          pattern="/^[^-\s=]([0-5])/"
         ></Input>
       </DivInput>
       <DivInputCheck>

@@ -40,16 +40,27 @@ flex-direction: column;`
 
 
 export const DivContainer = styled.div`
-margin-top:${props => props.margin};
+
+margin-top:20px;
 
 @media screen and (min-width: 768px) {
 margin-top:40px;
 }
+@media screen and (min-width: 1280px) {
 margin-top:${props => props.margin};
+}
 
-h2{margin-bottom: 24px;
-    font-weight: 500;
+
+h2{
+
+    font-weight: 600;
     font-size: 19px;
+    line-height: 23px;
+    margin-bottom: 10px;
+    @media screen and (min-width: 768px) {
+    margin-bottom: 24px;
+}
+
 line-height: 23px;
 }`
 
@@ -250,7 +261,7 @@ export const SvgDel = styled.svg`
    fill:#6D7A8D;
    margin:0 5px;
    font-size:20px;
-       transition: 1000ms;
+    transition: 1000ms;
    :active,
    :focus,
    :hover{

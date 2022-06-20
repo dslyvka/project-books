@@ -38,98 +38,100 @@ function ListOther({ text, array = [] }) {
   };
 
   return (
-    <DivContainer margin="32px">
+    <>
       {array.length !== 0 && (
-        <Div>
-          <h2>{text}</h2>
-          <UL>
-            <UlTablet>
-              <LiTabletOther>Навза книги</LiTabletOther>
-              <LiTabletOther>Автор</LiTabletOther>
-              <LiTabletOther>Рік</LiTabletOther>
-              <LiTabletOther>Стор</LiTabletOther>
-              <LiTabletOther></LiTabletOther>
-            </UlTablet>
-            {array.map(({ _id, title, author, year, pages, status }) => (
-              <Li key={_id}>
-                <UlOther>
-                  <DivTitle>
-                    <li> {<LibraryIcon book={status} />} </li>
-                    <LiNameBook>{title}</LiNameBook>
-                  </DivTitle>
-                  {status === 'going' && (
-                    <LiSvgMobile width="35px">
-                      <ButtonDel
-                        onClick={e => togleModal(e)}
-                        id={_id}
-                        data-text={title}
-                      >
-                        <SvgDel width="20" height="20">
-                          <use href={`${sprite}#icon-delete`}></use>
-                        </SvgDel>
-                      </ButtonDel>
-                      <div>
-                        {isOpen && (
-                          <Modal onClose={close}>
-                            <DeleteButton
-                              onClose={close}
-                              _id={id}
-                              book={book}
-                            />
-                          </Modal>
-                        )}
-                      </div>
-                    </LiSvgMobile>
-                  )}
-                </UlOther>
-                <UlOther>
-                  <LiTitle>Автор</LiTitle>
-                  <LiData width="40px">{author}</LiData>
-                </UlOther>
-                <UlOther>
-                  <LiTitle>Рік</LiTitle>
-                  <LiData width="63px">{year}</LiData>
-                </UlOther>
-                <UlOther>
-                  <LiTitle>Стор</LiTitle>
-                  <LiData width="50px"> {pages}</LiData>
-                </UlOther>
-                <UlOther>
-                  {status === 'going' ? (
-                    <LiSvgTablet width="5px">
-                      <ButtonDel
-                        onClick={e => togleModal(e)}
-                        id={_id}
-                        data-text={title}
-                      >
-                        <SvgDel width="20" height="20">
-                          <use href={`${sprite}#icon-delete`}></use>
-                        </SvgDel>
-                      </ButtonDel>
-                      <div>
-                        {isOpen && (
-                          <Modal onClose={close}>
-                            <DeleteButton
-                              onClose={close}
-                              _id={id}
-                              book={book}
-                            />
-                          </Modal>
-                        )}
-                      </div>
-                    </LiSvgTablet>
-                  ) : (
-                    <LiSvgTablet width="5px">
-                      <Span></Span>
-                    </LiSvgTablet>
-                  )}
-                </UlOther>
-              </Li>
-            ))}
-          </UL>
-        </Div>
+        <DivContainer margin="32px">
+          <Div>
+            <h2>{text}</h2>
+            <UL>
+              <UlTablet>
+                <LiTabletOther>Навза книги</LiTabletOther>
+                <LiTabletOther>Автор</LiTabletOther>
+                <LiTabletOther>Рік</LiTabletOther>
+                <LiTabletOther>Стор</LiTabletOther>
+                <LiTabletOther></LiTabletOther>
+              </UlTablet>
+              {array.map(({ _id, title, author, year, pages, status }) => (
+                <Li key={_id}>
+                  <UlOther>
+                    <DivTitle>
+                      <li> {<LibraryIcon book={status} />} </li>
+                      <LiNameBook>{title}</LiNameBook>
+                    </DivTitle>
+                    {status === 'going' && (
+                      <LiSvgMobile width="35px">
+                        <ButtonDel
+                          onClick={e => togleModal(e)}
+                          id={_id}
+                          data-text={title}
+                        >
+                          <SvgDel width="20" height="20">
+                            <use href={`${sprite}#icon-delete`}></use>
+                          </SvgDel>
+                        </ButtonDel>
+                        <div>
+                          {isOpen && (
+                            <Modal onClose={close}>
+                              <DeleteButton
+                                onClose={close}
+                                _id={id}
+                                book={book}
+                              />
+                            </Modal>
+                          )}
+                        </div>
+                      </LiSvgMobile>
+                    )}
+                  </UlOther>
+                  <UlOther>
+                    <LiTitle>Автор</LiTitle>
+                    <LiData width="40px">{author}</LiData>
+                  </UlOther>
+                  <UlOther>
+                    <LiTitle>Рік</LiTitle>
+                    <LiData width="63px">{year}</LiData>
+                  </UlOther>
+                  <UlOther>
+                    <LiTitle>Стор</LiTitle>
+                    <LiData width="50px"> {pages}</LiData>
+                  </UlOther>
+                  <UlOther>
+                    {status === 'going' ? (
+                      <LiSvgTablet width="5px">
+                        <ButtonDel
+                          onClick={e => togleModal(e)}
+                          id={_id}
+                          data-text={title}
+                        >
+                          <SvgDel width="20" height="20">
+                            <use href={`${sprite}#icon-delete`}></use>
+                          </SvgDel>
+                        </ButtonDel>
+                        <div>
+                          {isOpen && (
+                            <Modal onClose={close}>
+                              <DeleteButton
+                                onClose={close}
+                                _id={id}
+                                book={book}
+                              />
+                            </Modal>
+                          )}
+                        </div>
+                      </LiSvgTablet>
+                    ) : (
+                      <LiSvgTablet width="5px">
+                        <Span></Span>
+                      </LiSvgTablet>
+                    )}
+                  </UlOther>
+                </Li>
+              ))}
+            </UL>
+          </Div>
+        </DivContainer>
       )}
-    </DivContainer>
+    </>
   );
 }
 

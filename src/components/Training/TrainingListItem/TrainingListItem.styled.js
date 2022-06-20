@@ -119,10 +119,21 @@ export const DeleteButton = styled.button`
   border-style: none;
   outline: none;
   cursor: pointer;
+  margin-right: 10px;
   & > svg {
     width: 100%;
     height: 100%;
     fill: currentColor;
+    transition: 1000ms;
+    :active,
+    :focus,
+    :hover {
+      margin-right: 5px;
+      transition: 500ms;
+      transform: rotate(45deg);
+      cursor: pointer;
+      fill: #ff6b08;
+    }
   }
   color: #898f9f;
   &:hove {
