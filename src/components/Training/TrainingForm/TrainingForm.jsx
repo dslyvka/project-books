@@ -14,14 +14,12 @@ import {
   SelectAndButtonContainer,
   SelectContainer,
   FormAddButton,
-  ErrorMessage,
 } from './TrainingForm.styled';
 
 const TrainingForm = () => {
   const start = useSelector(state => state.training.startDate);
   const end = useSelector(state => state.training.endDate);
   const isStarted = useSelector(state => state.training.isStarted);
-  const defaultValue = '';
 
   const { addBook, addDate } = trainingActions;
 
@@ -35,12 +33,7 @@ const TrainingForm = () => {
     },
     validationSchema: trainingFormSchema,
     onSubmit: values => {
-      // if (selectedBooks.some(book => book._id === values.book._id)) {
-      //   return;
-      // }
-      // dispatch(trainingActions.addSelectedId(values.book._id));
       dispatch(addBook(values.book));
-      console.log(values);
     },
   });
 
@@ -53,7 +46,6 @@ const TrainingForm = () => {
       }),
     );
     formik.setFieldValue('start', start);
-    // dispatch(trainingActions.trainingStartDate(start));
   };
 
   const handleEndDate = date => {
@@ -65,7 +57,6 @@ const TrainingForm = () => {
       }),
     );
     formik.setFieldValue('end', end);
-    // dispatch(trainingActions.trainingEndDate(end));
   };
 
   const handleBook = value => {
@@ -87,9 +78,7 @@ const TrainingForm = () => {
                 minDate={new Date()}
                 maxDate={new Date()}
               />
-              {/* {formik.touched.start && formik.errors.start ? (
-            <ErrorMessage>{formik.errors.start}</ErrorMessage>
-          ) : null} */}
+
               <DatePickerInput
                 value={formik.values.end}
                 placeholderText="Кінець"
@@ -98,9 +87,6 @@ const TrainingForm = () => {
                 minDate={new Date().setDate(new Date().getDate() + 1)}
                 maxDate={false}
               />
-              {/* {formik.touched.end && formik.errors.end ? (
-            <ErrorMessage>{formik.errors.end}</ErrorMessage>
-          ) : null} */}
             </CalendarsContainer>
           </>
         ) : (
@@ -109,11 +95,7 @@ const TrainingForm = () => {
         {!isStarted ? (
           <SelectAndButtonContainer>
             <SelectContainer>
-              <BookSelector
-                value={''}
-                onChange={handleBook}
-                // selectedBooks={selectedBooks}
-              />
+              <BookSelector value={''} onChange={handleBook} />
             </SelectContainer>
 
             <FormAddButton

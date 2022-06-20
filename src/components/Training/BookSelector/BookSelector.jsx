@@ -1,18 +1,10 @@
 import React from 'react';
-import { useSelector, useDispatch, useStore } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Select from 'react-select';
 import { useEffect } from 'react';
 import { fetchBooks } from '../../../redux/books/books-operations';
 
 const BookSelector = ({ onChange }) => {
-  // const booksToRead = useSelector(trainingSelectors.getPlanNotSelectBooks);
-
-  // const bookSelect = booksToRead.map(book => ({
-  //   ...book,
-  //   label: book.title,
-  //   value: book.title,
-  // }));
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -58,7 +50,5 @@ const BookSelector = ({ onChange }) => {
     />
   );
 };
-
-// [{ label: 'Taras', value: 'Shevchenko' }]
 
 export default BookSelector;

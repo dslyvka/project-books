@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { ReactComponent as BookIcon } from '../../../images/icons/training/bookIcon.svg';
-import { ReactComponent as DeleteIcon } from '../../../images/icons/training/deleteIcon.svg';
 
 export const TrainingListItemStyled = styled.li`
   position: relative;
@@ -36,7 +35,12 @@ export const BookIconStyled = styled(BookIcon)`
   width: 22px;
   height: 17px;
   fill: ${props => props.fill};
-  @media (max-width: 320px) {
+  @media (max-width: 319px) {
+    position: absolute;
+    top: 20px;
+    left: 0;
+  }
+  @media (min-width: 320px) and (max-width: 767px) {
     position: absolute;
     top: 20px;
     left: 0;
@@ -52,7 +56,7 @@ export const TrainingListItemTitle = styled.p`
   font-size: 14px;
   color: #242a37;
   /* composes: field; */
-  @media (max-width: 320px) {
+  @media (max-width: 767px) {
     margin-bottom: 17px;
     min-height: 15px;
   }
@@ -69,7 +73,7 @@ export const TrainingListItemAuthor = styled.p`
   font-weight: 500;
   font-size: 14px;
   color: #242a37;
-  @media (max-width: 320px) {
+  @media (max-width: 767px) {
     margin-bottom: 17px;
   }
   @media (min-width: 768px) {
@@ -85,7 +89,7 @@ export const TrainingListItemYear = styled.p`
   font-weight: 500;
   font-size: 14px;
   color: #242a37;
-  @media (max-width: 320px) {
+  @media (max-width: 767px) {
     margin-bottom: 17px;
   }
   @media (min-width: 768px) {
@@ -124,11 +128,17 @@ export const DeleteButton = styled.button`
   &:hove {
     color: #ff6b09;
   }
-  @media (max-width: 320px) {
+  @media (max-width: 319px) {
     position: absolute;
     top: 25px;
     right: 0;
   }
+  @media (min-width: 320px) and (max-width: 767px) {
+    position: absolute;
+    top: 25px;
+    right: 0;
+  }
+
   @media (min-width: 768px) {
     margin-left: 80px;
   }

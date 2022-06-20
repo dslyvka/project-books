@@ -1,6 +1,6 @@
+import { useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import TrainingListItem from '../TrainingListItem/TrainingListItem';
-import Responsive from 'react-responsive';
-
 import {
   TrainingListContainer,
   TrainingListHeader,
@@ -15,25 +15,7 @@ import {
   BookIconEmptyStyled,
 } from './TrainingList.styled';
 
-import {
-  TrainingListItemStyled,
-  BookIconStyled,
-  TrainingListItemTitle,
-  TrainingListItemAuthor,
-  TrainingListItemYear,
-  TrainingListItemPages,
-} from '../TrainingListItem/TrainingListItem.styled';
-
-import { useSelector } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
 const placeholder = (
-  // <TrainingListItem
-  //   title="..."
-  //   author="..."
-  //   year="..."
-  //   pages="..."
-  //   placeholder
-  // />
   <>
     <TrainingListEmptyItemTitle>
       <BookIconEmptyStyled fill="#B1B5C2" />
@@ -49,7 +31,6 @@ const placeholder = (
 
 const TrainingList = () => {
   const books = useSelector(state => state.training.books);
-  const Mobile = props => <Responsive {...props} maxWidth={767} />;
 
   return (
     <TrainingListContainer>
@@ -60,7 +41,6 @@ const TrainingList = () => {
         <TrainingListHeaderBookPages>Стор.</TrainingListHeaderBookPages>
       </TrainingListHeader>
       <TrainingListStyled>
-        {/* <TrainingListItem /> */}
         {books.length
           ? books.map((book, index) => (
               <TrainingListItem
@@ -78,7 +58,5 @@ const TrainingList = () => {
       </TrainingListStyled>
     </TrainingListContainer>
   );
-
-  // <TrainingListItem />;
 };
 export default TrainingList;
