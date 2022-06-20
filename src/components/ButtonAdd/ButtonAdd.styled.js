@@ -13,6 +13,7 @@ export const Button = styled.button`
   height: 42px;
   align-self: center;
   transition: 500ms;
+  :active,
   &:hover {
     transform: scale(1.03);
     transition: 500ms;
