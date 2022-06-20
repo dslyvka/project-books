@@ -30,10 +30,6 @@ const TrainingListItem = ({
   return (
     <TrainingListItemStyled>
       <BookIconStyled fill={status === 'already' ? '#FF6B08' : '#B1B5C2'} />
-      {/* <TrainingListItemTitle>Заповіт</TrainingListItemTitle>
-      <TrainingListItemAuthor>Тарас Шевченко</TrainingListItemAuthor>
-      <TrainingListItemYear>1859</TrainingListItemYear>
-      <TrainingListItemPages>320</TrainingListItemPages> */}
       <TrainingListItemTitle>{title}</TrainingListItemTitle>
       <TrainingListItemAuthor>
         <TrainingListItemHead>Автор:</TrainingListItemHead>
