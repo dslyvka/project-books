@@ -33,6 +33,7 @@ export const Button = styled.button`
   line-height: 1.25;
    transition: 500ms;
   /* identical to box height */
+:active,
 :hover{
       transform: scale(1.03);
     transition: 500ms;

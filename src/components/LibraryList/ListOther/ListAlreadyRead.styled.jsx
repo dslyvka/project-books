@@ -251,6 +251,7 @@ export const SvgDel = styled.svg`
    margin:0 5px;
    font-size:20px;
        transition: 1000ms;
+   :active,
    :focus,
    :hover{
         transition: 500ms;
