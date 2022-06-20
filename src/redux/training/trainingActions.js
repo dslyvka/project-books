@@ -29,7 +29,7 @@ const startTraining = createAsyncThunk(
   'training/startTraining',
   async (details, thunkAPI) => {
     try {
-      console.log(details);
+      // console.log(details);
       const { startDate, endDate } = details;
       const books = details.books;
       const { data } = await axios.post('/trainings', {

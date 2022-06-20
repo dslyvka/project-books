@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const TrainingWrapperStyled = styled.div`
   position: relative;
-  padding-top: 30px;
+  /* padding-top: 30px; */
   padding-bottom: 50px;
   @media (min-width: 768px) {
     padding-bottom: 60px;

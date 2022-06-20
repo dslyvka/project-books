@@ -42,7 +42,7 @@ export const addBooks = createAsyncThunk(
     };
     try {
       const { data } = await axios.post('/books', books);
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (error) {
       console.log(error);
@@ -78,7 +78,7 @@ export const reviewBook = createAsyncThunk(
 
     try {
       const { data } = await axios.patch(`/books/${values.id}/review`, review);
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (error) {
       console.log(error);

@@ -25,10 +25,6 @@ const TrainingPage = () => {
     }
   }, [dispatch, isLoggedIn, token]);
 
-  // useEffect(() => {
-  //   !isLoggedIn && navigate((location.pathname = '/login'));
-  // });
-
   useEffect(() => {
     // dispatch(actions.fetchCurrentUser())
     dispatch(trainingActions.getCurrTraining());
