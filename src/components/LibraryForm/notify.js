@@ -21,3 +21,14 @@ export const notifyError = (values, text) =>
     draggable: true,
     progress: undefined,
   });
+
+export const notifyTrainingSuccess = values =>
+  toast.success(`Книга ${values.book.title} добавлена до тренування!`, {
+    position: 'bottom-center',
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+  });

@@ -84,6 +84,7 @@ export const FormAddButton = styled.button`
 
   &:hover,
   &:focus {
+    transition: 500ms;
     background-color: #ff6b08;
     color: #ffffff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);

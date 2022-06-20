@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import React from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useWindowWidth } from '@react-hook/window-size';
 import validationSchema from '../../validation/books';
