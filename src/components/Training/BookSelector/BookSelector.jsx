@@ -34,7 +34,10 @@ const BookSelector = ({ onChange }) => {
 
   return (
     <Select
-      isSearchable={false}
+      onKeyDown={e => {
+        e.preventDefault();
+      }}
+      // isSearchable={false}
       isDisabled={isStarted ? true : false}
       defaultValue=""
       placeholder={isStarted ? '' : 'Оберіть книжку'}
