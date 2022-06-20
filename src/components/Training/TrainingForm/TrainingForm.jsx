@@ -70,7 +70,7 @@ const TrainingForm = () => {
 
   const onSubmit = async (formik) => {
     
-    console.log(formik.values);
+    // console.log(formik.values);
                 formik.values?.book?.author &&
                   dispatch(
                     addBook({

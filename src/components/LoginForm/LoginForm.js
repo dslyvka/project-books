@@ -55,7 +55,7 @@ const LoginForm = () => {
 
           dispatch(actions.login({ email, password }));
           // navigate('/library');
-          console.log(values);
+          // console.log(values);
         }}
       >
         {({

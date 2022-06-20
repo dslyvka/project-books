@@ -25,7 +25,7 @@ function Filter() {
   const dispatch = useDispatch();
   const [x, setX] = useState(true);
   const soldCheckbox = ({ target: { checked } }) => {
-    console.log(checked);
+    // console.log(checked);
     setX(checked);
     dispatch(chackboxRaview(checked));
   };

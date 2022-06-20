@@ -9,7 +9,7 @@ import {
 
 function DeleteButton({ onClose, _id, book }) {
   const dispatch = useDispatch();
-  console.log(_id);
+  // console.log(_id);
 
   const delBook = () => {
     onClose();

@@ -43,7 +43,7 @@ const BookSelector = ({ onChange }) => {
         'У вас відсутні книги, які ви плануєте прочитати.'
       }
       onChange={book => {
-        console.log(book);
+        // console.log(book);
         onChange(book.value);
       }}
       styles={customStyles}
