@@ -12,7 +12,7 @@ const ResumePage = () => {
   useEffect(() => {
     !isLoggedIn && navigate((location.pathname = '/library'));
   });
-
+  window.scrollTo(0, 0);
   return (
     isLoggedIn && (
       <PageAnimation>
