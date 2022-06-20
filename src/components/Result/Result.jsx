@@ -19,6 +19,7 @@ import {
 import moment from 'moment';
 import Modal from '../Modal/Modal';
 import CongratulationsText from '../СongratulationsText/СongratulationsText';
+import MotivationText from '../MotivationText/MotivationText';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
@@ -26,10 +27,17 @@ import sprite from '../../images/sprite/sprites.svg';
 import trainingActions from '../../redux/training/trainingActions';
 
 const Result = () => {
+  const {
+    statistics,
+    totalPages,
+    readedPages,
+    startDate,
+    endDate,
+    bookNumber,
+  } = useSelector(state => state.training);
   const [showModal, setShowModal] = useState(false);
-  const { statistics, totalPages, readedPages, startDate, bookNumber } =
-    useSelector(state => state.training);
   const [readBook, setReadBook] = useState(bookNumber);
+  const [overdue, setOverdue] = useState(false);
 
   const togleModal = () => {
     setShowModal(showModal => !showModal);
@@ -39,6 +47,10 @@ const Result = () => {
     if (bookNumber !== readBook) {
       togleModal();
       setReadBook(readBook + 1);
+    }
+    if (new Date(endDate) < new Date()) {
+      togleModal();
+      setOverdue(overdue => !overdue);
     }
   }, [bookNumber]);
 
@@ -106,7 +118,7 @@ const Result = () => {
                   <Input
                     type="number"
                     name="statisticResult"
-                    min="0"
+                    min="1"
                     max={totalPages - readedPages}
                     placeholder="..."
                     onChange={handleChange}
@@ -150,7 +162,11 @@ const Result = () => {
       )}
       {showModal && (
         <Modal onClose={togleModal}>
-          <CongratulationsText onClose={togleModal} />
+          {overdue ? (
+            <MotivationText onClose={togleModal} />
+          ) : (
+            <CongratulationsText onClose={togleModal} />
+          )}
         </Modal>
       )}
     </Container>
