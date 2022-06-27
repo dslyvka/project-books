@@ -8,12 +8,12 @@ const Timers = () => {
     const totalPages = useSelector(state => state.training.totalPages);
     const readedPages = useSelector(state => state.training.readedPages);
     const pagesLeft = totalPages - readedPages;
-    const year = new Date().getFullYear();
+    const year = (new Date().getFullYear()) + 1;
     return (
         <Wrapper>
             <div>
                 <Header>До закінчення року залишилось</Header>
-                <Timer targetDate={`12/31/${year}`} />
+                <Timer targetDate={`01/01/${year}`} />
             </div>
             <div>
                 <Header>До досягнення мети залишилось</Header>
